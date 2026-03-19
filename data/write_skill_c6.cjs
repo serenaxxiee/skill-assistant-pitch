@@ -1,4 +1,5 @@
----
+const fs = require('fs');
+const skillContent = `---
 name: skill-detector
 description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies them into pattern archetypes, scores them on automation feasibility and business value, clusters related patterns into workflow chains, and outputs ranked skill specifications ready for generation.
 version: 1.1.0
@@ -82,7 +83,7 @@ For each identified pattern, compute two independent scores:
 
 #### automationScore (0-100): How fully can AI handle this?
 
-```
+\`\`\`
 Base score by archetype ceiling (see table above)
 + 5 if signal structure is machine-parseable (templates, subject-line prefixes, structured fields)
 + 5 if output format is deterministic (classification, routing, lookup)
@@ -90,11 +91,11 @@ Base score by archetype ceiling (see table above)
 - 10 if requires creative judgment or tone calibration
 - 10 if requires real-time external data not available via M365
 - 5 if output must be reviewed before sending externally
-```
+\`\`\`
 
 #### valueScore (0-100): How much does solving this matter?
 
-```
+\`\`\`
 Base = min(100, timeSpentMinutesPerWeek x 0.5)
 + 10 if participantCount >= 3 (org-wide impact)
 + 10 if pattern blocks downstream work (action items, decisions, unblocking)
@@ -102,12 +103,12 @@ Base = min(100, timeSpentMinutesPerWeek x 0.5)
 + 5 if cross-source (appears in 2+ M365 signal types)
 - 15 if participantCount == 1 (personal productivity only)
 - 10 if low frequency (< 2/week)
-```
+\`\`\`
 
 #### compositeScore
-```
+\`\`\`
 compositeScore = round((automationScore x 0.5) + (valueScore x 0.5))
-```
+\`\`\`
 
 #### Trend Classification
 - **rising**: New occurrences in most recent cycle AND occurrenceCount increased
@@ -140,9 +141,9 @@ Group patterns that share:
 
 Look for signals where the output of one pattern is the input to another. These form **chains**:
 
-```
+\`\`\`
 Signal A (email received) -> Signal B (meeting scheduled) -> Signal C (deck created) -> Signal D (recap sent) -> Signal E (action items tracked)
-```
+\`\`\`
 
 **Detection method**: When a signal mentions an artifact or action that is also an output of another pattern, they are likely chained. Example from real data:
 - "A recap email references a meeting review, points to a content deck, and then enumerates follow-up tasks with owners"
@@ -155,7 +156,7 @@ Signal A (email received) -> Signal B (meeting scheduled) -> Signal C (deck crea
 
 For each pattern with compositeScore >= 75, generate a skill candidate specification:
 
-```yaml
+\`\`\`yaml
 name: kebab-case-skill-name
 compositeScore: int
 automationScore: int
@@ -178,7 +179,7 @@ m365Sources:
   writes: [what it creates or updates]
 cluster: cluster-id-if-applicable
 chainPosition: position-in-chain-if-applicable
-```
+\`\`\`
 
 For pattern clusters with compositeScore >= 75 across all members, also generate a **cluster skill specification** -- a meta-skill that orchestrates the individual skills in the cluster.
 
@@ -186,9 +187,9 @@ For pattern clusters with compositeScore >= 75 across all members, also generate
 
 Patterns move through these states based on cross-cycle evidence:
 
-```
+\`\`\`
 Signal (1 cycle) -> Candidate (2 cycles) -> Confirmed (3+ cycles) -> Mature (5+ cycles, stable scores) -> Declining (2+ cycles no signal) -> Archived (4+ cycles no signal)
-```
+\`\`\`
 
 **Lifecycle rules:**
 - Never promote a signal to a confirmed pattern in a single cycle
@@ -287,11 +288,11 @@ When a pattern shows a large single-cycle spike (>50% increase in occurrenceCoun
 Always produce output in this structure:
 
 ### 1. Signal Summary
-```
+\`\`\`
 Signals harvested: count
 Sources: email(n), meeting(n), teams(n), document(n)
 Time period: date range
-```
+\`\`\`
 
 ### 2. Pattern Table
 A ranked table of all detected patterns sorted by composite score descending, including: pattern name/ID, sources, occurrences, participants, hours/week, automation score, value score, composite score, trend, lifecycle state.
@@ -317,3 +318,7 @@ A prioritized action plan: which 1-3 skills to build first and why. Prefer clust
 |---------|-------|---------|
 | 1.0.0 | 5 | Initial release. 10 archetypes, 4-phase pipeline, 26 patterns from 5 cycles. |
 | 1.1.0 | 6 | Added Phase 4 (CLUSTER). 12 archetypes (+Link/Access, +Incident Response). Pattern lifecycle management. Workflow chain detection. Event surge detector. 28 patterns (2 new, 1 archived). 3 pattern clusters. 1 workflow chain. Tier tables updated with cycle presence counts. |
+`;
+
+fs.writeFileSync('C:/agent/skilluminator/.claude/skills/skill-detector/SKILL.md', skillContent);
+console.log('SKILL.md written successfully');
