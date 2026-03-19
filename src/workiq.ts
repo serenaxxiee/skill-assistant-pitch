@@ -29,6 +29,7 @@ export function getTeamsMcpConfig(): Record<string, any> {
 
 export const WORKIQ_TOOL = "mcp__workiq__ask_work_iq";
 export const TEAMS_POST_TOOL = "mcp__teams-skilluminator__post_message";
+export const TEAMS_READ_TOOL = "mcp__teams-skilluminator__read_steering";
 
 /**
  * Single broad query focused on individual work patterns.

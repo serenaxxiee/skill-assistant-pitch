@@ -7,9 +7,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import {
   buildSystemPrompt, buildHarvestPrompt,
-  buildRefinePrompt, buildSummaryPrompt,
+  buildRefinePrompt, buildSummaryPrompt, buildSteeringPrompt,
 } from "./prompts.js";
-import { getWorkIQMcpConfig, getTeamsMcpConfig, WORKIQ_TOOL, TEAMS_POST_TOOL } from "./workiq.js";
+import { getWorkIQMcpConfig, getTeamsMcpConfig, WORKIQ_TOOL, TEAMS_POST_TOOL, TEAMS_READ_TOOL } from "./workiq.js";
 import {
   readPatterns, readSignals, appendCycleLog,
   type CycleLog,
@@ -208,6 +208,37 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   let refineTokens = { input: 0, output: 0 };
   let summaryTokens = { input: 0, output: 0 };
 
+  // ── Phase 0: Check for steering messages from Serena ──────────
+  display.sectionHeader("Phase 0: Checking Teams for Steering Input");
+  let steeringInput = "";
+  try {
+    for await (const message of query({
+      prompt: buildSteeringPrompt(cycleNum),
+      options: {
+        ...baseOptions,
+        tools: [],
+        allowedTools: [TEAMS_READ_TOOL],
+        disallowedTools: ["AskUserQuestion"],
+        mcpServers: teamsMcp,
+      },
+    })) {
+      const msg = message as any;
+      if ("result" in msg) {
+        steeringInput = msg.result ?? "";
+      }
+    }
+    if (steeringInput && !steeringInput.toLowerCase().includes("no steering input")) {
+      display.info("Steering", "Found operator instructions");
+      display.agentOutput(steeringInput.slice(0, 300));
+    } else {
+      steeringInput = "";
+      display.info("Steering", "No operator instructions");
+    }
+  } catch (err: any) {
+    display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
+  }
+  display.sectionEnd();
+
   // ── Phase 1: Harvest (only if no signals exist yet) ────────────
   const existingSignals = readSignals();
   let harvestSummary = "";
@@ -294,7 +325,7 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
 
   try {
     for await (const message of query({
-      prompt: buildRefinePrompt(cycleNum),
+      prompt: buildRefinePrompt(cycleNum, steeringInput || undefined),
       options: refineOptions,
     })) {
       const msg = message as any;
