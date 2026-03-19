@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator Dashboard - Cycle 6</title>
+<title>Skilluminator Dashboard - Cycle 7</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f1117;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:24px;max-width:1480px;margin:0 auto;line-height:1.5}
-h1{font-size:30px;font-weight:700;margin-bottom:4px;background:linear-gradient(135deg,#6c5ce7,#00b894,#fdcb6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+body{background:#0f1117;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:24px;max-width:1520px;margin:0 auto;line-height:1.5}
+h1{font-size:32px;font-weight:700;margin-bottom:4px;background:linear-gradient(135deg,#6c5ce7,#00b894,#fdcb6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
 @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
 .subtitle{color:#888;font-size:14px;margin-bottom:28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .subtitle .cycle-badge{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;padding:2px 10px;border-radius:12px;font-weight:600;font-size:13px}
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
-.kpi{background:#1a1d27;border-radius:14px;padding:18px 20px;border:1px solid #2a2d3a;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.subtitle .new-badge{background:linear-gradient(135deg,#00b894,#55efc4);color:#0f1117;padding:2px 8px;border-radius:12px;font-weight:600;font-size:11px}
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:28px}
+.kpi{background:#1a1d27;border-radius:14px;padding:18px 20px;border:1px solid #2a2d3a;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;animation:fadeUp .5s ease both}
+.kpi:nth-child(1){animation-delay:.05s}.kpi:nth-child(2){animation-delay:.1s}.kpi:nth-child(3){animation-delay:.15s}.kpi:nth-child(4){animation-delay:.2s}.kpi:nth-child(5){animation-delay:.25s}.kpi:nth-child(6){animation-delay:.3s}
 .kpi:hover{transform:translateY(-2px);border-color:#6c5ce740}
 .kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
 .kpi:nth-child(1)::after{background:linear-gradient(90deg,#6c5ce7,#a29bfe)}
@@ -20,13 +24,14 @@ h1{font-size:30px;font-weight:700;margin-bottom:4px;background:linear-gradient(1
 .kpi:nth-child(3)::after{background:linear-gradient(90deg,#fdcb6e,#f39c12)}
 .kpi:nth-child(4)::after{background:linear-gradient(90deg,#e17055,#ff7675)}
 .kpi:nth-child(5)::after{background:linear-gradient(90deg,#74b9ff,#0984e3)}
-.kpi-value{font-size:34px;font-weight:700;color:#fff}
-.kpi-label{font-size:12px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+.kpi:nth-child(6)::after{background:linear-gradient(90deg,#a29bfe,#6c5ce7)}
+.kpi-value{font-size:32px;font-weight:700;color:#fff}
+.kpi-label{font-size:11px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
 .kpi-delta{font-size:11px;margin-top:6px;font-weight:500}
 .kpi-delta.up{color:#00b894}
 .kpi-delta.stable{color:#fdcb6e}
 .kpi-delta.new{color:#74b9ff}
-.section{background:#1a1d27;border-radius:14px;padding:24px;margin-bottom:20px;border:1px solid #2a2d3a}
+.section{background:#1a1d27;border-radius:14px;padding:24px;margin-bottom:20px;border:1px solid #2a2d3a;animation:fadeUp .5s ease both}
 .section-title{font-size:17px;font-weight:600;margin-bottom:16px;color:#fff;display:flex;align-items:center;gap:8px}
 .section-title .icon{font-size:18px}
 table{width:100%;border-collapse:collapse;font-size:13px}
@@ -34,10 +39,11 @@ th{text-align:left;padding:10px 10px;border-bottom:2px solid #2a2d3a;color:#666;
 td{padding:9px 10px;border-bottom:1px solid #1f2230}
 tr:hover{background:#1f223080}
 .bar-wrap{display:flex;align-items:center;gap:6px}
-.bar-bg{width:70px;height:7px;background:#1f2230;border-radius:4px;overflow:hidden}
+.bar-bg{width:60px;height:7px;background:#1f2230;border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
 .bar-auto .bar-fill{background:linear-gradient(90deg,#6c5ce7,#a29bfe)}
 .bar-value .bar-fill{background:linear-gradient(90deg,#00b894,#55efc4)}
+.bar-conf .bar-fill{background:linear-gradient(90deg,#fdcb6e,#f39c12)}
 .score{font-weight:600;font-size:13px;min-width:24px}
 .trend-up{color:#00b894;font-size:12px}
 .trend-stable{color:#fdcb6e;font-size:12px}
@@ -50,14 +56,24 @@ tr:hover{background:#1f223080}
 .badge-meeting{background:#00b89420;color:#55efc4}
 .badge-teams{background:#fdcb6e20;color:#fdcb6e}
 .badge-doc{background:#e1705520;color:#ff7675}
-.cluster-card{background:#12141c;border-radius:10px;padding:16px;margin-bottom:12px;border-left:3px solid}
+.badge-workflow{background:#74b9ff20;color:#74b9ff}
+.cluster-card{background:#12141c;border-radius:10px;padding:16px;margin-bottom:12px;border-left:3px solid;transition:transform .15s}
+.cluster-card:hover{transform:translateX(4px)}
 .cluster-card.eval{border-color:#fdcb6e}
 .cluster-card.meeting{border-color:#00b894}
-.cluster-card.frag{border-color:#a29bfe}
+.cluster-card.notif{border-color:#a29bfe}
+.cluster-card.event{border-color:#636e72}
 .cluster-name{font-weight:600;font-size:14px;color:#fff;margin-bottom:6px}
 .cluster-stat{display:flex;gap:16px;font-size:12px;color:#888;margin-bottom:8px}
 .cluster-stat span{display:flex;align-items:center;gap:4px}
 .cluster-insight{font-size:12px;color:#b0b0b0;line-height:1.6;font-style:italic}
+.chain-card{background:#12141c;border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid #2a2d3a}
+.chain-name{font-weight:600;font-size:14px;color:#fff;margin-bottom:4px}
+.chain-meta{font-size:11px;color:#888;margin-bottom:10px}
+.chain-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px}
+.chain-step{background:#1a1d27;border:1px solid #2a2d3a;border-radius:6px;padding:4px 8px;font-size:10px;color:#e0e0e0}
+.chain-arrow{color:#6c5ce7;margin:0 2px;font-size:14px}
+.chain-savings{font-size:12px;color:#00b894;font-weight:600}
 .json-block{background:#12141c;border-radius:8px;padding:16px;font-family:'Cascadia Code','Fira Code',monospace;font-size:11px;overflow-x:auto;max-height:360px;overflow-y:auto;color:#a29bfe;white-space:pre-wrap;word-break:break-all;line-height:1.6}
 .changelog{font-size:13px;line-height:1.9}
 .changelog li{margin-left:20px;color:#b0b0b0;margin-bottom:2px}
@@ -68,15 +84,23 @@ tr:hover{background:#1f223080}
 .lifecycle-step .label{font-size:11px;color:#888}
 .lifecycle-step .count{font-size:18px;font-weight:700;color:#fff;margin-bottom:2px}
 .lifecycle-arrow{color:#2a2d3a;font-size:20px;margin:0 -8px;align-self:center;margin-bottom:20px}
-.delta-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.delta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .delta-item{background:#12141c;border-radius:8px;padding:12px 14px;font-size:12px}
 .delta-item .delta-label{color:#888;font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.delta-item .delta-value{font-weight:600;font-size:14px;color:#fff}
+.delta-item .delta-value{font-weight:600;font-size:13px;color:#fff}
+.build-phase{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#12141c;border-radius:8px;margin-bottom:8px;border-left:3px solid}
+.build-phase.p1{border-color:#00b894}
+.build-phase.p2{border-color:#fdcb6e}
+.build-phase.p3{border-color:#a29bfe}
+.build-phase.p4{border-color:#636e72}
+.build-phase .phase-num{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;min-width:60px}
+.build-phase .phase-skills{font-size:13px;color:#fff;font-weight:500}
+.build-phase .phase-why{font-size:11px;color:#888;margin-left:auto}
 .footer{text-align:center;color:#444;font-size:11px;padding:28px 0 8px;border-top:1px solid #1a1d27}
+@media(max-width:1100px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
   .kpi-row{grid-template-columns:repeat(2,1fr)}
-  .charts-row,.three-col{grid-template-columns:1fr}
-  .delta-grid{grid-template-columns:1fr}
+  .charts-row,.three-col,.delta-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -84,73 +108,79 @@ tr:hover{background:#1f223080}
 
 <h1>Skilluminator Dashboard</h1>
 <p class="subtitle">
-  <span class="cycle-badge">Cycle 6</span>
-  Week of 2026-03-16 &bull; 25 signals harvested &bull; 27 patterns tracked (1 archived) &bull; skill-detector v1.1.0
+  <span class="cycle-badge">Cycle 7</span>
+  <span class="new-badge">+3 NEW</span>
+  Week of 2026-03-16 &bull; 32 signals harvested &bull; 31 patterns tracked (1 archived) &bull; skill-detector v1.2.0
 </p>
 
 <!-- KPI Row -->
 <div class="kpi-row">
   <div class="kpi">
-    <div class="kpi-value">27</div>
+    <div class="kpi-value">31</div>
     <div class="kpi-label">Patterns Tracked</div>
-    <div class="kpi-delta up">+1 new, 1 archived vs cycle 5</div>
+    <div class="kpi-delta up">+3 new, 1 confirmed, 2 declining</div>
   </div>
   <div class="kpi">
-    <div class="kpi-value">11</div>
+    <div class="kpi-value">14</div>
     <div class="kpi-label">Skill Candidates (75+)</div>
-    <div class="kpi-delta up">+1 from cycle 5</div>
+    <div class="kpi-delta up">+3 from cycle 6</div>
   </div>
   <div class="kpi">
-    <div class="kpi-value">89</div>
+    <div class="kpi-value">90</div>
     <div class="kpi-label">Top Composite Score</div>
-    <div class="kpi-delta stable">task-notification-router (110 occ.)</div>
-  </div>
-  <div class="kpi">
-    <div class="kpi-value">86.3</div>
-    <div class="kpi-label">Cluster Hrs/Wk (Meetings)</div>
-    <div class="kpi-delta up">Meeting Output Pipeline: 36.3 hrs</div>
+    <div class="kpi-delta up">meeting-notes-action-extractor</div>
   </div>
   <div class="kpi">
     <div class="kpi-value">3</div>
+    <div class="kpi-label">Workflow Chains</div>
+    <div class="kpi-delta new">+2 new chains detected</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value">4</div>
     <div class="kpi-label">Pattern Clusters</div>
-    <div class="kpi-delta new">New: cluster analysis added</div>
+    <div class="kpi-delta new">New: Notification/Triage</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value">150+</div>
+    <div class="kpi-label">Addressable Hrs/Wk</div>
+    <div class="kpi-delta up">Across all clusters</div>
   </div>
 </div>
 
 <!-- Cycle-over-Cycle Delta -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#9651;</span> Cycle 6 Delta: What Changed</div>
+  <div class="section-title"><span class="icon">&#9651;</span> Cycle 7 Delta: What Changed</div>
   <div class="delta-grid">
     <div class="delta-item">
-      <div class="delta-label">Biggest Mover</div>
-      <div class="delta-value" style="color:#00b894">cross-tool-context-fragmentation +20 occ. (biggest single-cycle jump)</div>
+      <div class="delta-label">Biggest Growth</div>
+      <div class="delta-value" style="color:#00b894">incident-doc-coordinator: 2 &rarr; 30 occ. (CONFIRMED with full workflow chain)</div>
     </div>
     <div class="delta-item">
-      <div class="delta-label">Biggest Surge</div>
-      <div class="delta-value" style="color:#fdcb6e">training-event-artifact-coordinator +24 occ. (Program X Camp week)</div>
+      <div class="delta-label">New #1 Pattern</div>
+      <div class="delta-value" style="color:#fdcb6e">meeting-notes-action-extractor overtakes ado-notification-router (composite 90 vs 89)</div>
     </div>
     <div class="delta-item">
-      <div class="delta-label">Score Promotions</div>
-      <div class="delta-value" style="color:#a29bfe">4 patterns promoted to Tier 1 (83+): eval-template, status-report, action-tracking, summary-publisher</div>
+      <div class="delta-label">New Workflow Chains</div>
+      <div class="delta-value" style="color:#a29bfe">+2: Meeting-Recap-to-Tracker (12/wk) and Alert-Triage-Resolve (7/wk)</div>
     </div>
     <div class="delta-item">
-      <div class="delta-label">Lifecycle Events</div>
-      <div class="delta-value" style="color:#ff7675">1 archived (feature-flag-rollout) &bull; 1 new signal (incident-response-coordinator)</div>
+      <div class="delta-label">New Patterns (3)</div>
+      <div class="delta-value" style="color:#74b9ff">approval-workflow, interview-debrief, stakeholder-fyi-classifier</div>
     </div>
     <div class="delta-item">
-      <div class="delta-label">Trend Upgrades</div>
-      <div class="delta-value" style="color:#55efc4">6 patterns upgraded: eval-template, post-meeting-followup, action-owner-chasing, partner-enablement, daily-briefing, ownership-routing</div>
+      <div class="delta-label">Declining (2)</div>
+      <div class="delta-value" style="color:#ff7675">training-event-coordinator (post Camp AIR), escalation-email-drafter (2 cycles absent)</div>
     </div>
     <div class="delta-item">
-      <div class="delta-label">New Skill Feature</div>
-      <div class="delta-value" style="color:#74b9ff">v1.1.0: Pattern clustering, lifecycle model, 12 archetypes, I/O schemas, event spike detection</div>
+      <div class="delta-label">Skill v1.2.0 Features</div>
+      <div class="delta-value" style="color:#55efc4">Confidence scoring, signal decay, build order recommender, cascade detector</div>
     </div>
   </div>
 </div>
 
 <!-- Top Skill Candidates Table -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#9733;</span> Top Skill Candidates (sorted by composite score)</div>
+  <div class="section-title"><span class="icon">&#9733;</span> Top 14 Skill Candidates (composite score &ge; 75)</div>
   <table>
     <thead>
       <tr>
@@ -159,139 +189,187 @@ tr:hover{background:#1f223080}
         <th>Sources</th>
         <th>Occ.</th>
         <th>Hrs/Wk</th>
-        <th>Automation</th>
+        <th>Auto</th>
         <th>Value</th>
-        <th>Composite</th>
+        <th>Conf.</th>
+        <th>Comp.</th>
         <th>Trend</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>1</td>
-        <td><strong>task-notification-router</strong></td>
-        <td><span class="badge badge-email">email</span></td>
-        <td>110</td>
-        <td>3.0</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:93%"></div></div><span class="score">93</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:85%"></div></div><span class="score">85</span></div></td>
-        <td><span class="score" style="color:#fdcb6e">89</span></td>
+        <td><strong>meeting-notes-action-extractor</strong></td>
+        <td><span class="badge badge-email">email</span><span class="badge badge-meeting">mtg</span><span class="badge badge-teams">teams</span><span class="badge badge-doc">doc</span></td>
+        <td>74</td>
+        <td>10.67</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:89%"></div></div><span class="score">89</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:90%"></div></div><span class="score">90</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:95%"></div></div><span class="score">95</span></div></td>
+        <td><span class="score" style="color:#fdcb6e;font-size:15px">90</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>2</td>
-        <td><strong>meeting-notes-action-extractor</strong></td>
-        <td><span class="badge badge-email">email</span><span class="badge badge-meeting">mtg</span><span class="badge badge-teams">teams</span><span class="badge badge-doc">doc</span></td>
-        <td>55</td>
-        <td>8.5</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:88%"></div></div><span class="score">88</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:87%"></div></div><span class="score">87</span></div></td>
-        <td><span class="score" style="color:#fdcb6e">88</span></td>
+        <td><strong>ado-notification-router</strong></td>
+        <td><span class="badge badge-email">email</span></td>
+        <td>140</td>
+        <td>5.5</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:93%"></div></div><span class="score">93</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:85%"></div></div><span class="score">85</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:95%"></div></div><span class="score">95</span></div></td>
+        <td><span class="score" style="color:#fdcb6e;font-size:15px">89</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>3</td>
         <td><strong>eval-report-synthesizer</strong></td>
         <td><span class="badge badge-email">email</span><span class="badge badge-meeting">mtg</span><span class="badge badge-teams">teams</span><span class="badge badge-doc">doc</span></td>
-        <td>63</td>
-        <td>13.6</td>
+        <td>70</td>
+        <td>14.75</td>
         <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:77%"></div></div><span class="score">77</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:91%"></div></div><span class="score">91</span></div></td>
-        <td><span class="score" style="color:#fdcb6e">84</span></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:92%"></div></div><span class="score">92</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:95%"></div></div><span class="score">95</span></div></td>
+        <td><span class="score" style="color:#fdcb6e;font-size:15px">85</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>4</td>
-        <td><strong>voc-ask-deduplicator</strong></td>
-        <td><span class="badge badge-teams">teams</span><span class="badge badge-email">email</span></td>
-        <td>31</td>
-        <td>4.5</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:85%"></div></div><span class="score">85</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:83%"></div></div><span class="score">83</span></div></td>
+        <td><strong>eval-template-scaffolder</strong></td>
+        <td><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
+        <td>20</td>
+        <td>6.5</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:88%"></div></div><span class="score">88</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
         <td><span class="score" style="color:#fdcb6e">84</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>5</td>
-        <td><strong>eval-template-scaffolder</strong></td>
-        <td><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
-        <td>14</td>
-        <td>7.5</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:86%"></div></div><span class="score">86</span></div></td>
+        <td><strong>voc-ask-deduplicator</strong></td>
+        <td><span class="badge badge-teams">teams</span><span class="badge badge-email">email</span></td>
+        <td>30</td>
+        <td>4.21</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:84%"></div></div><span class="score">84</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:90%"></div></div><span class="score">90</span></div></td>
         <td><span class="score" style="color:#fdcb6e">83</span></td>
-        <td class="trend-up">&#9650; rising</td>
+        <td class="trend-stable">&#9644; stable</td>
       </tr>
       <tr>
         <td>6</td>
         <td><strong>weekly-status-report-generator</strong></td>
-        <td><span class="badge badge-doc">doc</span><span class="badge badge-email">email</span><span class="badge badge-teams">teams</span><span class="badge badge-meeting">mtg</span></td>
-        <td>15</td>
-        <td>4.5</td>
+        <td><span class="badge badge-doc">doc</span><span class="badge badge-email">email</span><span class="badge badge-teams">teams</span></td>
+        <td>19</td>
+        <td>4.25</td>
         <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:83%"></div></div><span class="score">83</span></div></td>
         <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:90%"></div></div><span class="score">90</span></div></td>
         <td><span class="score" style="color:#fdcb6e">83</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>7</td>
-        <td><strong>unified-action-item-tracker</strong></td>
-        <td><span class="badge badge-teams">teams</span><span class="badge badge-meeting">mtg</span><span class="badge badge-email">email</span><span class="badge badge-doc">doc</span></td>
-        <td>19</td>
-        <td>4.3</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:85%"></div></div><span class="score">85</span></div></td>
+        <td><strong>meeting-summary-publisher</strong></td>
+        <td><span class="badge badge-meeting">mtg</span><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
+        <td>23</td>
+        <td>5.5</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:83%"></div></div><span class="score">83</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
         <td><span class="score" style="color:#fdcb6e">83</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>8</td>
-        <td><strong>meeting-summary-publisher</strong></td>
-        <td><span class="badge badge-meeting">mtg</span><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
-        <td>24</td>
-        <td>6.0</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:83%"></div></div><span class="score">83</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
-        <td><span class="score" style="color:#fdcb6e">83</span></td>
+        <td><strong>knowledge-context-consolidator</strong></td>
+        <td><span class="badge badge-teams">teams</span><span class="badge badge-email">email</span><span class="badge badge-doc">doc</span><span class="badge badge-meeting">mtg</span></td>
+        <td>59</td>
+        <td>10.42</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:88%"></div></div><span class="score">88</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
+        <td><span class="score" style="color:#fdcb6e">82</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>9</td>
-        <td><strong>recurring-agenda-generator</strong></td>
-        <td><span class="badge badge-meeting">mtg</span><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
-        <td>36</td>
-        <td>18.2</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:81%"></div></div><span class="score">81</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
+        <td><strong>unified-action-item-tracker</strong></td>
+        <td><span class="badge badge-teams">teams</span><span class="badge badge-meeting">mtg</span><span class="badge badge-email">email</span><span class="badge badge-doc">doc</span></td>
+        <td>22</td>
+        <td>4.17</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:78%"></div></div><span class="score">78</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:84%"></div></div><span class="score">84</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
         <td><span class="score" style="color:#fdcb6e">81</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>10</td>
-        <td><strong>knowledge-context-consolidator</strong></td>
-        <td><span class="badge badge-teams">teams</span><span class="badge badge-email">email</span><span class="badge badge-doc">doc</span><span class="badge badge-meeting">mtg</span></td>
-        <td>47</td>
-        <td>9.3</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:86%"></div></div><span class="score">86</span></div></td>
+        <td><strong>recurring-agenda-generator</strong></td>
+        <td><span class="badge badge-meeting">mtg</span><span class="badge badge-doc">doc</span><span class="badge badge-teams">teams</span></td>
+        <td>42</td>
+        <td>19.67</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:81%"></div></div><span class="score">81</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:90%"></div></div><span class="score">90</span></div></td>
         <td><span class="score" style="color:#fdcb6e">81</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
       <tr>
         <td>11</td>
+        <td><strong>external-meeting-followup-drafter</strong></td>
+        <td><span class="badge badge-email">email</span><span class="badge badge-meeting">mtg</span></td>
+        <td>23</td>
+        <td>4.24</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:80%"></div></div><span class="score">80</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:75%"></div></div><span class="score">75</span></div></td>
+        <td><span class="score" style="color:#fdcb6e">81</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr style="background:#12141c40">
+        <td>12</td>
+        <td><strong>incident-response-doc-generator</strong> <span class="badge" style="background:#00b89420;color:#00b894">CONFIRMED</span></td>
+        <td><span class="badge badge-email">email</span><span class="badge badge-teams">teams</span><span class="badge badge-meeting">mtg</span></td>
+        <td>30</td>
+        <td>5.42</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:76%"></div></div><span class="score">76</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:84%"></div></div><span class="score">84</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:60%"></div></div><span class="score">60</span></div></td>
+        <td><span class="score" style="color:#fdcb6e">80</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><strong>calendar-triage-advisor</strong></td>
+        <td><span class="badge badge-meeting">mtg</span><span class="badge badge-email">email</span></td>
+        <td>127</td>
+        <td>34.0</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:73%"></div></div><span class="score">73</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:84%"></div></div><span class="score">84</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:70%"></div></div><span class="score">70</span></div></td>
+        <td><span class="score" style="color:#fdcb6e">79</span></td>
+        <td class="trend-up">&#9650; rising</td>
+      </tr>
+      <tr>
+        <td>14</td>
         <td><strong>copilot-platform-faq-responder</strong></td>
         <td><span class="badge badge-teams">teams</span><span class="badge badge-meeting">mtg</span><span class="badge badge-email">email</span></td>
-        <td>41</td>
-        <td>8.9</td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:72%"></div></div><span class="score">72</span></div></td>
-        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:82%"></div></div><span class="score">82</span></div></td>
-        <td><span class="score" style="color:#fdcb6e">77</span></td>
+        <td>56</td>
+        <td>11.0</td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-auto"><div class="bar-fill" style="width:73%"></div></div><span class="score">73</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-value"><div class="bar-fill" style="width:84%"></div></div><span class="score">84</span></div></td>
+        <td><div class="bar-wrap"><div class="bar-bg bar-conf"><div class="bar-fill" style="width:90%"></div></div><span class="score">90</span></div></td>
+        <td><span class="score" style="color:#fdcb6e">79</span></td>
         <td class="trend-up">&#9650; rising</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- Charts Row: Bubble + Donut -->
+<!-- Charts Row: Bubble + Source Donut -->
 <div class="charts-row">
   <div class="section">
     <div class="section-title"><span class="icon">&#9679;</span> Automation vs Value (bubble = occurrences)</div>
@@ -299,13 +377,11 @@ tr:hover{background:#1f223080}
       <defs>
         <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
-      <!-- Grid -->
       <rect x="60" y="10" width="440" height="360" fill="#12141c" rx="4"/>
       <line x1="60" y1="370" x2="500" y2="370" stroke="#2a2d3a" stroke-width="1"/>
       <line x1="60" y1="10" x2="60" y2="370" stroke="#2a2d3a" stroke-width="1"/>
       <line x1="60" y1="190" x2="500" y2="190" stroke="#1f2230" stroke-width=".5" stroke-dasharray="4"/>
       <line x1="280" y1="10" x2="280" y2="370" stroke="#1f2230" stroke-width=".5" stroke-dasharray="4"/>
-      <!-- Axis labels -->
       <text x="280" y="405" fill="#666" font-size="11" text-anchor="middle">Automation Score</text>
       <text x="14" y="190" fill="#666" font-size="11" text-anchor="middle" transform="rotate(-90,14,190)">Value Score</text>
       <text x="56" y="375" fill="#444" font-size="9" text-anchor="end">50</text>
@@ -314,139 +390,221 @@ tr:hover{background:#1f223080}
       <text x="60" y="390" fill="#444" font-size="9" text-anchor="middle">55</text>
       <text x="280" y="390" fill="#444" font-size="9" text-anchor="middle">80</text>
       <text x="500" y="390" fill="#444" font-size="9" text-anchor="middle">100</text>
-      <!-- Quadrant labels -->
-      <text x="170" y="35" fill="#333" font-size="9" text-anchor="middle">High Value / Lower Auto</text>
-      <text x="400" y="35" fill="#333" font-size="9" text-anchor="middle">High Value / High Auto</text>
-      <!-- Bubbles: x = (auto-55)*440/45+60, y = 370-(val-50)*360/50, r = sqrt(occ)*2.5 -->
-      <!-- task-notif: auto=93, val=85, occ=110 => x=429, y=118, r=26 -->
-      <circle cx="429" cy="118" r="26" fill="#6c5ce7" opacity=".65" filter="url(#glow)"/>
-      <text x="429" y="112" fill="#fff" font-size="8" text-anchor="middle" font-weight="600">Notif</text>
-      <text x="429" y="124" fill="#ddd" font-size="7" text-anchor="middle">110</text>
-      <!-- meeting-notes: auto=88, val=87, occ=55 => x=380, y=103, r=19 -->
-      <circle cx="380" cy="103" r="19" fill="#00b894" opacity=".65" filter="url(#glow)"/>
-      <text x="380" y="100" fill="#fff" font-size="8" text-anchor="middle" font-weight="600">Notes</text>
-      <text x="380" y="111" fill="#ddd" font-size="7" text-anchor="middle">55</text>
-      <!-- eval-results: auto=77, val=91, occ=63 => x=272, y=74, r=20 -->
-      <circle cx="272" cy="74" r="20" fill="#fdcb6e" opacity=".7" filter="url(#glow)"/>
-      <text x="272" y="71" fill="#333" font-size="8" text-anchor="middle" font-weight="600">Eval</text>
-      <text x="272" y="82" fill="#555" font-size="7" text-anchor="middle">63</text>
-      <!-- VoC: auto=85, val=83, occ=31 => x=351, y="132", r=14 -->
-      <circle cx="351" cy="132" r="14" fill="#a29bfe" opacity=".7"/>
-      <text x="351" y="135" fill="#fff" font-size="8" text-anchor="middle">VoC 31</text>
-      <!-- context-frag: auto=75, val=86, occ=47 => x=253, y=110, r=17 -->
-      <circle cx="253" cy="110" r="17" fill="#e17055" opacity=".65"/>
-      <text x="253" y="107" fill="#fff" font-size="8" text-anchor="middle">Ctx</text>
-      <text x="253" y="118" fill="#ddd" font-size="7" text-anchor="middle">47</text>
-      <!-- FAQ: auto=72, val=82, occ=41 => x=224, y=139, r=16 -->
-      <circle cx="224" cy="139" r="16" fill="#74b9ff" opacity=".65"/>
-      <text x="224" y="136" fill="#fff" font-size="8" text-anchor="middle">FAQ</text>
-      <text x="224" y="147" fill="#ddd" font-size="7" text-anchor="middle">41</text>
-      <!-- Agenda: auto=81, val=80, occ=36 => x=312, y=154, r=15 -->
-      <circle cx="312" cy="154" r="15" fill="#ff7675" opacity=".65"/>
-      <text x="312" y="151" fill="#fff" font-size="8" text-anchor="middle">Agnd</text>
-      <text x="312" y="162" fill="#ddd" font-size="7" text-anchor="middle">36</text>
-      <!-- Summary: auto=83, val=82, occ=24 => x=332, y=139, r=12 -->
-      <circle cx="332" cy="139" r="12" fill="#55efc4" opacity=".65"/>
-      <text x="332" y="142" fill="#333" font-size="7" text-anchor="middle">Sum 24</text>
-      <!-- Status: auto=83, val=82, occ=15 => x=332, y=139 offset -->
-      <circle cx="350" cy="160" r="10" fill="#55efc4" opacity=".5"/>
-      <text x="350" y="163" fill="#333" font-size="7" text-anchor="middle">Stat</text>
-      <!-- Event: auto=63, val=86, occ=67 => x=138, y=110, r=20 -->
-      <circle cx="138" cy="110" r="20" fill="#fab1a0" opacity=".6"/>
-      <text x="138" y="107" fill="#333" font-size="8" text-anchor="middle">Event</text>
-      <text x="138" y="118" fill="#555" font-size="7" text-anchor="middle">67</text>
-      <!-- Load: auto=72, val=82, occ=111 => x=224, y=139 offset -->
-      <circle cx="210" cy="160" r="26" fill="#636e72" opacity=".35"/>
-      <text x="210" y="157" fill="#aaa" font-size="8" text-anchor="middle">Load</text>
-      <text x="210" y="168" fill="#888" font-size="7" text-anchor="middle">111</text>
+      <!-- High Value / High Auto quadrant label -->
+      <text x="400" y="35" fill="#333" font-size="9" text-anchor="middle">HIGH VALUE / HIGH AUTO</text>
+      <!-- Bubbles: x=(auto-55)*440/45+60, y=370-(val-50)*360/50, r=sqrt(occ)*2.2 -->
+      <!-- ADO: auto=93, val=85, occ=140 => x=429, y=118, r=26 -->
+      <circle cx="429" cy="118" r="26" fill="#6c5ce7" opacity=".65" filter="url(#glow)"><animate attributeName="r" from="0" to="26" dur=".5s" fill="freeze"/></circle>
+      <text x="429" y="114" fill="#fff" font-size="8" text-anchor="middle" font-weight="600">ADO</text>
+      <text x="429" y="126" fill="#ddd" font-size="7" text-anchor="middle">140</text>
+      <!-- Meeting notes: auto=89, val=90, occ=74 => x=390, y=82, r=19 -->
+      <circle cx="390" cy="82" r="19" fill="#00b894" opacity=".65" filter="url(#glow)"><animate attributeName="r" from="0" to="19" dur=".5s" fill="freeze" begin=".1s"/></circle>
+      <text x="390" y="79" fill="#fff" font-size="8" text-anchor="middle" font-weight="600">Notes</text>
+      <text x="390" y="90" fill="#ddd" font-size="7" text-anchor="middle">74</text>
+      <!-- Eval: auto=77, val=92, occ=70 => x=272, y=67, r=18 -->
+      <circle cx="272" cy="67" r="18" fill="#fdcb6e" opacity=".7" filter="url(#glow)"><animate attributeName="r" from="0" to="18" dur=".5s" fill="freeze" begin=".2s"/></circle>
+      <text x="272" y="64" fill="#333" font-size="8" text-anchor="middle" font-weight="600">Eval</text>
+      <text x="272" y="75" fill="#555" font-size="7" text-anchor="middle">70</text>
+      <!-- Context: auto=75, val=88, occ=59 => x=253, y=96, r=17 -->
+      <circle cx="253" cy="96" r="17" fill="#e17055" opacity=".65"><animate attributeName="r" from="0" to="17" dur=".5s" fill="freeze" begin=".3s"/></circle>
+      <text x="253" y="93" fill="#fff" font-size="8" text-anchor="middle">Ctx</text>
+      <text x="253" y="104" fill="#ddd" font-size="7" text-anchor="middle">59</text>
+      <!-- FAQ: auto=73, val=84, occ=56 => x=234, y=125, r=16 -->
+      <circle cx="234" cy="125" r="16" fill="#74b9ff" opacity=".65"><animate attributeName="r" from="0" to="16" dur=".5s" fill="freeze" begin=".4s"/></circle>
+      <text x="234" y="122" fill="#fff" font-size="8" text-anchor="middle">FAQ</text>
+      <text x="234" y="133" fill="#ddd" font-size="7" text-anchor="middle">56</text>
+      <!-- Agenda: auto=81, val=80, occ=42 => x=312, y=154, r=14 -->
+      <circle cx="312" cy="154" r="14" fill="#ff7675" opacity=".65"><animate attributeName="r" from="0" to="14" dur=".5s" fill="freeze" begin=".5s"/></circle>
+      <text x="312" y="151" fill="#fff" font-size="7" text-anchor="middle">Agnd 42</text>
+      <!-- Incident: auto=76, val=84, occ=30 => x=263, y=125, r=12 -->
+      <circle cx="265" cy="140" r="12" fill="#55efc4" opacity=".7"><animate attributeName="r" from="0" to="12" dur=".5s" fill="freeze" begin=".6s"/></circle>
+      <text x="265" y="143" fill="#333" font-size="7" text-anchor="middle">Inc 30</text>
+      <!-- VoC: auto=84, val=82, occ=30 => x=351, y=139, r=12 -->
+      <circle cx="351" cy="139" r="12" fill="#a29bfe" opacity=".7"/>
+      <text x="351" y="142" fill="#fff" font-size="7" text-anchor="middle">VoC 30</text>
+      <!-- Load: auto=73, val=84, occ=127 => x=234, y=125 offset, r=25 -->
+      <circle cx="215" cy="155" r="25" fill="#636e72" opacity=".3"/>
+      <text x="215" y="152" fill="#aaa" font-size="8" text-anchor="middle">Load</text>
+      <text x="215" y="163" fill="#888" font-size="7" text-anchor="middle">127</text>
     </svg>
   </div>
 
   <!-- Source Distribution -->
   <div class="section">
-    <div class="section-title"><span class="icon">&#9684;</span> Signal Sources (Cycle 6 — 25 signals)</div>
+    <div class="section-title"><span class="icon">&#9684;</span> Signal Sources (Cycle 7 &mdash; 32 signals)</div>
     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
-      <!-- email=6, meeting=5, teams=8, doc=6 => total=25 -->
+      <!-- email=8, meeting=10, teams=6, doc=6, workflow=2 => total=32 -->
       <!-- Circumference = 2*pi*120 = 754 -->
-      <!-- email: 6/25=24% => 181, meeting: 5/25=20% => 151, teams: 8/25=32% => 241, doc: 6/25=24% => 181 -->
-      <circle cx="200" cy="190" r="120" fill="none" stroke="#1f2230" stroke-width="40"/>
-      <circle cx="200" cy="190" r="120" fill="none" stroke="#a29bfe" stroke-width="40" stroke-dasharray="181 573" stroke-dashoffset="0" transform="rotate(-90 200 190)">
-        <animate attributeName="stroke-dasharray" from="0 754" to="181 573" dur=".8s" fill="freeze"/>
+      <!-- email: 8/32=25% => 188, meeting: 10/32=31.25% => 236, teams: 6/32=18.75% => 141, doc: 6/32=18.75% => 141, workflow: 2/32=6.25% => 47 -->
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#1f2230" stroke-width="40"/>
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#a29bfe" stroke-width="40" stroke-dasharray="188 566" stroke-dashoffset="0" transform="rotate(-90 200 185)">
+        <animate attributeName="stroke-dasharray" from="0 754" to="188 566" dur=".8s" fill="freeze"/>
       </circle>
-      <circle cx="200" cy="190" r="120" fill="none" stroke="#55efc4" stroke-width="40" stroke-dasharray="151 603" stroke-dashoffset="-181" transform="rotate(-90 200 190)">
-        <animate attributeName="stroke-dasharray" from="0 754" to="151 603" dur=".8s" fill="freeze" begin=".2s"/>
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#55efc4" stroke-width="40" stroke-dasharray="236 518" stroke-dashoffset="-188" transform="rotate(-90 200 185)">
+        <animate attributeName="stroke-dasharray" from="0 754" to="236 518" dur=".8s" fill="freeze" begin=".15s"/>
       </circle>
-      <circle cx="200" cy="190" r="120" fill="none" stroke="#fdcb6e" stroke-width="40" stroke-dasharray="241 513" stroke-dashoffset="-332" transform="rotate(-90 200 190)">
-        <animate attributeName="stroke-dasharray" from="0 754" to="241 513" dur=".8s" fill="freeze" begin=".4s"/>
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#fdcb6e" stroke-width="40" stroke-dasharray="141 613" stroke-dashoffset="-424" transform="rotate(-90 200 185)">
+        <animate attributeName="stroke-dasharray" from="0 754" to="141 613" dur=".8s" fill="freeze" begin=".3s"/>
       </circle>
-      <circle cx="200" cy="190" r="120" fill="none" stroke="#ff7675" stroke-width="40" stroke-dasharray="181 573" stroke-dashoffset="-573" transform="rotate(-90 200 190)">
-        <animate attributeName="stroke-dasharray" from="0 754" to="181 573" dur=".8s" fill="freeze" begin=".6s"/>
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#ff7675" stroke-width="40" stroke-dasharray="141 613" stroke-dashoffset="-565" transform="rotate(-90 200 185)">
+        <animate attributeName="stroke-dasharray" from="0 754" to="141 613" dur=".8s" fill="freeze" begin=".45s"/>
       </circle>
-      <!-- Center -->
-      <text x="200" y="183" fill="#fff" font-size="32" font-weight="700" text-anchor="middle">25</text>
-      <text x="200" y="203" fill="#888" font-size="12" text-anchor="middle">signals</text>
+      <circle cx="200" cy="185" r="120" fill="none" stroke="#74b9ff" stroke-width="40" stroke-dasharray="47 707" stroke-dashoffset="-706" transform="rotate(-90 200 185)">
+        <animate attributeName="stroke-dasharray" from="0 754" to="47 707" dur=".8s" fill="freeze" begin=".6s"/>
+      </circle>
+      <text x="200" y="178" fill="#fff" font-size="34" font-weight="700" text-anchor="middle">32</text>
+      <text x="200" y="198" fill="#888" font-size="12" text-anchor="middle">signals</text>
       <!-- Legend -->
-      <rect x="40" y="345" width="12" height="12" rx="3" fill="#a29bfe"/>
-      <text x="58" y="356" fill="#b0b0b0" font-size="12">Email (6) 24%</text>
-      <rect x="150" y="345" width="12" height="12" rx="3" fill="#55efc4"/>
-      <text x="168" y="356" fill="#b0b0b0" font-size="12">Meeting (5) 20%</text>
-      <rect x="270" y="345" width="12" height="12" rx="3" fill="#fdcb6e"/>
-      <text x="288" y="356" fill="#b0b0b0" font-size="12">Teams (8) 32%</text>
-      <rect x="40" y="370" width="12" height="12" rx="3" fill="#ff7675"/>
-      <text x="58" y="381" fill="#b0b0b0" font-size="12">Document (6) 24%</text>
+      <rect x="30" y="340" width="12" height="12" rx="3" fill="#a29bfe"/>
+      <text x="48" y="351" fill="#b0b0b0" font-size="11">Email (8) 25%</text>
+      <rect x="140" y="340" width="12" height="12" rx="3" fill="#55efc4"/>
+      <text x="158" y="351" fill="#b0b0b0" font-size="11">Meeting (10) 31%</text>
+      <rect x="275" y="340" width="12" height="12" rx="3" fill="#fdcb6e"/>
+      <text x="293" y="351" fill="#b0b0b0" font-size="11">Teams (6) 19%</text>
+      <rect x="30" y="362" width="12" height="12" rx="3" fill="#ff7675"/>
+      <text x="48" y="373" fill="#b0b0b0" font-size="11">Document (6) 19%</text>
+      <rect x="170" y="362" width="12" height="12" rx="3" fill="#74b9ff"/>
+      <text x="188" y="373" fill="#b0b0b0" font-size="11">Workflow (2) 6%</text>
     </svg>
+  </div>
+</div>
+
+<!-- Workflow Chains Section (NEW) -->
+<div class="section">
+  <div class="section-title"><span class="icon">&#8594;</span> Workflow Chains &mdash; End-to-End Automation Targets</div>
+  <p style="color:#888;font-size:12px;margin-bottom:14px">Chains are sequences where the output of one pattern feeds the next. Automating chains end-to-end eliminates handoff friction.</p>
+
+  <div class="chain-card">
+    <div class="chain-name">Chain 1: Meeting-Recap-to-Tracker</div>
+    <div class="chain-meta">12 instances/week &bull; Confirmed cycle 7 &bull; 4 patterns involved</div>
+    <div class="chain-steps">
+      <span class="chain-step">Meeting concludes</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Recap email</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Notes doc updated</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Work Tracker tasks</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Teams ping to assignees</span>
+    </div>
+    <div class="chain-savings">Saves ~90 min/occurrence &bull; Steps 2-5 fully automatable</div>
+  </div>
+
+  <div class="chain-card">
+    <div class="chain-name">Chain 2: Alert-Triage-Resolve-Status</div>
+    <div class="chain-meta">7 instances/week &bull; NEW in cycle 7 &bull; 4 patterns involved</div>
+    <div class="chain-steps">
+      <span class="chain-step">Alert email fires</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Teams triage thread</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Triage meeting</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Root cause in Tracker</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Status email</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Postmortem doc</span>
+    </div>
+    <div class="chain-savings">Saves 60-80 min/incident &bull; Steps 1, 4, 5, 6 automatable</div>
+  </div>
+
+  <div class="chain-card">
+    <div class="chain-name">Chain 3: Email-Meeting-Deck-Followup</div>
+    <div class="chain-meta">Confirmed cycles 6-7 &bull; 4 patterns involved</div>
+    <div class="chain-steps">
+      <span class="chain-step">Receive request</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Schedule meeting</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Create deck</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Hold meeting</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Send recap</span><span class="chain-arrow">&#8594;</span>
+      <span class="chain-step">Track items</span>
+    </div>
+    <div class="chain-savings">Saves ~60 min/occurrence &bull; Steps 3, 5, 6 automatable</div>
+  </div>
+</div>
+
+<!-- Build Order Recommendation (NEW) -->
+<div class="section">
+  <div class="section-title"><span class="icon">&#9881;</span> Recommended Build Order (NEW in v1.2)</div>
+  <p style="color:#888;font-size:12px;margin-bottom:14px">Chain heads first, then cluster keystones, then high-confidence standalones.</p>
+  <div class="build-phase p1">
+    <span class="phase-num">Phase 1</span>
+    <span class="phase-skills">meeting-notes-action-extractor &rarr; ado-notification-router</span>
+    <span class="phase-why">Chain heads: unlock 2 downstream chains</span>
+  </div>
+  <div class="build-phase p2">
+    <span class="phase-num">Phase 2</span>
+    <span class="phase-skills">eval-report-synthesizer &rarr; weekly-status-report-generator</span>
+    <span class="phase-why">Highest value + time savings</span>
+  </div>
+  <div class="build-phase p3">
+    <span class="phase-num">Phase 3</span>
+    <span class="phase-skills">incident-response-doc-generator &rarr; eval-template-scaffolder</span>
+    <span class="phase-why">Newly confirmed chain member + cluster key</span>
+  </div>
+  <div class="build-phase p4">
+    <span class="phase-num">Phase 4</span>
+    <span class="phase-skills">voc-ask-deduplicator &rarr; knowledge-context-consolidator</span>
+    <span class="phase-why">High-confidence standalones</span>
   </div>
 </div>
 
 <!-- Pattern Clusters -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#9670;</span> Pattern Clusters — Systemic Opportunities</div>
-  <p style="color:#888;font-size:12px;margin-bottom:14px">Related patterns grouped by shared workflows, participants, or data flows. Cluster value includes a 1.2x synergy multiplier.</p>
+  <div class="section-title"><span class="icon">&#9670;</span> Pattern Clusters &mdash; Systemic Opportunities</div>
 
   <div class="cluster-card meeting">
-    <div class="cluster-name">Meeting Output Pipeline</div>
+    <div class="cluster-name">Meeting Output Pipeline <span style="color:#55efc4;font-size:11px;font-weight:400">&#9650; RISING</span></div>
     <div class="cluster-stat">
-      <span><strong style="color:#55efc4">131</strong> occurrences</span>
-      <span><strong style="color:#55efc4">36.3</strong> hrs/wk</span>
-      <span><strong style="color:#55efc4">4</strong> patterns</span>
+      <span><strong style="color:#55efc4">206</strong> occurrences</span>
+      <span><strong style="color:#55efc4">47.49</strong> hrs/wk</span>
+      <span><strong style="color:#55efc4">6</strong> patterns</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
       <span class="badge badge-meeting">meeting-notes-action-extractor</span>
       <span class="badge badge-meeting">meeting-summary-publisher</span>
       <span class="badge badge-meeting">recurring-agenda-generator</span>
       <span class="badge badge-meeting">external-meeting-followup-drafter</span>
+      <span class="badge badge-meeting">unified-action-item-tracker</span>
+      <span class="badge badge-meeting">action-owner-nudge-bot</span>
     </div>
-    <div class="cluster-insight">Pre-meeting agenda generation, in-meeting capture, post-meeting synthesis, and external follow-up form a complete pipeline. Automating any stage reduces load on adjacent stages.</div>
+    <div class="cluster-insight">Full meeting lifecycle: prep, capture, synthesize, distribute, track, chase. Highest occurrence-count cluster. All 6 members rising.</div>
   </div>
 
   <div class="cluster-card eval">
-    <div class="cluster-name">Eval Ecosystem</div>
+    <div class="cluster-name">Eval Ecosystem <span style="color:#fdcb6e;font-size:11px;font-weight:400">&#9650; RISING</span></div>
     <div class="cluster-stat">
-      <span><strong style="color:#fdcb6e">93</strong> occurrences</span>
-      <span><strong style="color:#fdcb6e">32.9</strong> hrs/wk</span>
-      <span><strong style="color:#fdcb6e">3</strong> patterns</span>
+      <span><strong style="color:#fdcb6e">194</strong> occurrences</span>
+      <span><strong style="color:#fdcb6e">49.42</strong> hrs/wk</span>
+      <span><strong style="color:#fdcb6e">5</strong> patterns</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
       <span class="badge badge-doc">eval-report-synthesizer</span>
       <span class="badge badge-doc">eval-template-scaffolder</span>
-      <span class="badge badge-doc">partner-eval-enablement-pack-generator</span>
+      <span class="badge badge-doc">partner-eval-enablement</span>
+      <span class="badge badge-doc">copilot-platform-faq-responder</span>
+      <span class="badge badge-doc">incident-response-doc-generator</span>
     </div>
-    <div class="cluster-insight">A shared eval schema would cascade benefits: templates generate faster, reports conform to standards, enablement packs become self-service. Single highest-ROI cluster.</div>
+    <div class="cluster-insight">Largest cluster by time (49.42 hrs/wk). Incident response confirmed as eval ecosystem member (evals regressions are primary trigger). Unified eval-ops skill suite addresses all 5 patterns.</div>
   </div>
 
-  <div class="cluster-card frag">
-    <div class="cluster-name">Information Fragmentation</div>
+  <div class="cluster-card notif">
+    <div class="cluster-name">Notification &amp; Triage <span style="color:#888;font-size:11px;font-weight:400">&#9644; STABLE</span></div>
     <div class="cluster-stat">
-      <span><strong style="color:#a29bfe">88</strong> occurrences</span>
-      <span><strong style="color:#a29bfe">17.1</strong> hrs/wk</span>
-      <span><strong style="color:#a29bfe">3</strong> patterns</span>
+      <span><strong style="color:#a29bfe">210</strong> occurrences</span>
+      <span><strong style="color:#a29bfe">9.27</strong> hrs/wk</span>
+      <span><strong style="color:#a29bfe">4</strong> patterns</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
-      <span class="badge badge-teams">knowledge-context-consolidator</span>
-      <span class="badge badge-teams">unified-action-item-tracker</span>
-      <span class="badge badge-teams">ownership-routing-assistant</span>
+      <span class="badge badge-email">ado-notification-router</span>
+      <span class="badge badge-email">access-governance-alert-router</span>
+      <span class="badge badge-email">broadcast-email-classifier</span>
+      <span class="badge badge-email">stakeholder-fyi-router</span>
     </div>
-    <div class="cluster-insight">Information scattered across Teams, email, docs, and Loop creates cascading friction. Solving context consolidation automatically reduces DRI lookup and action item reconciliation overhead.</div>
+    <div class="cluster-insight">NEW cluster in cycle 7. Four email classification patterns share the classify-route-flag archetype. 210 occurrences but only 9.27 hrs/wk (fast per-instance). A unified email classifier skill handles all four.</div>
+  </div>
+
+  <div class="cluster-card event">
+    <div class="cluster-name">Event Coordination <span style="color:#d63031;font-size:11px;font-weight:400">&#9660; DECLINING</span></div>
+    <div class="cluster-stat">
+      <span><strong style="color:#888">72</strong> occurrences</span>
+      <span><strong style="color:#888">44.0</strong> hrs/wk</span>
+      <span><strong style="color:#888">3</strong> patterns</span>
+    </div>
+    <div class="cluster-insight">Declining post Camp AIR. Two members now declining. Monitor for next event surge.</div>
   </div>
 </div>
 
@@ -455,21 +613,27 @@ tr:hover{background:#1f223080}
   <div class="section-title"><span class="icon">&#8634;</span> Pattern Lifecycle Funnel</div>
   <div class="lifecycle">
     <div class="lifecycle-step">
-      <div class="count">1</div>
+      <div class="count">3</div>
       <div class="dot" style="background:#74b9ff">&#9679;</div>
       <div class="label">New Signal</div>
     </div>
     <div class="lifecycle-arrow">&#10230;</div>
     <div class="lifecycle-step">
-      <div class="count">4</div>
+      <div class="count">2</div>
       <div class="dot" style="background:#fdcb6e">&#9679;</div>
       <div class="label">Candidate (2 cyc)</div>
     </div>
     <div class="lifecycle-arrow">&#10230;</div>
     <div class="lifecycle-step">
-      <div class="count">21</div>
+      <div class="count">22</div>
       <div class="dot" style="background:#00b894">&#9679;</div>
       <div class="label">Confirmed (3+ cyc)</div>
+    </div>
+    <div class="lifecycle-arrow">&#10230;</div>
+    <div class="lifecycle-step">
+      <div class="count">3</div>
+      <div class="dot" style="background:#e17055">&#9679;</div>
+      <div class="label">Declining</div>
     </div>
     <div class="lifecycle-arrow">&#10230;</div>
     <div class="lifecycle-step">
@@ -478,142 +642,175 @@ tr:hover{background:#1f223080}
       <div class="label">Archived</div>
     </div>
   </div>
-  <p style="color:#666;font-size:11px;text-align:center;margin-top:4px">incident-response-coordinator (new) &bull; feature-flag-rollout-runbook (archived) &bull; 21 patterns confirmed across 3+ cycles</p>
+  <p style="color:#666;font-size:11px;text-align:center;margin-top:4px">3 new (approval-workflow, interview-debrief, fyi-classifier) &bull; incident-doc-coordinator CONFIRMED &bull; 2 declining (event-coordinator, escalation-drafter) &bull; 1 archived (ffv2-rollout)</p>
 </div>
 
 <!-- Skill Generator Input JSON -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#123;&#125;</span> Skill-Generator Input (Top 5 Candidates with I/O Schemas)</div>
+  <div class="section-title"><span class="icon">&#123;&#125;</span> Skill-Generator Input (Top 5 with I/O Schemas)</div>
   <div class="json-block">{
   "candidateSkills": [
     {
       "rank": 1,
-      "name": "task-notification-router",
-      "compositeScore": 89,
-      "description": "Classifies Work Tracker notifications by type/prefix, sets action-required flag, routes to role.",
-      "inputSchema": { "required": ["emailSubject", "emailBody", "senderRole"] },
-      "outputSchema": { "produces": ["actionRequired", "workItemCategory", "routedToRole", "oneLineSummary", "urgencyLevel"] },
-      "m365Sources": { "reads": ["email"], "writes": ["email categories"] },
-      "valueProposition": "Eliminates 60-90 min/week across 3 roles. 110 occurrences over 6 cycles."
+      "name": "meeting-notes-action-extractor",
+      "compositeScore": 90,
+      "automationScore": 89,
+      "valueScore": 90,
+      "confidenceScore": 95,
+      "description": "Ingests meeting transcript, emits action items (owner/due/priority), decisions log, follow-up email draft, Work Tracker tasks.",
+      "inputSchema": { "required": ["meetingTranscript"], "optional": ["meetingType", "priorActionItems"] },
+      "outputSchema": { "produces": ["actionItems[]", "decisionsLog[]", "summaryMarkdown", "followUpEmailDraft", "workTrackerTasks[]"] },
+      "m365Sources": { "reads": ["Teams transcripts", "Loop pages"], "writes": ["Loop page", "email draft", "Work Tracker"] },
+      "cluster": "meeting-output-ecosystem",
+      "chainPosition": "head of meeting-recap-to-tracker chain",
+      "valueProposition": "Replaces 10.67 hrs/week across 4 roles. Chain head for 2 workflows."
     },
     {
       "rank": 2,
-      "name": "meeting-notes-action-extractor",
-      "compositeScore": 88,
-      "description": "Ingests transcript, emits action items (owner/due/priority), decisions log, follow-up draft.",
-      "inputSchema": { "required": ["meetingTranscript"], "optional": ["meetingType", "priorActionItems"] },
-      "outputSchema": { "produces": ["actionItems[]", "decisionsLog[]", "summaryMarkdown", "followUpEmailDraft"] },
-      "m365Sources": { "reads": ["Teams transcripts", "Loop pages"], "writes": ["Loop page", "email draft"] },
-      "valueProposition": "Replaces 8.5 hrs/week of redundant meeting output across 4 roles."
+      "name": "ado-notification-router",
+      "compositeScore": 89,
+      "automationScore": 93,
+      "valueScore": 85,
+      "confidenceScore": 95,
+      "description": "Classifies ADO notification emails by work-item type, priority, and action-required. Routes to correct role.",
+      "inputSchema": { "required": ["emailSubject", "emailBody", "senderRole"] },
+      "outputSchema": { "produces": ["actionRequired", "workItemCategory", "routedToRole", "urgencyLevel", "oneLineSummary"] },
+      "m365Sources": { "reads": ["email"], "writes": ["email categories", "triage tags"] },
+      "cluster": "notification-routing-ecosystem",
+      "chainPosition": "head of alert-triage-resolve chain",
+      "valueProposition": "Eliminates 5.5 hrs/week. 140 occurrences over 7 unbroken cycles. Highest automation score (93)."
     },
     {
       "rank": 3,
       "name": "eval-report-synthesizer",
-      "compositeScore": 84,
-      "description": "Produces standardized eval report: pass/fail, step-level breakdown, trajectory analysis.",
-      "inputSchema": { "required": ["evalResults", "evalTemplate"], "optional": ["acceptanceCriteria"] },
-      "outputSchema": { "produces": ["passFailSummary", "stepLevelBreakdown[]", "trajectoryAnalysis", "actionItems[]"] },
-      "m365Sources": { "reads": ["SharePoint eval files", "Teams threads"], "writes": ["Loop report", "email"] },
-      "valueProposition": "Saves 13.6 hrs/week by enforcing single eval schema across 5 roles."
+      "compositeScore": 85,
+      "automationScore": 77,
+      "valueScore": 92,
+      "confidenceScore": 95,
+      "description": "Ingests eval results + metrics dashboards, produces standardized reports with pass/fail, step breakdown, trajectory analysis.",
+      "inputSchema": { "required": ["evalResults", "evalTemplate"], "optional": ["acceptanceCriteria", "priorReport"] },
+      "outputSchema": { "produces": ["passFailSummary", "stepLevelBreakdown[]", "trajectoryAnalysis", "actionItems[]", "metricSnapshot"] },
+      "m365Sources": { "reads": ["SharePoint eval files", "Teams threads", "dashboards"], "writes": ["Loop report", "email"] },
+      "cluster": "eval-ecosystem",
+      "valueProposition": "Saves 14.75 hrs/week across 5 roles. Highest value score (92)."
     },
     {
       "rank": 4,
-      "name": "voc-ask-deduplicator",
+      "name": "eval-template-scaffolder",
       "compositeScore": 84,
-      "description": "RAG-powered dedup of customer asks against backlog. Returns matches + DRI routing.",
-      "inputSchema": { "required": ["customerAskDescription", "customerName"] },
-      "outputSchema": { "produces": ["duplicateCandidates[]", "recommendedDRI", "suggestedAction", "confidence"] },
-      "m365Sources": { "reads": ["email", "Teams triage"], "writes": ["work tracker items"] },
-      "valueProposition": "Replaces 31+ manual triage events with instant dedup and routing."
+      "automationScore": 80,
+      "valueScore": 88,
+      "confidenceScore": 80,
+      "description": "Generates eval scenario guides, coverage models, feature specs, acceptance criteria from agent/feature description.",
+      "inputSchema": { "required": ["agentDescription", "domainContext"], "optional": ["existingTemplates"] },
+      "outputSchema": { "produces": ["scenarioGuide", "coverageModel", "acceptanceCriteria[]", "evalSetTemplate", "featureSpec"] },
+      "m365Sources": { "reads": ["SharePoint templates", "Teams threads"], "writes": ["Loop/SharePoint doc"] },
+      "cluster": "eval-ecosystem",
+      "valueProposition": "Eliminates 6.5 hrs/week of parallel template authoring."
     },
     {
       "rank": 5,
-      "name": "eval-template-scaffolder",
+      "name": "voc-ask-deduplicator",
       "compositeScore": 83,
-      "description": "Generates eval scenario guide, coverage model, acceptance criteria from agent description.",
-      "inputSchema": { "required": ["agentDescription", "domainContext"] },
-      "outputSchema": { "produces": ["scenarioGuide", "coverageModel", "acceptanceCriteria[]", "evalSetTemplate"] },
-      "m365Sources": { "reads": ["SharePoint templates", "Teams threads"], "writes": ["Loop/SharePoint doc"] },
-      "valueProposition": "Eliminates 7.5+ hrs/week of parallel template authoring across 3 roles."
+      "automationScore": 84,
+      "valueScore": 82,
+      "confidenceScore": 90,
+      "description": "RAG-based dedup of customer asks against ADO backlog with DRI routing and confidence scoring.",
+      "inputSchema": { "required": ["customerAskDescription", "customerName"] },
+      "outputSchema": { "produces": ["duplicateCandidates[]", "recommendedDRI", "suggestedAction", "confidence"] },
+      "m365Sources": { "reads": ["email", "Teams triage", "Work Tracker"], "writes": ["Work Tracker items"] },
+      "valueProposition": "Replaces 30 manual triage events across 7 cycles. 4.21 hrs/week."
     }
   ]
 }</div>
 </div>
 
-<!-- Time Savings Potential -->
+<!-- Time Savings -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#9201;</span> Automation Time Savings Potential (Top 11 Candidates)</div>
-  <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
-    <rect x="0" y="0" width="700" height="320" fill="#12141c" rx="8"/>
-    <!-- Bars: horizontal bar chart showing hrs/wk saveable -->
-    <!-- recurring-agenda: 18.17 -->
-    <text x="185" y="30" fill="#b0b0b0" font-size="10" text-anchor="end">recurring-agenda-generator</text>
-    <rect x="190" y="20" width="339" height="16" rx="3" fill="#00b894" opacity=".7"><animate attributeName="width" from="0" to="339" dur=".6s" fill="freeze"/></rect>
-    <text x="535" y="32" fill="#55efc4" font-size="10" font-weight="600">18.2 hrs/wk</text>
-    <!-- eval-results: 13.6 -->
-    <text x="185" y="56" fill="#b0b0b0" font-size="10" text-anchor="end">eval-report-synthesizer</text>
-    <rect x="190" y="46" width="254" height="16" rx="3" fill="#fdcb6e" opacity=".7"><animate attributeName="width" from="0" to="254" dur=".6s" fill="freeze" begin=".1s"/></rect>
-    <text x="450" y="58" fill="#fdcb6e" font-size="10" font-weight="600">13.6 hrs/wk</text>
-    <!-- cross-tool: 9.33 -->
-    <text x="185" y="82" fill="#b0b0b0" font-size="10" text-anchor="end">knowledge-context-consolidator</text>
-    <rect x="190" y="72" width="174" height="16" rx="3" fill="#e17055" opacity=".7"><animate attributeName="width" from="0" to="174" dur=".6s" fill="freeze" begin=".2s"/></rect>
-    <text x="370" y="84" fill="#ff7675" font-size="10" font-weight="600">9.3 hrs/wk</text>
-    <!-- FAQ: 8.92 -->
-    <text x="185" y="108" fill="#b0b0b0" font-size="10" text-anchor="end">copilot-platform-faq-responder</text>
-    <rect x="190" y="98" width="166" height="16" rx="3" fill="#74b9ff" opacity=".7"><animate attributeName="width" from="0" to="166" dur=".6s" fill="freeze" begin=".3s"/></rect>
-    <text x="362" y="110" fill="#74b9ff" font-size="10" font-weight="600">8.9 hrs/wk</text>
-    <!-- meeting-notes: 8.5 -->
-    <text x="185" y="134" fill="#b0b0b0" font-size="10" text-anchor="end">meeting-notes-action-extractor</text>
-    <rect x="190" y="124" width="159" height="16" rx="3" fill="#00b894" opacity=".7"><animate attributeName="width" from="0" to="159" dur=".6s" fill="freeze" begin=".4s"/></rect>
-    <text x="355" y="136" fill="#55efc4" font-size="10" font-weight="600">8.5 hrs/wk</text>
-    <!-- eval-template: 7.5 -->
-    <text x="185" y="160" fill="#b0b0b0" font-size="10" text-anchor="end">eval-template-scaffolder</text>
-    <rect x="190" y="150" width="140" height="16" rx="3" fill="#fdcb6e" opacity=".7"><animate attributeName="width" from="0" to="140" dur=".6s" fill="freeze" begin=".5s"/></rect>
-    <text x="336" y="162" fill="#fdcb6e" font-size="10" font-weight="600">7.5 hrs/wk</text>
-    <!-- summary-publisher: 6.0 -->
-    <text x="185" y="186" fill="#b0b0b0" font-size="10" text-anchor="end">meeting-summary-publisher</text>
-    <rect x="190" y="176" width="112" height="16" rx="3" fill="#a29bfe" opacity=".7"><animate attributeName="width" from="0" to="112" dur=".6s" fill="freeze" begin=".6s"/></rect>
-    <text x="308" y="188" fill="#a29bfe" font-size="10" font-weight="600">6.0 hrs/wk</text>
-    <!-- status: 4.5 -->
-    <text x="185" y="212" fill="#b0b0b0" font-size="10" text-anchor="end">weekly-status-report-generator</text>
-    <rect x="190" y="202" width="84" height="16" rx="3" fill="#55efc4" opacity=".7"><animate attributeName="width" from="0" to="84" dur=".6s" fill="freeze" begin=".7s"/></rect>
-    <text x="280" y="214" fill="#55efc4" font-size="10" font-weight="600">4.5 hrs/wk</text>
-    <!-- voc: 4.5 -->
-    <text x="185" y="238" fill="#b0b0b0" font-size="10" text-anchor="end">voc-ask-deduplicator</text>
-    <rect x="190" y="228" width="84" height="16" rx="3" fill="#a29bfe" opacity=".7"><animate attributeName="width" from="0" to="84" dur=".6s" fill="freeze" begin=".8s"/></rect>
-    <text x="280" y="240" fill="#a29bfe" font-size="10" font-weight="600">4.5 hrs/wk</text>
-    <!-- action: 4.33 -->
-    <text x="185" y="264" fill="#b0b0b0" font-size="10" text-anchor="end">unified-action-item-tracker</text>
-    <rect x="190" y="254" width="81" height="16" rx="3" fill="#ff7675" opacity=".7"><animate attributeName="width" from="0" to="81" dur=".6s" fill="freeze" begin=".9s"/></rect>
-    <text x="277" y="266" fill="#ff7675" font-size="10" font-weight="600">4.3 hrs/wk</text>
-    <!-- notif: 3.0 -->
-    <text x="185" y="290" fill="#b0b0b0" font-size="10" text-anchor="end">task-notification-router</text>
-    <rect x="190" y="280" width="56" height="16" rx="3" fill="#6c5ce7" opacity=".7"><animate attributeName="width" from="0" to="56" dur=".6s" fill="freeze" begin="1s"/></rect>
-    <text x="252" y="292" fill="#6c5ce7" font-size="10" font-weight="600">3.0 hrs/wk</text>
-    <!-- Total line -->
-    <line x1="190" y1="306" x2="650" y2="306" stroke="#2a2d3a" stroke-width="1"/>
-    <text x="185" y="316" fill="#fff" font-size="11" text-anchor="end" font-weight="600">TOTAL</text>
-    <text x="190" y="316" fill="#00b894" font-size="11" font-weight="700">88.8 hrs/wk addressable across top 11 candidates</text>
+  <div class="section-title"><span class="icon">&#9201;</span> Automation Time Savings Potential (Top 14 Candidates)</div>
+  <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+    <rect x="0" y="0" width="720" height="400" fill="#12141c" rx="8"/>
+    <!-- recurring-agenda: 19.67 -->
+    <text x="190" y="28" fill="#b0b0b0" font-size="10" text-anchor="end">recurring-agenda-generator</text>
+    <rect x="195" y="18" width="340" height="15" rx="3" fill="#00b894" opacity=".7"><animate attributeName="width" from="0" to="340" dur=".5s" fill="freeze"/></rect>
+    <text x="541" y="29" fill="#55efc4" font-size="10" font-weight="600">19.67 hrs/wk</text>
+    <!-- eval-results: 14.75 -->
+    <text x="190" y="52" fill="#b0b0b0" font-size="10" text-anchor="end">eval-report-synthesizer</text>
+    <rect x="195" y="42" width="255" height="15" rx="3" fill="#fdcb6e" opacity=".7"><animate attributeName="width" from="0" to="255" dur=".5s" fill="freeze" begin=".05s"/></rect>
+    <text x="456" y="53" fill="#fdcb6e" font-size="10" font-weight="600">14.75 hrs/wk</text>
+    <!-- copilot FAQ: 11.0 -->
+    <text x="190" y="76" fill="#b0b0b0" font-size="10" text-anchor="end">copilot-platform-faq-responder</text>
+    <rect x="195" y="66" width="190" height="15" rx="3" fill="#74b9ff" opacity=".7"><animate attributeName="width" from="0" to="190" dur=".5s" fill="freeze" begin=".1s"/></rect>
+    <text x="391" y="77" fill="#74b9ff" font-size="10" font-weight="600">11.0 hrs/wk</text>
+    <!-- meeting-notes: 10.67 -->
+    <text x="190" y="100" fill="#b0b0b0" font-size="10" text-anchor="end">meeting-notes-action-extractor</text>
+    <rect x="195" y="90" width="184" height="15" rx="3" fill="#00b894" opacity=".7"><animate attributeName="width" from="0" to="184" dur=".5s" fill="freeze" begin=".15s"/></rect>
+    <text x="385" y="101" fill="#55efc4" font-size="10" font-weight="600">10.67 hrs/wk</text>
+    <!-- context: 10.42 -->
+    <text x="190" y="124" fill="#b0b0b0" font-size="10" text-anchor="end">knowledge-context-consolidator</text>
+    <rect x="195" y="114" width="180" height="15" rx="3" fill="#e17055" opacity=".7"><animate attributeName="width" from="0" to="180" dur=".5s" fill="freeze" begin=".2s"/></rect>
+    <text x="381" y="125" fill="#ff7675" font-size="10" font-weight="600">10.42 hrs/wk</text>
+    <!-- eval-template: 6.5 -->
+    <text x="190" y="148" fill="#b0b0b0" font-size="10" text-anchor="end">eval-template-scaffolder</text>
+    <rect x="195" y="138" width="112" height="15" rx="3" fill="#fdcb6e" opacity=".7"><animate attributeName="width" from="0" to="112" dur=".5s" fill="freeze" begin=".25s"/></rect>
+    <text x="313" y="149" fill="#fdcb6e" font-size="10" font-weight="600">6.5 hrs/wk</text>
+    <!-- ADO: 5.5 -->
+    <text x="190" y="172" fill="#b0b0b0" font-size="10" text-anchor="end">ado-notification-router</text>
+    <rect x="195" y="162" width="95" height="15" rx="3" fill="#6c5ce7" opacity=".7"><animate attributeName="width" from="0" to="95" dur=".5s" fill="freeze" begin=".3s"/></rect>
+    <text x="296" y="173" fill="#a29bfe" font-size="10" font-weight="600">5.5 hrs/wk</text>
+    <!-- summary: 5.5 -->
+    <text x="190" y="196" fill="#b0b0b0" font-size="10" text-anchor="end">meeting-summary-publisher</text>
+    <rect x="195" y="186" width="95" height="15" rx="3" fill="#a29bfe" opacity=".7"><animate attributeName="width" from="0" to="95" dur=".5s" fill="freeze" begin=".35s"/></rect>
+    <text x="296" y="197" fill="#a29bfe" font-size="10" font-weight="600">5.5 hrs/wk</text>
+    <!-- incident: 5.42 -->
+    <text x="190" y="220" fill="#b0b0b0" font-size="10" text-anchor="end">incident-response-doc-generator</text>
+    <rect x="195" y="210" width="93" height="15" rx="3" fill="#55efc4" opacity=".7"><animate attributeName="width" from="0" to="93" dur=".5s" fill="freeze" begin=".4s"/></rect>
+    <text x="294" y="221" fill="#55efc4" font-size="10" font-weight="600">5.42 hrs/wk</text>
+    <!-- VoC: 4.21 -->
+    <text x="190" y="244" fill="#b0b0b0" font-size="10" text-anchor="end">voc-ask-deduplicator</text>
+    <rect x="195" y="234" width="73" height="15" rx="3" fill="#a29bfe" opacity=".7"><animate attributeName="width" from="0" to="73" dur=".5s" fill="freeze" begin=".45s"/></rect>
+    <text x="274" y="245" fill="#a29bfe" font-size="10" font-weight="600">4.21 hrs/wk</text>
+    <!-- status: 4.25 -->
+    <text x="190" y="268" fill="#b0b0b0" font-size="10" text-anchor="end">weekly-status-report-generator</text>
+    <rect x="195" y="258" width="73" height="15" rx="3" fill="#55efc4" opacity=".7"><animate attributeName="width" from="0" to="73" dur=".5s" fill="freeze" begin=".5s"/></rect>
+    <text x="274" y="269" fill="#55efc4" font-size="10" font-weight="600">4.25 hrs/wk</text>
+    <!-- ext-followup: 4.24 -->
+    <text x="190" y="292" fill="#b0b0b0" font-size="10" text-anchor="end">external-meeting-followup-drafter</text>
+    <rect x="195" y="282" width="73" height="15" rx="3" fill="#ff7675" opacity=".7"><animate attributeName="width" from="0" to="73" dur=".5s" fill="freeze" begin=".55s"/></rect>
+    <text x="274" y="293" fill="#ff7675" font-size="10" font-weight="600">4.24 hrs/wk</text>
+    <!-- action-item: 4.17 -->
+    <text x="190" y="316" fill="#b0b0b0" font-size="10" text-anchor="end">unified-action-item-tracker</text>
+    <rect x="195" y="306" width="72" height="15" rx="3" fill="#ff7675" opacity=".7"><animate attributeName="width" from="0" to="72" dur=".5s" fill="freeze" begin=".6s"/></rect>
+    <text x="273" y="317" fill="#ff7675" font-size="10" font-weight="600">4.17 hrs/wk</text>
+    <!-- calendar: 34.0 shown as special -->
+    <text x="190" y="340" fill="#888" font-size="10" text-anchor="end" font-style="italic">calendar-triage-advisor</text>
+    <rect x="195" y="330" width="586" height="15" rx="3" fill="#636e72" opacity=".3"><animate attributeName="width" from="0" to="586" dur=".5s" fill="freeze" begin=".65s"/></rect>
+    <text x="540" y="341" fill="#888" font-size="10" font-weight="600">34.0 hrs/wk (calendar overload)</text>
+    <!-- Total -->
+    <line x1="195" y1="356" x2="700" y2="356" stroke="#2a2d3a" stroke-width="1"/>
+    <text x="190" y="374" fill="#fff" font-size="11" text-anchor="end" font-weight="600">TOTAL</text>
+    <text x="195" y="374" fill="#00b894" font-size="11" font-weight="700">106+ hrs/wk addressable (excl. calendar overload: 140+ hrs/wk)</text>
   </svg>
 </div>
 
 <!-- Skill Detector Version & Changelog -->
 <div class="section">
-  <div class="section-title"><span class="icon">&#9881;</span> skill-detector v1.1.0 — Refinement Changelog</div>
+  <div class="section-title"><span class="icon">&#9881;</span> skill-detector v1.2.0 &mdash; Changelog</div>
   <ul class="changelog">
-    <li><strong>v1.1.0 (Cycle 6)</strong> — Major upgrade. Added <strong>Pattern Clustering</strong> (Phase 4): groups related patterns into clusters with synergy multipliers. Three proven clusters: Eval Ecosystem (93 occ, 32.9 hrs/wk), Meeting Output Pipeline (131 occ, 36.3 hrs/wk), Information Fragmentation (88 occ, 17.1 hrs/wk).</li>
-    <li><strong>Pattern Lifecycle Model</strong> — Formalized Signal &rarr; Candidate &rarr; Confirmed &rarr; Archived with explicit rules for each transition. First archive: feature-flag-rollout-runbook-assistant (4 cycles without signal).</li>
-    <li><strong>12 Archetypes</strong> (was 10) — Added Incident Response Coordination and Link/Access Resolution based on new cycle 6 evidence.</li>
-    <li><strong>17 Queries</strong> (was 15) — Added deep-dive queries for incidents/escalations and link/access patterns.</li>
-    <li><strong>Enhanced Scoring</strong> — Added +3 bonus for 5+ cycle evidence, +5 cluster multiplier, -5 for multi-step approval. Tier 1 expanded from 4 to 8 patterns.</li>
-    <li><strong>Event Spike Detection</strong> — New heuristic to distinguish event-driven surges from structural trends using 3-cycle moving averages.</li>
-    <li><strong>I/O Schemas</strong> — Top 5 skill candidates now include full inputSchema, outputSchema, and m365Sources specifications.</li>
-    <li><strong>v1.0.0 (Cycle 5)</strong> — Initial creation. HARVEST-CLASSIFY-SCORE-GENERATE pipeline. 15 queries, 10 archetypes, scoring formulas, 26 validated patterns.</li>
+    <li><strong>v1.2.0 (Cycle 7)</strong> &mdash; <strong>Confidence Scoring</strong>: New 3rd scoring dimension (0-100) measuring cross-cycle evidence strength. Composite formula changed to 40/40/20 (auto/value/confidence) from 50/50. Prevents low-evidence patterns from outranking established ones.</li>
+    <li><strong>Signal Decay Model</strong> &mdash; Formalized freshness decay: -5 confidence per missed cycle, declining after 2, archived after 4. Resurrection rules: +10 per new signal cycle, no peak restore. Monthly cadence exceptions.</li>
+    <li><strong>Build Order Recommender</strong> &mdash; Chain heads &rarr; cluster keystones &rarr; high-confidence standalones. Phased 4-week build plan considering inter-skill dependencies.</li>
+    <li><strong>3 Workflow Chains</strong> &mdash; Meeting-Recap-to-Tracker (12/wk), Alert-Triage-Resolve-Status (7/wk, NEW), Email-Meeting-Deck-Followup (confirmed). Each chain has step-level automation potential analysis.</li>
+    <li><strong>Cascade Pattern Detector</strong> &mdash; New heuristic for multi-tool ripple effects (e.g., one meeting reschedule triggers 3-5 downstream invite emails).</li>
+    <li><strong>13 Archetypes</strong> (was 12) &mdash; Added Approval Workflow Orchestration based on cycle 7 sign-off thread evidence.</li>
+    <li><strong>4 Pattern Clusters</strong> (was 3) &mdash; New: Notification/Triage Ecosystem (210 occ, 4 patterns sharing classify-route archetype).</li>
+    <li><strong>v1.1.0 (Cycle 6)</strong> &mdash; Clustering, lifecycle management, event surge detection, 12 archetypes, I/O schemas.</li>
+    <li><strong>v1.0.0 (Cycle 5)</strong> &mdash; Initial pipeline with 10 archetypes and 26 patterns.</li>
   </ul>
 </div>
 
 <div class="footer">
-  Skilluminator &bull; Generated 2026-03-19 &bull; Cycle 6 of 6 &bull; Data source: WorkIQ MCP (M365 Graph) &bull; skill-detector v1.1.0
+  Skilluminator &bull; Generated 2026-03-19 &bull; Cycle 7 of 7 &bull; Data source: WorkIQ MCP (M365 Graph) &bull; skill-detector v1.2.0
 </div>
 
 </body>

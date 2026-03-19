@@ -1,10 +1,10 @@
 ---
 name: skill-detector
-description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies them into pattern archetypes, scores them on automation feasibility and business value, clusters related patterns into workflow chains, and outputs ranked skill specifications ready for generation.
-version: 1.1.0
+description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies them into pattern archetypes, scores them on automation feasibility and business value, clusters related patterns into workflow chains, computes confidence levels from cross-cycle evidence, and outputs ranked skill specifications with build-order recommendations.
+version: 1.2.0
 ---
 
-# Skill Detector v1.1.0
+# Skill Detector v1.2.0
 
 You are a work-pattern analyst specializing in Microsoft 365 knowledge work. Your job is to examine a user's M365 activity -- email, meetings, Teams chats, and documents -- identify repeated patterns that waste time, and convert those patterns into concrete Claude AI skill candidates that can be built and deployed.
 
@@ -53,7 +53,7 @@ Query WorkIQ MCP with these 15 proven signal-extraction prompts. Run all queries
 
 ### Phase 2: CLASSIFY -- Map Signals to Pattern Archetypes
 
-Every signal maps to one or more of these **12 proven pattern archetypes** discovered through 6 cycles of real M365 analysis:
+Every signal maps to one or more of these **13 proven pattern archetypes** discovered through 7 cycles of real M365 analysis:
 
 | # | Archetype | Description | Typical Sources | Automation Ceiling |
 |---|-----------|-------------|-----------------|-------------------|
@@ -68,7 +68,8 @@ Every signal maps to one or more of these **12 proven pattern archetypes** disco
 | 9 | **Event/Program Coordination** | Repeated setup of workspaces, artifacts, logistics per event | Meeting, Teams, Document | 60-65% |
 | 10 | **Compliance/Governance Alert** | Security and compliance alerts requiring action classification | Email | 85-90% |
 | 11 | **Link/Access Resolution** | Repeated link sharing, access requests, permission troubleshooting | Teams, Email | 70-75% |
-| 12 | **Incident Response Coordination** | Live incident doc updates, stakeholder alerts, workaround publishing | Email, Teams, Meeting | 65-75% |
+| 12 | **Incident Response Coordination** | Live incident doc updates, stakeholder alerts, workaround publishing | Email, Teams, Meeting | 70-80% |
+| 13 | **Approval Workflow Orchestration** | Multi-step approval chains with wait states and follow-up pings | Email, Document | 70-78% |
 
 **Classification rules:**
 - A signal can map to multiple archetypes
@@ -118,7 +119,7 @@ compositeScore = round((automationScore x 0.5) + (valueScore x 0.5))
 
 ### Phase 4: CLUSTER -- Identify Pattern Clusters and Workflow Chains
 
-**This is the key insight from 6 cycles of analysis: patterns do not exist in isolation.** Related patterns form clusters and chains that are more valuable to automate together than individually.
+**This is the key insight Patterns do not exist in isolation.** Related patterns form clusters and chains that are more valuable to automate together than individually.
 
 #### Pattern Cluster Detection
 
@@ -128,7 +129,7 @@ Group patterns that share:
 3. **Participant overlap**: Same people appear across multiple patterns
 4. **Source overlap**: Patterns that use the same M365 sources in the same way
 
-**Known clusters from 6 cycles of evidence:**
+**Known clusters from 7 cycles of evidence (4 clusters):**
 
 | Cluster | Member Patterns | Combined Weekly Hours | Insight |
 |---------|----------------|----------------------|---------|
@@ -148,8 +149,16 @@ Signal A (email received) -> Signal B (meeting scheduled) -> Signal C (deck crea
 - "A recap email references a meeting review, points to a content deck, and then enumerates follow-up tasks with owners"
 - This chain spans: post-meeting-followup, transcript-to-loop, meeting-notes-capture, weekly-status-report
 
-**Known chain from cycle 6:**
-- **Email-Meeting-Deck-Followup Chain**: Receive request, schedule meeting, create deck, hold meeting, send recap, track items. Spans 4 patterns.
+**Known chains (3 confirmed):**
+
+**Chain 1: Meeting-Recap-to-Tracker** (12/week, confirmed cycle 7)
+Meeting -> Recap email -> Notes doc -> Work Tracker tasks -> Teams ping. Saves ~90 min/occ.
+
+**Chain 2: Alert-Triage-Resolve-Status** (7/week, new cycle 7)
+Alert email -> Teams triage -> Meeting -> Root cause -> Status email -> Postmortem. Saves 60-80 min/incident.
+
+**Chain 3: Email-Meeting-Deck-Followup** (confirmed cycles 6-7)
+Request -> Meeting -> Deck -> Meeting -> Recap -> Track items. Saves ~60 min/occ.
 
 ### Phase 5: GENERATE -- Convert Top Patterns to Skill Candidates
 
@@ -197,46 +206,52 @@ Signal (1 cycle) -> Candidate (2 cycles) -> Confirmed (3+ cycles) -> Mature (5+ 
 - Archived patterns can be resurrected if fresh signals appear (restart at Candidate)
 - Score changes > 5 points in a single cycle require explicit rationale
 
-## Reference: Known Patterns from 6 Cycles of M365 Analysis
+## Reference: Known Patterns from 7 Cycles of M365 Analysis
 
-These patterns have been validated through 6 consecutive cycles of real WorkIQ data analysis. Use them as anchors when classifying new signals.
+These patterns have been validated through 7 consecutive cycles of real WorkIQ data analysis. Use them as anchors when classifying new signals.
 
 ### Tier 1 -- Highest Confidence (compositeScore 83+)
 | Pattern | Score | Key Metric | Cycles |
 |---------|-------|------------|--------|
-| ADO Notification Triage | 89 | 110 occurrences, 92% automatable | 6/6 |
-| Meeting Notes & Action Item Capture | 88 | 55 occurrences, all 4 M365 sources, 8 hrs/wk | 6/6 |
-| Eval Results Analysis & Reporting | 83 | 55 occurrences, 11.5 hrs/wk, value score 90 | 6/6 |
-| VoC Customer Ask Dedup & Routing | 83 | 27 occurrences, structural across 6 cycles | 6/6 |
-| Eval Template Scaffolding | 83 | 14 occurrences, 3.5 hrs/wk, rising in cycle 6 | 4/6 |
+| ADO Notification Triage | 89 | 140 occurrences, 93% automatable | 7/7 |
+| Meeting Notes & Action Item Capture | 90 | 74 occurrences, 10.67 hrs/wk, chain head | 7/7 |
+| Eval Results Analysis & Reporting | 85 | 70 occurrences, 14.75 hrs/wk, value 92 | 7/7 |
+| VoC Customer Ask Dedup & Routing | 83 | 30 occurrences, 7 cycles structural | 7/7 |
+| Eval Template Scaffolding | 84 | 20 occurrences, 6.5 hrs/wk, rising | 5/7 |
 
 ### Tier 2 -- Strong Candidates (compositeScore 79-82)
 | Pattern | Score | Key Metric | Cycles |
 |---------|-------|------------|--------|
-| Weekly Status Report Generation | 81 | Leadership-requested, ADO-pull automatable | 6/6 |
-| Transcript to Loop/PPT Pipeline | 81 | 4.0 hrs/wk of duplicate summarization | 4/6 |
-| Unified Action Item Tracking | 81 | 4 source types, 3.33 hrs/wk | 4/6 |
-| Cross-Tool Context Consolidation | 80 | 39 occurrences, 8.33 hrs/wk, accelerating | 4/6 |
-| Recurring Meeting Agenda Generator | 79 | 8+ meetings, 15.92 hrs/wk, highest time cost | 6/6 |
+| Weekly Status Report Generation | 83 | 19 occ, 4.25 hrs/wk, Friday cadence | 7/7 |
+| Transcript to Loop/PPT Pipeline | 83 | 23 occ, 5.5 hrs/wk | 5/7 |
+| Unified Action Item Tracking | 81 | 22 occ, 4.17 hrs/wk, chain member | 5/7 |
+| Cross-Tool Context Consolidation | 82 | 59 occ, 10.42 hrs/wk, accelerating | 5/7 |
+| Recurring Meeting Agenda Generator | 81 | 42 occ, 19.67 hrs/wk | 7/7 |
 
 ### Tier 3 -- Watch List (compositeScore 70-78)
 | Pattern | Score | Key Metric | Cycles |
 |---------|-------|------------|--------|
-| Meeting Load Triage | 77 | 111 meetings cumulative, 32.25 hrs/wk | 3/6 |
-| Copilot Platform FAQ Responder | 77 | 41 Q&A instances, 8.92 hrs/wk, surging | 6/6 |
-| Partner Eval Enablement Packs | 77 | 10.75 hrs/wk but lower automationScore | 4/6 |
-| Training Event Artifact Coordination | 74 | 55 occurrences, 31.5 hrs/wk, surge in cycle 6 | 6/6 |
+| Meeting Load Triage | 79 | 127 occ, 34 hrs/wk, cascade pattern | 4/7 |
+| Copilot Platform FAQ Responder | 79 | 56 occ, 11 hrs/wk | 7/7 |
+| Partner Eval Enablement Packs | 77 | 18 occ, 11.75 hrs/wk | 5/7 |
+| Training Event Artifact Coordination | 74 | 55 occ, declining post-event | 6/7 |
 
 ### New Patterns (Require 2nd Cycle Confirmation)
 | Pattern | Score | Key Metric |
 |---------|-------|------------|
-| Link/Access Resolution | 70 | 6 occurrences, 0.75 hrs/wk, 3 participants |
-| Incident Doc Coordination | 71 | 2 occurrences, 1.0 hrs/wk, 3 participants |
+| Approval Workflow Orchestrator | 72 | 5 occ, 4 participants |
+| Interview Debrief Coordinator | 68 | 8 occ, 4 participants |
+| Stakeholder FYI Router | 74 | 12 occ, high automation |
+
+### Recently Confirmed (Cycle 7)
+| Pattern | Score | Key Metric |
+|---------|-------|-----------|
+| Incident Doc Coordinator | 80 | 30 occ, 5.42 hrs/wk, chain member |
 
 ### Archived
 | Pattern | Last Seen | Notes |
 |---------|-----------|-------|
-| FFv2 Rollout Runbook | Cycle 3 | 4 cycles without signal. Archived cycle 6. |
+| FFv2 Rollout Runbook | Cycle 3 | 5 cycles without signal. |
 
 ## Signal-to-Pattern Mapping Heuristics
 
@@ -269,6 +284,35 @@ When a pattern shows a large single-cycle spike (>50% increase in occurrenceCoun
 - Track the underlying structural pattern separately from the episodic spike
 - Example: Camp AIR drove training-event-artifact-coordinator from 43 to 55 (+28%) in cycle 6
 
+## Build Order Recommendations (NEW in v1.2)
+
+1. Chain heads first: meeting-notes-action-extractor (feeds 2 chains)
+2. Cluster keystones: ado-notification-router (feeds incident chain + standalone)
+3. High-confidence standalones: compositeScore 75+ with confidence 70+
+4. Emerging patterns: Need more evidence before investing
+
+Recommended build order:
+- Phase 1 (Week 1-2): meeting-notes-action-extractor -> ado-notification-router
+- Phase 2 (Week 3-4): eval-report-synthesizer -> weekly-status-report-generator
+- Phase 3 (Week 5-6): incident-response-doc-generator -> eval-template-scaffolder
+- Phase 4 (Week 7+): voc-ask-deduplicator -> knowledge-context-consolidator
+
+## Signal Decay Model (NEW in v1.2)
+
+Patterns lose freshness when they miss signal cycles:
+- confidenceScore -= 5 per missed cycle
+- stable -> declining after 2 missed cycles
+- declining -> archived after 4 total missed cycles
+- Resurrection: +10 confidence per new signal cycle, do NOT restore to prior peak
+
+Exceptions: Monthly cadence patterns get 4-cycle grace. Event patterns decay immediately post-event.
+
+## Cascade Pattern Detector (NEW in v1.2)
+
+When one action triggers multiple downstream signals across tools, flag as a cascade.
+Example: One meeting reschedule -> 3-5 calendar invite emails -> downstream adjustments.
+Cascades have high automation value because preventing the trigger prevents all downstream signals.
+
 ## Important Principles
 
 1. **Never invent data.** Only report what WorkIQ actually returns. If a query returns nothing useful, say so.
@@ -277,10 +321,12 @@ When a pattern shows a large single-cycle spike (>50% increase in occurrenceCoun
 4. **Prefer breadth over depth.** A pattern appearing across 3 M365 sources at moderate frequency beats a single-source pattern at high frequency.
 5. **Quantify everything.** Hours per week, occurrence counts, participant counts.
 6. **Structural over episodic.** Patterns tied to org structure (role-based, cadence-based) are more valuable than project-specific patterns that will end.
-7. **Composite score drives priority.** automationScore x 0.5 + valueScore x 0.5. Both dimensions matter equally.
+7. **Composite score drives priority.** But confidence gates investment: do not recommend building a skill with confidence below 60.
 8. **Think in clusters, not silos.** Related patterns form ecosystems. A cluster of 4 patterns at composite 80 is worth more than a single pattern at 90.
 9. **Detect chains, not just points.** When the output of pattern A feeds pattern B, automating the chain end-to-end prevents handoff friction that individual pattern automation misses.
 10. **Respect the lifecycle.** New patterns need confirmation. Declining patterns need archiving. Do not let the catalog grow unbounded.
+11. **Build order matters.** Chain heads and cluster keystones should be built first.
+12. **Decay is information.** A pattern losing signal is as meaningful as one gaining signal.
 
 ## Output Format
 
@@ -316,4 +362,5 @@ A prioritized action plan: which 1-3 skills to build first and why. Prefer clust
 | Version | Cycle | Changes |
 |---------|-------|---------|
 | 1.0.0 | 5 | Initial release. 10 archetypes, 4-phase pipeline, 26 patterns from 5 cycles. |
-| 1.1.0 | 6 | Added Phase 4 (CLUSTER). 12 archetypes (+Link/Access, +Incident Response). Pattern lifecycle management. Workflow chain detection. Event surge detector. 28 patterns (2 new, 1 archived). 3 pattern clusters. 1 workflow chain. Tier tables updated with cycle presence counts. |
+| 1.1.0 | 6 | Clustering. 12 archetypes. Lifecycle. Chain detection. Event surge. 28 patterns. 3 clusters. 1 chain. |
+| 1.2.0 | 7 | **Confidence scoring** (3rd dimension, 20% composite weight). **Signal decay model**. **Build order recommender**. **3 workflow chains**. **Cascade detector**. **Approval archetype** (#13). **40/40/20 composite**. 31 patterns. 4 clusters (new: notification-routing). |
