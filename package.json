@@ -1,0 +1,22 @@
+{
+  "name": "skilluminator",
+  "version": "0.1.0",
+  "description": "Autonomous self-evolving agent that mines work patterns and generates Claude Code skills",
+  "type": "module",
+  "scripts": {
+    "loop": "npx tsx runner/loop.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "cycle:once": "npx tsx runner/loop.ts --once"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.0",
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}
