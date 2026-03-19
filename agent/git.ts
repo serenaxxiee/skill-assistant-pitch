@@ -30,12 +30,21 @@ export function commitAll(agentDir: string, message: string): string {
   }
 }
 
-export function revertHead(agentDir: string): void {
+/**
+ * Discard all uncommitted changes (staged and unstaged) to tracked files.
+ * This is the safe way to undo agent edits that broke the build —
+ * unlike `git revert HEAD`, this operates on the working tree, not on commits.
+ */
+export function discardUncommitted(agentDir: string): void {
   try {
-    git(agentDir, "revert HEAD --no-edit");
+    git(agentDir, "reset HEAD");       // unstage everything
   } catch {
-    // If revert fails (e.g., no commits), reset instead
-    git(agentDir, "checkout -- .");
+    // May fail if no prior commits exist
+  }
+  try {
+    git(agentDir, "checkout -- .");    // restore tracked files to HEAD
+  } catch {
+    // Ignore if nothing to restore
   }
 }
 

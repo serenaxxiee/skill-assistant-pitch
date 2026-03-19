@@ -170,7 +170,23 @@ export function getPatterns(db: Database.Database): DetectedPattern[] {
 }
 
 export function getSkills(db: Database.Database): GeneratedSkill[] {
-  return db.prepare("SELECT * FROM skills ORDER BY created_cycle DESC").all() as GeneratedSkill[];
+  const rows = db.prepare("SELECT * FROM skills ORDER BY created_cycle DESC").all() as Array<{
+    id: string;
+    name: string;
+    file_path: string;
+    source_pattern_id: string;
+    created_cycle: number;
+    commit_sha: string | null;
+  }>;
+
+  return rows.map((r) => ({
+    id: r.id,
+    name: r.name,
+    filePath: r.file_path,
+    sourcePatternId: r.source_pattern_id,
+    createdCycle: r.created_cycle,
+    commitSha: r.commit_sha,
+  }));
 }
 
 export function getRecentDiary(db: Database.Database, limit = 5): DiaryEntry[] {
