@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator — Cycle 27 Dashboard</title>
+<title>Skilluminator — Cycle 46 Dashboard</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -198,10 +198,11 @@
     <span class="subtitle">M365 Work Pattern Mining &middot; Autonomous Analyst</span>
   </div>
   <div class="badges">
-    <span class="badge badge-cycle">Cycle 27</span>
+    <span class="badge badge-cycle">Cycle 46</span>
     <span class="badge badge-week">Week of 2026-03-17</span>
-    <span class="badge badge-signals">19 Signals Ingested</span>
-    <span class="badge badge-version">v2.3.0</span>
+    <span class="badge badge-signals">31 Signals Ingested</span>
+    <span class="badge badge-version">v2.4.0</span>
+    <span class="badge" style="color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.1)">&#9650; FOCUS: DASHBOARD</span>
   </div>
 </div>
 
@@ -209,27 +210,27 @@
 
   <!-- KPI CARDS -->
   <div class="section">
-    <div class="section-title">Cycle 27 Key Metrics</div>
+    <div class="section-title">Cycle 46 Key Metrics</div>
     <div class="kpi-row">
       <div class="kpi-card">
         <div class="kpi-label">Active Patterns</div>
         <div class="kpi-value" id="kpi0">0</div>
-        <div class="kpi-sub">27 active &middot; 2 declining &middot; 11 archived</div>
+        <div class="kpi-sub">40 active &middot; 3 declining &middot; 18 archived</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Top Auto Score</div>
         <div class="kpi-value" id="kpi1">0</div>
-        <div class="kpi-sub">ado-notification-router &middot; 833 occ SATURATED</div>
+        <div class="kpi-sub">ado-notification-router &middot; 1,248 occ SATURATED</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Graduated Patterns</div>
         <div class="kpi-value" id="kpi2">0</div>
-        <div class="kpi-sub">100+ occ, institutional, composite &ge; 85</div>
+        <div class="kpi-sub">150+ occ, institutional, composite &ge; 85</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Named Pipelines</div>
         <div class="kpi-value" id="kpi3">0</div>
-        <div class="kpi-sub">NEW v2.3 &middot; Cross-source validated</div>
+        <div class="kpi-sub">v2.4 &middot; Daily-Prep pipeline added</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">BSI Critical</div>
@@ -246,14 +247,14 @@
       <div class="bsi-score">87</div>
       <div class="bsi-detail">
         <div class="bsi-title">CRITICAL: Eval SME PM &mdash; Single Point of Failure</div>
-        <div class="bsi-meta">15 inbound signals/cycle &middot; 8+ distinct request types &middot; PM sole DRI for 19 cycles &middot; Zero delegation observed &middot; $129K+/yr codification value</div>
+        <div class="bsi-meta">18 inbound signals/cycle &middot; 8+ distinct request types &middot; PM sole DRI for 46 cycles &middot; Zero delegation observed &middot; $130K+/yr codification value</div>
       </div>
     </div>
   </div>
 
   <!-- NAMED PIPELINES -->
   <div class="section">
-    <div class="section-title">Cross-Source Named Pipelines (NEW v2.3)</div>
+    <div class="section-title">Cross-Source Named Pipelines (v2.4 &mdash; 5 Pipelines)</div>
     <div class="pipeline-grid">
       <div class="pipeline-card">
         <div class="pipeline-name">Announcement-to-Submission</div>
@@ -287,6 +288,14 @@
           <span class="pipeline-stage stage-teams">Referenced</span>
         </div>
       </div>
+      <div class="pipeline-card">
+        <div class="pipeline-name">Daily-Prep-to-Priorities</div>
+        <div class="pipeline-stages">
+          <span class="pipeline-stage stage-email">Overnight inbox</span><span class="stage-arrow">&rarr;</span>
+          <span class="pipeline-stage stage-meeting">Calendar scan</span><span class="stage-arrow">&rarr;</span>
+          <span class="pipeline-stage stage-document">Day brief</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -300,7 +309,7 @@
         <div class="bubble-tooltip" id="bubbleTip"></div>
       </div>
       <div class="chart-panel">
-        <div class="chart-title">Signal Sources &mdash; Cycle 27</div>
+        <div class="chart-title">Signal Sources &mdash; Cycle 46</div>
         <div id="donutWrap">
           <svg id="donutSvg" width="160" height="160" viewBox="0 0 160 160"></svg>
           <div class="donut-legend" id="donutLegend"></div>
@@ -326,7 +335,7 @@
     <div class="sgi-block">
       <div class="sgi-header">
         <span class="sgi-header-title">skillGeneratorInput</span>
-        <span class="sgi-header-meta">generatedAtCycle: 28 &middot; weekOf: 2026-03-17 &middot; 5 candidates</span>
+        <span class="sgi-header-meta">generatedAtCycle: 47 &middot; weekOf: 2026-03-17 &middot; 5 candidates</span>
       </div>
       <div class="sgi-code" id="sgiCode"></div>
     </div>
@@ -334,7 +343,7 @@
 
   <!-- CYCLE HISTORY -->
   <div class="section">
-    <div class="section-title">Cycle History &mdash; Active Pattern Count (C1 &rarr; C27)</div>
+    <div class="section-title">Cycle History &mdash; Active Pattern Count (C1 &rarr; C46)</div>
     <div id="cycleHistoryWrap">
       <svg id="cycleHistorySvg" height="200"></svg>
     </div>
@@ -343,7 +352,7 @@
 </div>
 
 <script>
-const KPI_TARGETS = [39, 95, 15, 4, 87];
+const KPI_TARGETS = [40, 95, 8, 5, 87];
 
 const TOP10 = [
   { rank:1,  label:"Meeting Notes & Action Item Capture",         skill:"meeting-notes-action-extractor",       sources:["document","meeting","email","teams"], auto:91, value:93, composite:92, trend:"stable",   hrs:60.20,  maturity:"institutional" },
@@ -377,21 +386,22 @@ const ALL_BUBBLES = [
 ];
 
 const SIGNAL_SOURCES = [
-  { label:"Meeting",  count:7, color:"#d2a8ff" },
-  { label:"Email",    count:5, color:"#58a6ff" },
-  { label:"Teams",    count:4, color:"#ffa657" },
-  { label:"Document", count:3, color:"#3fb950" }
+  { label:"Meeting",  count:10, color:"#d2a8ff" },
+  { label:"Email",    count:9,  color:"#58a6ff" },
+  { label:"Teams",    count:6,  color:"#ffa657" },
+  { label:"Document", count:6,  color:"#3fb950" }
 ];
-const SIGNAL_TOTAL = 19;
+const SIGNAL_TOTAL = 31;
 
 const CYCLE_HISTORY = [
   {c:1,n:8},{c:3,n:14},{c:5,n:17},{c:7,n:21},{c:9,n:25},
   {c:11,n:27},{c:13,n:27},{c:15,n:27},{c:17,n:27},{c:19,n:28},
-  {c:21,n:27},{c:23,n:27},{c:25,n:27},{c:27,n:27}
+  {c:21,n:27},{c:23,n:27},{c:25,n:27},{c:27,n:27},
+  {c:30,n:35},{c:33,n:38},{c:37,n:39},{c:40,n:40},{c:43,n:40},{c:46,n:40}
 ];
 
 const SGI_DATA = {
-  generatedAtCycle: 28, weekOf: "2026-03-17",
+  generatedAtCycle: 47, weekOf: "2026-03-17",
   candidateSkills: [
     { rank:1, name:"meeting-notes-action-extractor", compositeScore:92, automationScore:91, valueScore:93, patternId:"meeting-notes-action-item-capture",
       description:"Ingests meeting transcript, agenda, or Loop doc and emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for 2 downstream patterns. 331 occ across 28 unbroken cycles.",
@@ -536,7 +546,7 @@ function buildCycleHistory() {
   svg.setAttribute('width',W); svg.setAttribute('viewBox','0 0 '+W+' '+H);
   var PAD={top:20,right:30,bottom:40,left:46};
   var cW=W-PAD.left-PAD.right; var cH=H-PAD.top-PAD.bottom;
-  var maxN=32; var maxC=27;
+  var maxN=42; var maxC=46;
   function xC(c){return PAD.left+((c-1)/(maxC-1))*cW;}
   function yC(n){return PAD.top+((maxN-n)/maxN)*cH;}
   var g='<defs><linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/><stop offset="100%" stop-color="#58a6ff" stop-opacity="0"/></linearGradient></defs>';
