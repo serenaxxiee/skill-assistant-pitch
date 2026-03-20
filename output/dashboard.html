@@ -3,687 +3,505 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator — Cycle 64 Dashboard</title>
+<title>Skilluminator — Cycle 34 Dashboard</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0f1117; --card: #1a1b2e; --card2: #1e2040;
-    --purple: #818cf8; --pink: #c084fc;
-    --green: #22c55e; --amber: #f59e0b; --red: #ef4444;
-    --text: #e2e8f0; --muted: #94a3b8; --border: #2d2f52;
-  }
-  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; font-size:14px; line-height:1.6; min-height:100vh; padding-bottom:60px; }
+:root{--bg:#0f1117;--card:#1a1b2e;--purple:#818cf8;--pink:#c084fc;--green:#22c55e;--amber:#f59e0b;--red:#ef4444;--blue:#38bdf8;--teal:#2dd4bf;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(129,140,248,0.18);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;min-height:100vh;}
+.wrap{max-width:1400px;margin:0 auto;padding:0 24px 56px;}
 
-  /* HEADER */
-  .header { background:linear-gradient(135deg,#0f1117 0%,#1a1b2e 50%,#0f1117 100%); border-bottom:1px solid var(--border); padding:32px 40px 24px; position:relative; overflow:hidden; }
-  .header::before { content:''; position:absolute; top:-80px; left:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(129,140,248,0.08) 0%,transparent 70%); pointer-events:none; }
-  .header-top { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-  .brand h1 { font-size:2.6rem; font-weight:800; letter-spacing:-0.03em; background:linear-gradient(135deg,#818cf8 0%,#c084fc 50%,#f472b6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:hueshift 4s ease-in-out infinite alternate; }
-  @keyframes hueshift { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(25deg)} }
-  .brand .tagline { color:var(--muted); font-size:0.85rem; margin-top:4px; letter-spacing:0.04em; }
-  .header-meta { text-align:right; }
-  .cycle-badge { display:inline-block; background:linear-gradient(135deg,var(--purple),var(--pink)); color:#fff; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; padding:4px 12px; border-radius:20px; margin-bottom:6px; }
-  .meta-text { color:var(--muted); font-size:0.8rem; display:block; }
+/* HEADER */
+header{padding:36px 24px 28px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(129,140,248,0.04),transparent);position:relative;overflow:hidden;}
+header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 140% at 50% -30%,rgba(129,140,248,0.1),transparent 70%);pointer-events:none;}
+.hi{max-width:1400px;margin:0 auto;}
+.brand-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.brand-title{font-size:2.4rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--purple) 0%,var(--pink) 55%,#f472b6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:hue 9s linear infinite;}
+@keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+.cbadge{background:linear-gradient(135deg,rgba(129,140,248,0.17),rgba(192,132,252,0.13));border:1px solid var(--border);border-radius:20px;padding:4px 13px;font-size:.75rem;font-weight:700;color:var(--purple);letter-spacing:.4px;}
+.cbadge.pk{color:var(--pink);border-color:rgba(192,132,252,0.28);}
+.cbadge.tl{color:var(--teal);border-color:rgba(45,212,191,0.28);background:rgba(45,212,191,0.08);}
+.hmeta{margin-top:10px;color:var(--muted);font-size:.79rem;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+.pdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 6px var(--amber);animation:pp 2s ease-in-out infinite;margin-right:5px;}
+@keyframes pp{0%,100%{opacity:1}50%{opacity:.35}}
+.outage-banner{background:linear-gradient(90deg,rgba(245,158,11,.07),rgba(239,68,68,.06));border:1px solid rgba(245,158,11,.32);border-radius:10px;padding:13px 18px;margin-top:18px;font-size:.79rem;color:rgba(251,191,36,.9);display:flex;gap:11px;align-items:flex-start;}
+.outage-banner strong{color:#fbbf24;}
+.outage-banner a{color:#60a5fa;}
 
-  /* OUTAGE BANNER */
-  .outage-banner { background:linear-gradient(90deg,rgba(239,68,68,0.12),rgba(239,68,68,0.04)); border-left:3px solid var(--red); border-bottom:1px solid rgba(239,68,68,0.18); padding:10px 40px; display:flex; align-items:center; gap:10px; font-size:0.82rem; color:#fca5a5; }
-  .outage-banner strong { color:var(--red); }
+/* SECTIONS */
+.section{margin-top:36px;}
+.section-title{font-size:.69rem;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.section-sub{font-size:.77rem;color:var(--muted);margin-bottom:14px;margin-top:-8px;}
 
-  /* LAYOUT */
-  .main { padding:32px 40px; max-width:1600px; margin:0 auto; }
-  .section-title { font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--purple); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
-  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 22px 18px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.kpi-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(129,140,248,.16);}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink));}
+.kpi-label{font-size:.68rem;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.kpi-value{font-size:2.5rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.kpi-sub{font-size:.71rem;color:var(--muted);margin-top:6px;}
+.kpi-icon{position:absolute;top:16px;right:16px;font-size:1.5rem;opacity:.15;}
 
-  /* KPI CARDS */
-  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:40px; }
-  .kpi-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; }
-  .kpi-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(129,140,248,0.12); }
-  .kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--pink)); }
-  .kpi-label { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-  .kpi-value { font-size:2.8rem; font-weight:800; line-height:1; background:linear-gradient(135deg,var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(0 0 12px rgba(129,140,248,0.35)); }
-  .kpi-sub { font-size:0.75rem; color:var(--muted); margin-top:6px; }
-  .kpi-icon { position:absolute; top:20px; right:20px; font-size:1.4rem; opacity:0.3; }
+/* TABLE */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead{background:rgba(129,140,248,.06);}
+th{padding:11px 13px;text-align:left;font-size:.66rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+td{padding:12px 13px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tbody tr{transition:background .14s;}
+tbody tr:hover{background:rgba(129,140,248,.055);}
+.rk{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:.69rem;font-weight:700;background:rgba(129,140,248,.14);border:1px solid rgba(129,140,248,.27);color:var(--purple);}
+.rk.g{background:rgba(251,191,36,.2);border-color:rgba(251,191,36,.38);color:#fbbf24;}
+.rk.s{background:rgba(203,213,225,.14);border-color:rgba(203,213,225,.27);color:#cbd5e1;}
+.rk.b{background:rgba(217,119,6,.18);border-color:rgba(217,119,6,.29);color:#d97706;}
+.pname{font-weight:600;font-size:.86rem;}
+.pskill{font-size:.69rem;color:var(--muted);margin-top:2px;font-family:'Cascadia Code','Fira Code',monospace;}
+.sbadges{display:flex;flex-wrap:wrap;gap:3px;}
+.sb{font-size:.6rem;font-weight:600;padding:2px 6px;border-radius:8px;}
+.sb-teams{background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.21);}
+.sb-email{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.19);}
+.sb-meeting{background:rgba(192,132,252,.11);color:#c084fc;border:1px solid rgba(192,132,252,.2);}
+.sb-document{background:rgba(45,212,191,.1);color:#2dd4bf;border:1px solid rgba(45,212,191,.19);}
+.sbar-w{display:flex;align-items:center;gap:7px;min-width:90px;}
+.sbar-bg{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden;}
+.sbar-f{height:100%;border-radius:3px;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
+.sn{font-size:.78rem;font-weight:700;width:24px;text-align:right;flex-shrink:0;}
+.cg{color:var(--green)}.ca{color:var(--amber)}.cr{color:var(--red)}
+.bg{background:linear-gradient(90deg,#15803d,var(--green))}.ba{background:linear-gradient(90deg,#d97706,var(--amber))}.br{background:linear-gradient(90deg,#b91c1c,var(--red))}
+.tc{display:inline-flex;align-items:center;gap:3px;font-size:.69rem;font-weight:600;padding:2px 8px;border-radius:7px;}
+.tc-r{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2);}
+.tc-s{background:rgba(148,163,184,.09);color:var(--muted);border:1px solid rgba(148,163,184,.15);}
+.tc-d{background:rgba(239,68,68,.09);color:var(--red);border:1px solid rgba(239,68,68,.17);}
+.tsaved{font-size:.8rem;font-weight:600;}
+.tsub{font-size:.67rem;color:var(--muted);}
 
-  /* TABLE */
-  .table-wrap { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:40px; }
-  table { width:100%; border-collapse:collapse; }
-  thead th { background:rgba(129,140,248,0.08); padding:12px 16px; text-align:left; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); white-space:nowrap; }
-  tbody tr { border-bottom:1px solid rgba(45,47,82,0.6); transition:background .15s; cursor:default; }
-  tbody tr:last-child { border-bottom:none; }
-  tbody tr:hover { background:rgba(129,140,248,0.06); }
-  tbody td { padding:12px 16px; vertical-align:middle; }
-  .rank-cell { font-size:1.1rem; font-weight:800; color:var(--muted); width:40px; }
-  .pattern-name { font-weight:600; color:var(--text); font-size:0.9rem; max-width:220px; }
-  .pattern-skill { font-size:0.72rem; color:var(--purple); font-family:'Cascadia Code','Consolas',monospace; margin-top:2px; }
-  .source-badges { display:flex; gap:4px; flex-wrap:wrap; }
-  .badge { font-size:0.65rem; font-weight:700; letter-spacing:0.05em; padding:2px 7px; border-radius:4px; text-transform:uppercase; }
-  .badge-email   { background:rgba(251,191,36,0.15);  color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
-  .badge-meeting { background:rgba(129,140,248,0.15); color:#818cf8; border:1px solid rgba(129,140,248,0.3); }
-  .badge-teams   { background:rgba(192,132,252,0.15); color:#c084fc; border:1px solid rgba(192,132,252,0.3); }
-  .badge-document{ background:rgba(34,197,94,0.15);   color:#22c55e; border:1px solid rgba(34,197,94,0.3); }
-  .score-bar-wrap { display:flex; align-items:center; gap:8px; min-width:110px; }
-  .score-bar-bg { flex:1; height:6px; background:rgba(255,255,255,0.07); border-radius:3px; overflow:hidden; }
-  .score-bar-fill { height:100%; border-radius:3px; }
-  .score-num { font-size:0.82rem; font-weight:700; min-width:28px; text-align:right; }
-  .sg { color:var(--green); } .sa { color:var(--amber); } .sr { color:var(--red); }
-  .bg { background:linear-gradient(90deg,#16a34a,#22c55e); }
-  .ba { background:linear-gradient(90deg,#d97706,#f59e0b); }
-  .br { background:linear-gradient(90deg,#dc2626,#ef4444); }
-  .trend-cell { font-size:1.1rem; text-align:center; }
-  .tr { color:var(--green); } .ts { color:var(--muted); } .td2 { color:var(--red); }
-  .time-cell { font-size:0.8rem; color:var(--muted); white-space:nowrap; }
+/* CHARTS */
+.chart-row{display:grid;grid-template-columns:1fr 320px;gap:15px;align-items:start;}
+@media(max-width:860px){.chart-row{grid-template-columns:1fr;}}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.chart-label{font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
 
-  /* CHARTS */
-  .charts-row { display:grid; grid-template-columns:1fr 380px; gap:20px; margin-bottom:40px; }
-  .chart-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; }
-  .chart-title { font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:20px; }
+/* Tooltip */
+.btt{position:fixed;background:#10112a;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.77rem;pointer-events:none;z-index:9999;display:none;max-width:230px;box-shadow:0 6px 24px rgba(0,0,0,.7);}
+.btt-n{font-weight:700;color:var(--purple);margin-bottom:4px;font-size:.81rem;}
+.btt-r{color:var(--muted);line-height:1.7;}
+.btt-v{color:var(--text);}
 
-  /* TOOLTIP */
-  .bubble-tooltip { position:fixed; background:#252742; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:0.78rem; color:var(--text); pointer-events:none; z-index:999; max-width:220px; display:none; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
-  .tt-name { font-weight:700; color:var(--purple); margin-bottom:4px; }
-  .tt-row { color:var(--muted); }
-  .tt-row span { color:var(--text); font-weight:600; }
-  .tt-rat { margin-top:6px; font-style:italic; color:#94a3b8; font-size:0.72rem; }
+/* Donut legend */
+.dleg{margin-top:13px;display:flex;flex-direction:column;gap:7px;}
+.dl-row{display:flex;align-items:center;gap:7px;font-size:.78rem;}
+.dl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.dl-lbl{color:var(--muted);flex:1;}
+.dl-pct{font-weight:700;color:var(--text);}
 
-  /* DONUT LEGEND */
-  .donut-legend { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
-  .legend-item { display:flex; align-items:center; gap:10px; }
-  .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
-  .legend-label { font-size:0.8rem; color:var(--text); }
-  .legend-pct { font-size:0.8rem; color:var(--muted); margin-left:auto; font-weight:600; }
+/* ORG GRID */
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:11px;}
+.org-card{background:var(--card);border:1px solid rgba(129,140,248,.21);border-left:3px solid var(--purple);border-radius:10px;padding:13px 15px;transition:transform .14s,box-shadow .14s;}
+.org-card:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(129,140,248,.11);}
+.ocn{font-weight:700;font-size:.83rem;margin-bottom:5px;}
+.ocm{display:flex;gap:9px;flex-wrap:wrap;align-items:center;}
+.oc-score{background:linear-gradient(135deg,rgba(129,140,248,.13),rgba(192,132,252,.09));border:1px solid var(--border);border-radius:6px;padding:2px 7px;font-size:.69rem;font-weight:700;color:var(--purple);}
+.oc-meta{font-size:.69rem;color:var(--muted);}
 
-  /* ORG WIDE */
-  .org-wide-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:12px; margin-bottom:40px; }
-  .org-card { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--purple); border-radius:8px; padding:14px 16px; transition:transform .15s,box-shadow .15s; }
-  .org-card:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(129,140,248,0.1); }
-  .org-card-name { font-size:0.85rem; font-weight:700; color:var(--text); margin-bottom:6px; }
-  .org-card-meta { display:flex; gap:12px; font-size:0.74rem; color:var(--muted); }
-  .org-card-score { font-size:1.3rem; font-weight:800; float:right; margin-top:-2px; }
+/* CODE BLOCK */
+.code-block{background:#0c0d1c;border:1px solid var(--border);border-radius:10px;padding:20px;font-family:'Cascadia Code','Fira Code','Courier New',monospace;font-size:.73rem;line-height:1.75;overflow-x:auto;white-space:pre;color:#a5b4fc;}
+.ck{color:#94a3b8}.cs{color:#86efac}.cn{color:#fb923c}.cp{color:#c084fc}
 
-  /* CODE */
-  .code-wrap { background:#0d0e1a; border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:40px; }
-  .code-header { background:rgba(129,140,248,0.08); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; gap:8px; }
-  .code-header span { font-size:0.72rem; color:var(--muted); letter-spacing:0.05em; }
-  .cdot { width:10px; height:10px; border-radius:50%; }
-  pre { padding:20px; overflow-x:auto; font-family:'Cascadia Code','Consolas','Courier New',monospace; font-size:0.78rem; line-height:1.7; color:#c9d1d9; }
-  .jk { color:#79b8ff; } .js { color:#9ecbff; } .jn { color:#f8c555; }
-
-  /* HISTORY */
-  .cycle-history { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:40px; }
-
-  /* FOOTER */
-  .footer { text-align:center; color:var(--muted); font-size:0.75rem; padding-top:20px; border-top:1px solid var(--border); margin:0 40px; }
-
-  /* SORT + FILTER + EXPAND */
-  th[data-sort] { cursor:pointer; user-select:none; transition:color 0.15s; }
-  th[data-sort]:hover { color:var(--text); }
-  .sort-ic { font-size:0.6rem; margin-left:3px; opacity:0.3; }
-  .sort-ic.act { opacity:1; color:var(--purple); }
-  .flt-bar { display:flex; align-items:center; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
-  .flt-btn { padding:5px 12px; border-radius:8px; font-size:0.75rem; font-weight:600; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.15s; }
-  .flt-btn:hover { color:var(--text); border-color:rgba(255,255,255,0.2); }
-  .flt-btn.active { background:rgba(129,140,248,0.15); color:var(--purple); border-color:rgba(129,140,248,0.35); }
-  .expand-hint { font-size:0.64rem; color:var(--muted); margin-left:5px; transition:color 0.15s; }
-  .row-main { cursor:pointer; }
-  .row-main:hover .expand-hint { color:var(--purple); }
-  tr.row-exp { display:none; }
-  tr.row-exp.open { display:table-row; }
-  .exp-cell { padding:14px 16px 18px 48px !important; background:rgba(129,140,248,0.03); border-bottom:1px solid rgba(45,47,82,0.6); }
-  .exp-inner { display:grid; grid-template-columns:1.3fr 1fr 0.8fr; gap:20px; }
-  .exp-sec { display:flex; flex-direction:column; gap:5px; }
-  .exp-lbl2 { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:2px; }
-  .exp-txt2 { font-size:0.79rem; color:#94a3b8; line-height:1.55; }
-  .exp-triggers { display:flex; flex-direction:column; gap:5px; }
-  .exp-trig-item { font-size:0.72rem; color:#a5b4fc; font-family:'Cascadia Code','Consolas',monospace; background:#0a0b14; padding:5px 10px; border-radius:5px; border-left:2px solid rgba(129,140,248,0.4); line-height:1.4; }
-
-  /* ACTION PLAN */
-  .ap-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:16px; display:flex; gap:20px; align-items:flex-start; transition:transform .15s,box-shadow .15s; }
-  .ap-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.3); }
-  .ap-rank { font-size:2.2rem; font-weight:900; opacity:0.18; flex-shrink:0; line-height:1; padding-top:4px; width:32px; }
-  .ap-body { flex:1; display:grid; grid-template-columns:1fr 180px 280px; gap:20px; align-items:start; }
-  .ap-name { font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
-  .ap-meta { font-size:0.75rem; color:var(--muted); margin-bottom:5px; }
-  .ap-why { font-size:0.78rem; color:#94a3b8; line-height:1.55; }
-  .ap-gauges { display:flex; flex-direction:column; gap:7px; }
-  .ap-gauge-row { display:flex; align-items:center; gap:8px; }
-  .ap-gauge-lbl { font-size:0.67rem; font-weight:700; text-transform:uppercase; color:var(--muted); width:32px; flex-shrink:0; }
-  .ap-save { font-size:0.78rem; margin-top:6px; }
-  .ap-prompt-box { background:#0a0b14; border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
-  .ap-prompt-hdr { font-size:0.64rem; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--purple); margin-bottom:6px; }
-  .ap-prompt-txt { font-size:0.73rem; font-family:'Cascadia Code','Consolas',monospace; color:#a5b4fc; line-height:1.55; }
-  @media(max-width:960px){.ap-body{grid-template-columns:1fr}}
-
-  @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.exp-inner{grid-template-columns:1fr 1fr}}
-  @media(max-width:700px){.main{padding:20px}.header{padding:24px 20px 18px}.kpi-grid{grid-template-columns:1fr 1fr}.brand h1{font-size:1.9rem}.exp-inner{grid-template-columns:1fr}}
+/* CYCLE HISTORY */
+.chist{display:flex;align-items:flex-end;gap:5px;height:110px;padding:0 4px;}
+.cwrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.ccount{font-size:.59rem;color:var(--purple);font-weight:700;}
+.cbar-c{flex:1;width:100%;display:flex;align-items:flex-end;}
+.cbar{width:100%;border-radius:4px 4px 0 0;}
+.cbar.act{background:linear-gradient(180deg,var(--purple),#5b5fef);}
+.cbar.out{background:rgba(245,158,11,.28);border:1px solid rgba(245,158,11,.38);}
+.clbl{font-size:.57rem;color:var(--muted);white-space:nowrap;}
+.outage-tag{font-size:.65rem;color:var(--amber);font-weight:600;background:rgba(245,158,11,.09);border:1px solid rgba(245,158,11,.23);border-radius:6px;padding:3px 9px;margin-top:10px;display:inline-block;}
+.frozen-tag{font-size:.65rem;color:#38bdf8;font-weight:600;background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.21);border-radius:6px;padding:3px 9px;margin-left:8px;display:inline-flex;align-items:center;gap:4px;}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-top">
-    <div class="brand">
-      <h1>Skilluminator</h1>
-      <p class="tagline">M365 Work Pattern Analysis &amp; Claude Skill Candidate Detection</p>
+<div class="btt" id="btt">
+  <div class="btt-n" id="btt-n"></div>
+  <div class="btt-r">Automation: <span class="btt-v" id="btt-a"></span></div>
+  <div class="btt-r">Value: <span class="btt-v" id="btt-v"></span></div>
+  <div class="btt-r">Total Hrs: <span class="btt-v" id="btt-h"></span></div>
+  <div class="btt-r">Occurrences: <span class="btt-v" id="btt-o"></span></div>
+  <div style="margin-top:5px;font-size:.69rem;font-style:italic;color:var(--muted);" id="btt-c"></div>
+</div>
+
+<header>
+  <div class="hi">
+    <div class="brand-row">
+      <span class="brand-title">Skilluminator</span>
+      <span class="cbadge">AGENT CYCLE 34</span>
+      <span class="cbadge pk">SKU CYCLE 66</span>
+      <span class="cbadge tl">66 CYCLES TRACKED</span>
     </div>
-    <div class="header-meta">
-      <span class="cycle-badge">AGENT CYCLE 32 &bull; SKILLUMINATOR CYCLE 64</span>
-      <span class="meta-text">Week of 2026-03-16 &nbsp;&bull;&nbsp; Generated 2026-03-20</span>
-      <span class="meta-text" style="margin-top:4px">Data frozen at cycle 55 &nbsp;&bull;&nbsp; 64 total cycles run</span>
+    <div class="hmeta">
+      <span><span class="pdot"></span>WorkIQ Harvest FAILED — Consecutive Failure #13</span>
+      <span>📅 Week of 2026-03-20</span>
+      <span>🕐 Generated 2026-03-20</span>
+      <span>📊 Last Confirmed Data: Cycle 55 (11 cycles ago)</span>
+    </div>
+    <div class="outage-banner">
+      <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px;">⚠️</span>
+      <div><strong>SOURCE-FAILURE GUARD ACTIVE — Type C Persistent Outage (v3.4 Protocol).</strong>
+        All 15 WorkIQ queries returned null for the 13th consecutive Skilluminator cycle (agent cycles 28–34).
+        Pattern data frozen at internal cycle 55 state. Archival rule FROZEN; trend downgrades SUSPENDED.
+        Staleness clock: <strong>11 cycles</strong> since last confirmed M365 data.
+        Operator actions required: (1) Verify M365 Copilot license in admin center;
+        (2) Re-accept WorkIQ EULA at <a href="https://github.com/microsoft/work-iq-mcp" target="_blank">github.com/microsoft/work-iq-mcp</a>;
+        (3) Check M365 Service Health dashboard at admin.microsoft.com.
+      </div>
     </div>
   </div>
 </header>
 
-<div class="outage-banner">
-  <span style="font-size:1rem;flex-shrink:0">🔴</span>
-  <div>
-    <strong>SOURCE OUTAGE — CONSECUTIVE FAILURE #11</strong> &nbsp;&mdash;&nbsp;
-    All 15 WorkIQ queries returned errors (Skilluminator cycles 53&ndash;64 / agent cycles 28&ndash;32).
-    Source-Failure Guard ACTIVE: archival FROZEN, trend downgrades SUSPENDED.
-    Staleness clock: <strong>9 cycles</strong> since last confirmed data (cycle 55).
-    &nbsp; Operator action required: verify M365 Copilot license &bull; re-accept WorkIQ EULA &bull; check admin.microsoft.com service health.
-  </div>
-</div>
+<div class="wrap">
 
-<div class="main">
-
-  <div class="section-title">Key Metrics</div>
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <span class="kpi-icon">📊</span>
-      <div class="kpi-label">Total Patterns</div>
-      <div class="kpi-value" data-target="41">0</div>
-      <div class="kpi-sub">41 individual patterns · cycle 55 state</div>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-icon">⚡</span>
-      <div class="kpi-label">Top Automation Score</div>
-      <div class="kpi-value" data-target="95">0</div>
-      <div class="kpi-sub">ADO Notification Router (873 occ)</div>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-icon">⏱️</span>
-      <div class="kpi-label">Est. Hours Saved / Week</div>
-      <div class="kpi-value" data-target="22">0</div>
-      <div class="kpi-sub">across top automatable patterns</div>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-icon">🚀</span>
-      <div class="kpi-label">Skills Ready for Generation</div>
-      <div class="kpi-value" data-target="12">0</div>
-      <div class="kpi-sub">composite score &ge; 85 &amp; occ &ge; 50</div>
+  <div class="section">
+    <div class="section-title">Key Metrics</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-icon">🗂️</div><div class="kpi-label">Patterns Tracked</div><div class="kpi-value" id="kv1">0</div><div class="kpi-sub">41 individual · 27 org-wide · 28 active</div></div>
+      <div class="kpi-card"><div class="kpi-icon">🤖</div><div class="kpi-label">Top Automation Score</div><div class="kpi-value" id="kv2">0</div><div class="kpi-sub">ADO Notification Triage · 873 occ saturated</div></div>
+      <div class="kpi-card"><div class="kpi-icon">⏱️</div><div class="kpi-label">Est. Hours Saved / Week</div><div class="kpi-value" id="kv3">0</div><div class="kpi-sub">Across active patterns · ~1,647 hrs cumulative</div></div>
+      <div class="kpi-card"><div class="kpi-icon">✨</div><div class="kpi-label">Skills Ready to Generate</div><div class="kpi-value" id="kv4">0</div><div class="kpi-sub">Composite ≥ 85 · 55+ confirmed cycles each</div></div>
     </div>
   </div>
 
-  <div class="section-title">Top Skill Candidates</div>
-  <div class="flt-bar">
-    <button class="flt-btn active" data-flt="all">All Patterns</button>
-    <button class="flt-btn" data-flt="rising">📈 Rising Only</button>
-    <button class="flt-btn" data-flt="quickwin">⚡ Quick Wins (Auto ≥85 · hrs/wk ≥0.5)</button>
-    <span id="tbl-count" style="margin-left:auto;font-size:0.74rem;color:var(--muted)">Top 10 · click row to expand · click column to sort</span>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th><th>Pattern / Candidate Skill</th><th>Sources</th>
-          <th data-sort="auto">Automation <span class="sort-ic">▼</span></th>
-          <th data-sort="val">Value <span class="sort-ic">▼</span></th>
-          <th>Trend</th>
-          <th data-sort="hrs">Hrs/wk <span class="sort-ic">▼</span></th>
-        </tr>
-      </thead>
-      <tbody id="tbl"></tbody>
-    </table>
+  <div class="section">
+    <div class="section-title">Top Skill Candidates</div>
+    <div class="section-sub">Ranked by (automationScore + valueScore) / 2 · All scores reflect cycle 55 last confirmed data · Source-Failure Guard active</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Pattern / Skill Name</th><th>Sources</th><th>Automation</th><th>Value</th><th>Trend</th><th>Hrs/Wk</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="section-title">Automation vs Value Analysis</div>
-  <div class="charts-row">
+  <div class="section">
+    <div class="section-title">Signal Analytics</div>
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="chart-label">Automation vs Value — Bubble Size = Cumulative Hours · Hover for Details</div>
+        <svg id="bsvg" viewBox="0 0 560 360" style="width:100%;display:block;overflow:visible;"></svg>
+      </div>
+      <div class="chart-card">
+        <div class="chart-label">Signal Sources (Accumulated)</div>
+        <div style="display:flex;justify-content:center;">
+          <svg id="dsvg" viewBox="0 0 220 220" width="220" height="220"></svg>
+        </div>
+        <div class="dleg" id="dleg"></div>
+        <div style="font-size:.66rem;color:var(--muted);margin-top:10px;text-align:center;">Based on source tags across 28 active patterns</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Org-Wide Patterns <span class="frozen-tag">❄ Frozen · Cycle 55</span></div>
+    <div class="section-sub">Confirmed across 3+ participants · 27 patterns qualify · Last validated internal cycle 55</div>
+    <div class="org-grid" id="ogrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Skill-Generator Input — Top 5 Candidates</div>
+    <div class="section-sub">Ready for Anthropic skill-generator · Frozen at cycle 55 · Connectivity restore will trigger re-ranking</div>
+    <div class="code-block" id="sgblock"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Cycle History — Active Pattern Growth</div>
+    <div class="section-sub">Agent refinement cycles 1–34 · Harvest outage began cycle 28 (SKU cycle 53) · amber bars = outage window</div>
     <div class="chart-card">
-      <div class="chart-title">Automation Score vs Value Score &nbsp;<span style="color:var(--muted);font-size:0.75rem">(bubble size = cumulative hours invested)</span></div>
-      <svg id="scatter" width="100%" viewBox="0 0 620 360" style="display:block"></svg>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Signal Source Distribution</div>
-      <svg id="donut" width="100%" viewBox="0 0 280 200" style="display:block"></svg>
-      <div class="donut-legend" id="dlegend"></div>
+      <div class="chist" id="chist"></div>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <span class="outage-tag">⚠ Outage Window: Agent Cycles 28–34 · SKU Cycles 53–66 · 13 consecutive failures</span>
+        <span style="font-size:.68rem;color:var(--muted);">Pattern count frozen at 28 active since cycle 55</span>
+      </div>
     </div>
   </div>
 
-  <div class="section-title">🎯 Your Action Plan — Top 3 Automation Wins</div>
-  <div id="actionPlan"></div>
-
-  <div class="section-title">Skill-Generator Input &mdash; Top 5 Candidates</div>
-  <div class="code-wrap">
-    <div class="code-header">
-      <div class="cdot" style="background:#ef4444"></div>
-      <div class="cdot" style="background:#f59e0b"></div>
-      <div class="cdot" style="background:#22c55e"></div>
-      <span>skill-generator-input.json &nbsp;&bull;&nbsp; Cycle 64 &nbsp;&bull;&nbsp; Data: cycle 55 (last confirmed harvest)</span>
-    </div>
-    <pre id="codepre"></pre>
-  </div>
-
-  <div class="section-title">Pattern Growth History (64 Cycles)</div>
-  <div class="cycle-history">
-    <svg id="history" width="100%" viewBox="0 0 900 140" style="display:block"></svg>
-  </div>
-
-  <div class="footer">
-    Skilluminator v32.0 &nbsp;&bull;&nbsp; Built on Claude Agent SDK &nbsp;&bull;&nbsp;
-    All participant references anonymized &nbsp;&bull;&nbsp;
-    Data reflects cycle 55 state &nbsp;&bull;&nbsp; No data fabricated
-  </div>
-</div>
-
-<div class="bubble-tooltip" id="tip">
-  <div class="tt-name" id="tn"></div>
-  <div class="tt-row">Auto: <span id="ta"></span> &nbsp;|&nbsp; Value: <span id="tv"></span></div>
-  <div class="tt-row">Hours: <span id="th"></span></div>
-  <div class="tt-rat" id="tr2"></div>
 </div>
 
 <script>
-// DATA
-const P = [
-  {id:"meeting-notes-action-item-capture",     label:"Meeting Notes & Action Item Capture",           skill:"meeting-notes-action-extractor",     sources:["document","meeting","email","teams"], auto:91,val:93, trend:"stable",  hrs:67.70,  occ:339, rationale:"Templated Loop-doc pipeline (Agenda→Notes→Decisions→Follow-up). Chain head for 2 downstream skills. STABLE 55 cycles."},
-  {id:"ado-notification-triage",               label:"Azure DevOps Notification Triage",              skill:"ado-notification-router",            sources:["email","teams"],                     auto:95,val:85, trend:"stable",  hrs:31.84,  occ:873, rationale:"DEEP SATURATION 873 occ. Highest automation score (95). Fully rules-based. 5 sub-classifiers overdue."},
-  {id:"eval-results-analysis-reporting",       label:"Agent Eval Analysis & Reporting",               skill:"eval-report-synthesizer",            sources:["document","teams","email","meeting"], auto:85,val:95, trend:"rising",  hrs:110.89, occ:438, rationale:"RISING. Highest value score (95). EvalCon + Golden Evals amplifying. 5 participants."},
-  {id:"eval-template-scaffolder",              label:"Eval Framework Template Scaffolding",           skill:"eval-template-scaffolder",           sources:["document","teams","meeting"],         auto:85,val:93, trend:"stable",  hrs:55.46,  occ:183, rationale:"Templated scenario library + coverage model scaffolding. Spawned customer-enablement pattern."},
-  {id:"weekly-status-report-generation",       label:"Weekly Status Report Generation",               skill:"weekly-status-report-generator",     sources:["document","email","teams"],           auto:87,val:90, trend:"rising",  hrs:43.64,  occ:152, rationale:"RISING. 5 parallel format gap. V-Team Cross-Org Syncs confirmed primary trigger."},
-  {id:"eval-coaching-and-scoping",             label:"Eval Design Scoping & Expert Coaching",         skill:"eval-design-advisor",                sources:["teams","meeting"],                    auto:84,val:92, trend:"rising",  hrs:53.34,  occ:228, rationale:"RISING. BSI 87 CRITICAL. PM sole DRI for 8+ request types. Q→answer→link→meeting pattern."},
-  {id:"team-status-standardization-gap",       label:"Team Status Update Standardization Gap",        skill:"team-status-template-generator",     sources:["document","teams","email"],           auto:87,val:87, trend:"stable",  hrs:31.92,  occ:104, rationale:"GRADUATED 104 occ. 5 parallel formats still active. Templated generation eliminates weekly duplication."},
-  {id:"transcript-to-loop-ppt-pipeline",       label:"Meeting Transcript → Loop/PPT Pipeline",        skill:"meeting-summary-publisher",          sources:["meeting","document","teams"],         auto:88,val:85, trend:"rising",  hrs:53.73,  occ:174, rationale:"RISING. Camp AIR pipeline fires on every 480min+ immersion block. Loop hub pattern reinforcing."},
-  {id:"meeting-load-triage",                   label:"Calendar Overload & Meeting Invite Triage",     skill:"calendar-triage-advisor",            sources:["meeting","email","teams"],            auto:77,val:95, trend:"stable",  hrs:401.64, occ:659, rationale:"Highest cumulative hours (401h). MPBI 12. Rules-based triage across 12+ meeting types/week."},
-  {id:"post-meeting-external-followup-drafter",label:"External Stakeholder Post-Meeting Followup",    skill:"external-meeting-followup-drafter",  sources:["email","meeting"],                    auto:85,val:87, trend:"rising",  hrs:38.56,  occ:158, rationale:"RISING. 3 urgency tiers. Templated follow-up with tone awareness for external stakeholders."},
-  {id:"recurring-meeting-agenda-generator",    label:"Recurring Meeting Agenda Preparation",          skill:"recurring-agenda-generator",         sources:["meeting","document","teams"],         auto:84,val:86, trend:"stable",  hrs:82.52,  occ:268, rationale:"12 recurring meeting types confirmed. Loop docs as living agenda hubs. STABLE 55 cycles."},
-  {id:"fragmented-action-item-tracking",       label:"Action Items Across Fragmented Systems",        skill:"unified-action-item-tracker",        sources:["teams","meeting","email","document"], auto:82,val:88, trend:"stable",  hrs:19.05,  occ:123, rationale:"No unified tracker remains core gap. Status review + gap ID + ownership cycle repeats weekly."},
-  {id:"broadcast-email-classifier",            label:"FYI Broadcast Email Classification",            skill:"broadcast-email-classifier",         sources:["email"],                             auto:92,val:43, trend:"stable",  hrs:13.37,  occ:216, rationale:"Broadcast→Teams→action pipeline is fully rule-based. High automation, lower value (1 participant)."},
-  {id:"access-governance-alert-classifier",    label:"Access Governance & Compliance Alerts",         skill:"access-governance-alert-router",     sources:["email"],                             auto:91,val:55, trend:"stable",  hrs:7.08,   occ:136, rationale:"6 alert categories. Alert→file-fix pattern is fully rule-driven. Stable baseline."},
-  {id:"voc-customer-ask-dedup-routing",        label:"VoC Customer Ask Dedup & Routing",              skill:"voc-ask-deduplicator",               sources:["teams","email"],                     auto:84,val:85, trend:"stable",  hrs:17.45,  occ:109, rationale:"PM as informal routing layer. DRI lookup + dedup is automatable lookup + classification."},
+var TOP10=[
+  {rank:1, label:"Meeting Notes & Action Item Capture",          skill:"meeting-notes-action-extractor",      src:["document","meeting","email","teams"],  auto:91,val:93, hrs:67.70, occ:339,trend:"rising",  rat:"55-cycle institutional pattern. Chain head for transcript + followup pipelines. Loop Agenda-Decisions-Followup re-validated."},
+  {rank:2, label:"Agent Eval Analysis & Standardized Reporting", skill:"eval-report-synthesizer",             src:["document","teams","email","meeting"],   auto:85,val:95, hrs:110.89,occ:438,trend:"rising",  rat:"RISING. Highest value score (95). EvalCon + Golden Evals surge. 5 participants. 438 occ."},
+  {rank:3, label:"ADO Notification Triage",                      skill:"ado-notification-router",             src:["email","teams"],                        auto:95,val:85, hrs:31.84, occ:873,trend:"stable",  rat:"DEEP SATURATION 873 occ at 40/week. Highest automation score (95). 5 sub-classifiers overdue 22+ cycles."},
+  {rank:4, label:"Eval Framework Template Scaffolding",          skill:"eval-template-scaffolder",            src:["document","teams","meeting"],            auto:85,val:93, hrs:55.46, occ:183,trend:"stable",  rat:"STABLE 52 cycles. Spawned customer-enablement pattern. Scenario libs + coverage models sustained."},
+  {rank:5, label:"Weekly Status Report Generation",              skill:"weekly-status-report-generator",      src:["document","email","teams"],              auto:87,val:90, hrs:43.64, occ:152,trend:"rising",  rat:"RISING. 5-format parallel creation gap. V-Team Cross-Org Syncs primary trigger."},
+  {rank:6, label:"Eval Design Scoping & Expert Coaching",        skill:"eval-design-advisor",                 src:["teams","meeting"],                      auto:84,val:92, hrs:53.34, occ:228,trend:"rising",  rat:"BSI 87 CRITICAL. PM sole DRI for 8+ request types. Q to answer to repo link to meeting offer."},
+  {rank:7, label:"Team Status Standardization Gap",              skill:"team-status-template-generator",      src:["document","teams","email"],              auto:87,val:87, hrs:31.92, occ:104,trend:"stable",  rat:"GRADUATED 100+ occ. 5 parallel formats active. SGI CRITICAL."},
+  {rank:8, label:"Transcript to Loop / PPT Pipeline",            skill:"meeting-summary-publisher",           src:["meeting","document","teams"],            auto:88,val:85, hrs:53.73, occ:174,trend:"rising",  rat:"RISING. Camp AIR 480min block generates 6 artifact types. Loop hub pattern reinforcing."},
+  {rank:9, label:"Calendar Overload & Meeting Triage",           skill:"calendar-triage-advisor",             src:["meeting","email","teams"],               auto:77,val:95, hrs:401.64,occ:659,trend:"stable",  rat:"Highest cumulative time (401 hrs). MPBI 12. Over 2000 min/week. Camp AIR daily conflict signals."},
+  {rank:10,label:"External Post-Meeting Recap & Escalation",     skill:"external-meeting-followup-drafter",   src:["email","meeting"],                      auto:85,val:87, hrs:38.56, occ:158,trend:"rising",  rat:"RISING. 3 urgency tiers: standard, urgent technical, urgent administrative."}
 ];
 
-const OW = [
-  {label:"Meeting Notes & Action Item Capture",        score:93, participants:4, hrs:67.70},
-  {label:"Agent Eval Analysis & Reporting",            score:91, participants:5, hrs:110.89},
-  {label:"ADO Notification Triage",                   score:91, participants:3, hrs:31.84},
-  {label:"Eval Template Scaffolding",                  score:90, participants:4, hrs:55.46},
-  {label:"Weekly Status Report Generation",            score:90, participants:4, hrs:43.64},
-  {label:"Eval Design & Expert Coaching",              score:89, participants:4, hrs:53.34},
-  {label:"Team Status Standardization Gap",            score:88, participants:4, hrs:31.92},
-  {label:"Transcript → Loop/PPT Pipeline",             score:88, participants:4, hrs:53.73},
-  {label:"Recurring Meeting Agenda Generator",         score:87, participants:6, hrs:82.52},
-  {label:"External Stakeholder Post-Meeting Followup", score:87, participants:5, hrs:38.56},
-  {label:"Action Item Tracking (Fragmented)",          score:87, participants:4, hrs:19.05},
-  {label:"Calendar Overload & Meeting Triage",         score:87, participants:6, hrs:401.64},
-  {label:"Cross-Tool Context Fragmentation",           score:87, participants:5, hrs:51.94},
-  {label:"VoC Customer Ask Dedup & Routing",           score:86, participants:4, hrs:17.45},
-  {label:"Copilot Platform Architecture Q&A",          score:85, participants:6, hrs:67.80},
-  {label:"Partner & Customer Eval Enablement",         score:84, participants:5, hrs:101.64},
-  {label:"Training Event Artifact Coordination",       score:84, participants:7, hrs:244.36},
-  {label:"Self-Authored Tool & Prototype Building",    score:82, participants:3, hrs:44.75},
-  {label:"Redundant Deck Creation & Consolidation",    score:82, participants:4, hrs:44.15},
-  {label:"AI Skill Library Socialization",             score:81, participants:3, hrs:12.42},
-  {label:"Customer Enablement Asset Standardization",  score:80, participants:4, hrs:7.25},
-  {label:"Customer Signal → Guidance Pipeline",        score:76, participants:4, hrs:10.00},
-  {label:"Access Governance Alert Triage",             score:74, participants:1, hrs:7.08},
-  {label:"Knowledge Forum Facilitation",               score:71, participants:4, hrs:3.00},
-  {label:"Presentation Narrative Framing",             score:71, participants:4, hrs:19.51},
-  {label:"Peer Concept Translation",                   score:70, participants:3, hrs:1.00},
-  {label:"Stakeholder FYI Classification",             score:72, participants:5, hrs:10.94},
+var ORG=[
+  {nm:"Meeting Notes & Action Item Capture",          sc:92,hrs:67.70, pt:4,tr:"stable"},
+  {nm:"Agent Eval Analysis & Reporting",              sc:90,hrs:110.89,pt:5,tr:"rising"},
+  {nm:"ADO Notification Triage",                      sc:90,hrs:31.84, pt:3,tr:"stable"},
+  {nm:"Eval Framework Template Scaffolding",          sc:89,hrs:55.46, pt:4,tr:"stable"},
+  {nm:"Weekly Status Report Generation",              sc:89,hrs:43.64, pt:4,tr:"rising"},
+  {nm:"Eval Design Scoping & Expert Coaching",        sc:88,hrs:53.34, pt:4,tr:"rising"},
+  {nm:"Team Status Standardization Gap",              sc:87,hrs:31.92, pt:4,tr:"stable"},
+  {nm:"Transcript to Loop/PPT Pipeline",              sc:87,hrs:53.73, pt:4,tr:"rising"},
+  {nm:"Calendar Overload & Meeting Triage",           sc:86,hrs:401.64,pt:6,tr:"stable"},
+  {nm:"External Post-Meeting Recap",                  sc:86,hrs:38.56, pt:5,tr:"rising"},
+  {nm:"Action Items Across Fragmented Systems",       sc:85,hrs:19.05, pt:4,tr:"stable"},
+  {nm:"Recurring Meeting Agenda Preparation",         sc:85,hrs:82.52, pt:6,tr:"stable"},
+  {nm:"Cross-Tool Context Fragmentation",             sc:85,hrs:51.94, pt:5,tr:"stable"},
+  {nm:"VoC Customer Ask Dedup & Routing",             sc:85,hrs:17.45, pt:4,tr:"stable"},
+  {nm:"Copilot Platform Architecture Q&A",            sc:83,hrs:67.80, pt:6,tr:"stable"},
+  {nm:"Partner & Customer Eval Enablement",           sc:83,hrs:101.64,pt:5,tr:"rising"},
+  {nm:"Training / Immersion Event Coordinator",       sc:83,hrs:244.36,pt:7,tr:"rising"},
+  {nm:"Customer Enablement Materials per Engagement", sc:83,hrs:7.25,  pt:4,tr:"rising"},
+  {nm:"Self-Authored Tool & Prototype Building",      sc:80,hrs:44.75, pt:3,tr:"stable"},
+  {nm:"Redundant Deck Creation & Consolidation",      sc:80,hrs:44.15, pt:4,tr:"stable"},
+  {nm:"Stakeholder FYI & Visibility Loop",            sc:78,hrs:10.94, pt:5,tr:"declining"},
+  {nm:"Customer Signal to Guidance Artifact",         sc:78,hrs:10.00, pt:4,tr:"rising"},
+  {nm:"AI Skill Library Socialization",               sc:79,hrs:12.42, pt:3,tr:"rising"},
+  {nm:"Knowledge Forum Facilitation",                 sc:74,hrs:3.00,  pt:4,tr:"rising"},
+  {nm:"Peer Mentorship & Concept Translation",        sc:74,hrs:1.00,  pt:3,tr:"rising"},
+  {nm:"Presentation Narrative Shaping",               sc:73,hrs:19.51, pt:4,tr:"stable"},
+  {nm:"Access Governance & Compliance Alert Triage",  sc:73,hrs:7.08,  pt:1,tr:"stable"}
 ];
 
-// UTILS
-function scolor(s){return s>80?'sg':s>=50?'sa':'sr';}
-function bclass(s){return s>80?'bg':s>=50?'ba':'br';}
-function gradC(s){return s>80?'#22c55e':s>=50?'#f59e0b':'#ef4444';}
-function bhtml(src){
-  const m={email:'badge-email',meeting:'badge-meeting',teams:'badge-teams',document:'badge-document'};
-  return `<span class="badge ${m[src]||''}">${src}</span>`;
+var SKILLS5=[
+  {rank:1,name:"meeting-notes-action-extractor", comp:92,auto:91,val:93,pid:"meeting-notes-action-item-capture",
+   desc:"Ingests meeting transcript or Loop doc; emits action items with owner/due-date, decisions log, follow-up email draft, ADO task stubs. Chain head for 2 downstream patterns. 339 occ across 55 unbroken cycles.",
+   vp:"Est. ~$175,820/yr · 67.70 hrs replaced across 4 roles"},
+  {rank:2,name:"ado-notification-router", comp:90,auto:95,val:85,pid:"ado-notification-triage",
+   desc:"Classifies ADO notification emails by work-item type, workstream prefix, and urgency. Routes action-required; auto-archives FYI. DEEP SATURATION at 873 occ. Sub-classifiers needed: IcM, Coverage/Telemetry, AI Eval/Jailing, Build/Verification, Copilot Services.",
+   vp:"Est. ~$82,784/yr · 873 occ saturated at 40/week"},
+  {rank:3,name:"eval-report-synthesizer", comp:90,auto:85,val:95,pid:"eval-results-analysis-reporting",
+   desc:"Ingests eval results, strategy threads, actionability notes, donated evals. Produces standardized reports with gap analysis. RISING. 438 occ, 5 participants. EvalCon + Golden Evals amplifying urgency.",
+   vp:"Est. ~$288,314/yr · 110.89 hrs across 5 roles · RISING"},
+  {rank:4,name:"eval-template-scaffolder", comp:89,auto:85,val:93,pid:"eval-template-scaffolder",
+   desc:"Scaffolds eval framework templates, scenario libraries, coverage models. Spawned customer-enablement-asset-standardization. 183 occ. STABLE across 52 cycles.",
+   vp:"Est. ~$144,196/yr · 55.46 hrs across 4 roles"},
+  {rank:5,name:"weekly-status-report-generator", comp:89,auto:87,val:90,pid:"weekly-status-report-generation",
+   desc:"Generates weekly status reports from Loop docs, Teams threads, email, meeting notes. Resolves 5-format parallel creation gap. RISING. 152 occ, 4 participants.",
+   vp:"Est. ~$113,464/yr · 43.64 hrs across 4 roles · RISING"}
+];
+
+var DONUT=[
+  {lbl:"Teams",    pct:35,col:"#38bdf8"},
+  {lbl:"Email",    pct:28,col:"#fbbf24"},
+  {lbl:"Meeting",  pct:25,col:"#c084fc"},
+  {lbl:"Document", pct:12,col:"#2dd4bf"}
+];
+
+var CHIST=[
+  {c:"C5",  n:10,out:false},{c:"C10",n:15,out:false},{c:"C15",n:19,out:false},
+  {c:"C20",n:23,out:false},{c:"C25",n:26,out:false},{c:"C27",n:28,out:false},
+  {c:"C28",n:28,out:true}, {c:"C30",n:28,out:true}, {c:"C32",n:28,out:true},
+  {c:"C34",n:28,out:true}
+];
+
+function sc(v){return v>80?'cg':v>50?'ca':'cr';}
+function bc(v){return v>80?'bg':v>50?'ba':'br';}
+
+function animCount(el,to,dur){
+  var s=performance.now();
+  function step(now){
+    var t=Math.min((now-s)/dur,1);
+    var e=t<0.5?2*t*t:-1+(4-2*t)*t;
+    el.textContent=Math.round(e*to);
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
-// COUNT-UP
-document.querySelectorAll('[data-target]').forEach(el=>{
-  const t=+el.dataset.target;
-  new IntersectionObserver(entries=>{
-    if(!entries[0].isIntersecting)return;
-    const start=performance.now();
-    (function step(now){
-      const prog=Math.min((now-start)/1200,1);
-      const ease=1-Math.pow(1-prog,3);
-      el.textContent=Math.round(ease*t);
-      if(prog<1)requestAnimationFrame(step);
-      else el.textContent=t;
-    })(performance.now());
-  },{threshold:0.5}).observe(el);
-});
+function buildTable(){
+  var tb=document.getElementById('tbody');
+  var html='';
+  TOP10.forEach(function(p){
+    var hw=(p.hrs/55).toFixed(1);
+    var rk=p.rank===1?'g':p.rank===2?'s':p.rank===3?'b':'';
+    var tc2=p.trend==='rising'?'tc-r':p.trend==='declining'?'tc-d':'tc-s';
+    var ti=p.trend==='rising'?'&#8593; Rising':p.trend==='declining'?'&#8595; Declining':'&#8594; Stable';
+    var bgs=p.src.map(function(s){return '<span class="sb sb-'+s+'">'+s+'</span>';}).join('');
+    html+='<tr><td><span class="rk '+rk+'">'+p.rank+'</span></td>';
+    html+='<td><div class="pname">'+p.label+'</div><div class="pskill">'+p.skill+'</div></td>';
+    html+='<td><div class="sbadges">'+bgs+'</div></td>';
+    html+='<td><div class="sbar-w"><div class="sbar-bg"><div class="sbar-f '+bc(p.auto)+'" style="width:0" data-w="'+p.auto+'%"></div></div><span class="sn '+sc(p.auto)+'">'+p.auto+'</span></div></td>';
+    html+='<td><div class="sbar-w"><div class="sbar-bg"><div class="sbar-f '+bc(p.val)+'" style="width:0" data-w="'+p.val+'%"></div></div><span class="sn '+sc(p.val)+'">'+p.val+'</span></div></td>';
+    html+='<td><span class="tc '+tc2+'">'+ti+'</span></td>';
+    html+='<td><div class="tsaved">'+hw+' hrs</div><div class="tsub">'+p.occ+' occ</div></td></tr>';
+  });
+  tb.innerHTML=html;
+  setTimeout(function(){
+    document.querySelectorAll('.sbar-f').forEach(function(el){el.style.width=el.dataset.w;});
+  },300);
+}
 
-// TABLE — sortable, filterable, expandable rows
-(function(){
-  const TRIGGERS={
-    "meeting-notes-action-item-capture":["Extract action items from today's standup and update Loop doc","Summarize external customer meeting — owners, decisions, due dates","Draft post-meeting recap broadcast for CAPE Architecture Call","Generate standardized 1:1 notes template for all recurring meetings"],
-    "ado-notification-triage":["Triage ADO inbox — what needs action vs. FYI?","Classify notifications by workstream: IcM / Coverage / AI Eval","Which Bug/Requirement notifications need PM response before EOD?","Route this Task notification to the correct DRI by workstream prefix"],
-    "eval-results-analysis-reporting":["Synthesize this week's eval results into a standardized report","Prepare Golden Evals kickoff report from meeting transcript","Generate eval coverage gap analysis for sprint planning","Produce CAPE leadership thread summary with action owners"],
-    "eval-template-scaffolder":["Scaffold eval template for 3-intent Copilot Studio agent","Generate coverage model for BizChat offline evaluation","Create eval scenario library from prior Golden Evals examples","Build eval rubric template for this customer use case"],
-    "weekly-status-report-generation":["Generate this week's CAPE eval status merging all sources","Draft unified XFN Report Out from parallel Teams posts","Merge V-Team status inputs into one formatted report","Produce weekly Project Crucible status from ADO + Teams"],
-    "eval-coaching-and-scoping":["Scope eval design for this customer use case","Answer: how do I handle multi-turn eval scenarios?","Review eval rubric and flag coverage gaps","Create edge-case test plan for this agent intent"],
-    "team-status-standardization-gap":["Standardize team status updates from 5 different formats","Merge all weekly status inputs into one Loop template","Generate unified status template for V-Team use"],
-    "transcript-to-loop-ppt-pipeline":["Convert transcript to Loop doc with decisions + action items","Generate executive summary from Camp AIR recording","Publish meeting notes to Loop and share in Teams"],
-    "meeting-load-triage":["Review my calendar — flag meetings that could be async","Identify scheduling conflicts and suggest which to decline","Draft decline messages for low-priority invites this week","Propose a deep-work block schedule based on my meeting patterns"],
-    "post-meeting-external-followup-drafter":["Draft external follow-up email from today's customer meeting","Create urgent escalation email from this technical sync","Write standard post-meeting recap for this partner call","Generate ADO tasks from external stakeholder commitments"],
-    "recurring-meeting-agenda-generator":["Generate agenda for weekly CAPE team sync from last week's notes","Prep Loop doc with open action items for V-Team review","Create reusable agenda template for all recurring 1:1s"],
-    "fragmented-action-item-tracking":["Consolidate all action items from this week into one list","Show me all unowned action items from the past 3 meetings","Build a unified tracker from Teams + email + Loop commitments"],
-    "broadcast-email-classifier":["Classify today's broadcast emails — actionable vs. FYI","Flag any leadership announcements requiring team action","Summarize this week's leadership announcements in 3 bullets"],
-    "access-governance-alert-classifier":["Triage this week's Purview compliance alerts","Which DLP alerts need immediate file fixes?","Auto-classify access governance alerts by severity"],
-    "voc-customer-ask-dedup-routing":["Deduplicate customer asks from this week's field calls","Route these customer requests to the correct DRI","Summarize recurring customer ask themes from Teams"]
+function buildBubble(){
+  var DATA=[
+    {lb:"meet-notes",  full:"Meeting Notes & Action Capture",      auto:91,val:93, hrs:67.70, occ:339,tr:"rising"},
+    {lb:"eval-report", full:"Agent Eval Analysis & Reporting",     auto:85,val:95, hrs:110.89,occ:438,tr:"rising"},
+    {lb:"ado-router",  full:"ADO Notification Triage",             auto:95,val:85, hrs:31.84, occ:873,tr:"stable"},
+    {lb:"eval-tmpl",   full:"Eval Framework Template",             auto:85,val:93, hrs:55.46, occ:183,tr:"stable"},
+    {lb:"wk-status",   full:"Weekly Status Report",                auto:87,val:90, hrs:43.64, occ:152,tr:"rising"},
+    {lb:"eval-coach",  full:"Eval Design & Expert Coaching",       auto:84,val:92, hrs:53.34, occ:228,tr:"rising"},
+    {lb:"team-stat",   full:"Team Status Standardization",         auto:87,val:87, hrs:31.92, occ:104,tr:"stable"},
+    {lb:"transcript",  full:"Transcript to Loop/PPT",              auto:88,val:85, hrs:53.73, occ:174,tr:"rising"},
+    {lb:"cal-triage",  full:"Calendar Overload & Triage",          auto:77,val:95, hrs:401.64,occ:659,tr:"stable"},
+    {lb:"ext-fllw",    full:"External Post-Meeting Followup",      auto:85,val:87, hrs:38.56, occ:158,tr:"rising"},
+    {lb:"frag-act",    full:"Fragmented Action Item Tracking",     auto:82,val:88, hrs:19.05, occ:123,tr:"stable"},
+    {lb:"recur-mtg",   full:"Recurring Meeting Agenda",            auto:84,val:86, hrs:82.52, occ:268,tr:"stable"},
+    {lb:"ctx-frag",    full:"Cross-Tool Context Fragmentation",    auto:78,val:92, hrs:51.94, occ:326,tr:"stable"},
+    {lb:"voc-dedup",   full:"VoC Ask Dedup & Routing",             auto:84,val:85, hrs:17.45, occ:109,tr:"stable"},
+    {lb:"cop-faq",     full:"Copilot Platform Q&A",                auto:74,val:92, hrs:67.80, occ:230,tr:"stable"},
+    {lb:"part-eval",   full:"Partner & Customer Eval Enablement",  auto:74,val:91, hrs:101.64,occ:214,tr:"rising"},
+    {lb:"train-evt",   full:"Training/Immersion Coordination",     auto:72,val:93, hrs:244.36,occ:300,tr:"rising"},
+    {lb:"bcast-em",    full:"Broadcast Email Classifier",          auto:92,val:43, hrs:13.37, occ:216,tr:"stable"},
+    {lb:"builder",     full:"Self-Authored Prototype Building",    auto:70,val:90, hrs:44.75, occ:162,tr:"stable"},
+    {lb:"cust-en",     full:"Customer Enablement Materials",       auto:79,val:86, hrs:7.25,  occ:36, tr:"rising"}
+  ];
+  var svg=document.getElementById('bsvg');
+  var W=560,H=360,PL=50,PR=18,PT=22,PB=44;
+  var CW=W-PL-PR,CH=H-PT-PB;
+  var maxH=0;
+  DATA.forEach(function(d){if(d.hrs>maxH)maxH=d.hrs;});
+  var out='';
+
+  [0,20,40,60,80,100].forEach(function(v){
+    var x=PL+v/100*CW,y=PT+(1-v/100)*CH;
+    out+='<line x1="'+x+'" y1="'+PT+'" x2="'+x+'" y2="'+(PT+CH)+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
+    out+='<line x1="'+PL+'" y1="'+y+'" x2="'+(PL+CW)+'" y2="'+y+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
+    out+='<text x="'+x+'" y="'+(PT+CH+16)+'" text-anchor="middle" font-size="9" fill="#475569">'+v+'</text>';
+    out+='<text x="'+(PL-7)+'" y="'+(y+3)+'" text-anchor="end" font-size="9" fill="#475569">'+v+'</text>';
+  });
+  out+='<rect x="'+(PL+CW*0.7)+'" y="'+PT+'" width="'+(CW*0.3)+'" height="'+(CH*0.3)+'" fill="rgba(34,197,94,0.03)" rx="3"/>';
+  out+='<text x="'+(PL+CW/2)+'" y="'+(PT+CH+34)+'" text-anchor="middle" font-size="10" fill="#94a3b8" font-weight="600">Automation Score</text>';
+  out+='<text x="'+(PL-36)+'" y="'+(PT+CH/2)+'" text-anchor="middle" font-size="10" fill="#94a3b8" font-weight="600" transform="rotate(-90,'+(PL-36)+','+(PT+CH/2)+')">Value Score</text>';
+  out+='<text x="'+(PL+CW*0.83)+'" y="'+(PT+13)+'" text-anchor="middle" font-size="8.5" fill="rgba(34,197,94,0.55)" font-weight="700">&#9733; SWEET SPOT</text>';
+  out+='<rect x="'+PL+'" y="'+PT+'" width="'+CW+'" height="'+CH+'" rx="3" fill="none" stroke="rgba(255,255,255,0.055)"/>';
+
+  DATA.forEach(function(d){
+    var cx=PL+d.auto/100*CW;
+    var cy=PT+(1-d.val/100)*CH;
+    var r=5+Math.sqrt(d.hrs/maxH)*30;
+    var comp=(d.auto+d.val)/2;
+    var col=d.tr==='rising'?'#22c55e':d.tr==='declining'?'#ef4444':'#818cf8';
+    var fa=comp>87?0.52:comp>80?0.36:0.22;
+    out+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+col+'" fill-opacity="'+fa+'" stroke="'+col+'" stroke-width="1.2" stroke-opacity="0.65" class="bd" data-n="'+d.full+'" data-a="'+d.auto+'" data-v="'+d.val+'" data-h="'+d.hrs+'" data-o="'+d.occ+'" data-c="Composite: '+comp+' | '+d.tr+'" style="cursor:pointer"/>';
+    if(comp>=88||d.hrs>100){
+      out+='<text x="'+cx+'" y="'+(cy-r-3)+'" text-anchor="middle" font-size="'+(comp>=90?7.5:6.5)+'" fill="'+col+'" font-weight="600" style="pointer-events:none">'+d.lb+'</text>';
+    }
+  });
+
+  svg.innerHTML=out;
+  var tt=document.getElementById('btt');
+  svg.querySelectorAll('.bd').forEach(function(el){
+    el.addEventListener('mousemove',function(e){
+      document.getElementById('btt-n').textContent=el.dataset.n;
+      document.getElementById('btt-a').textContent=el.dataset.a;
+      document.getElementById('btt-v').textContent=el.dataset.v;
+      document.getElementById('btt-h').textContent=el.dataset.h+' hrs cumulative';
+      document.getElementById('btt-o').textContent=el.dataset.o;
+      document.getElementById('btt-c').textContent=el.dataset.c;
+      tt.style.display='block';
+      tt.style.left=(e.clientX+14)+'px';
+      tt.style.top=(e.clientY-10)+'px';
+    });
+    el.addEventListener('mouseleave',function(){tt.style.display='none';});
+  });
+}
+
+function buildDonut(){
+  var svg=document.getElementById('dsvg');
+  var cx=110,cy=110,R=80,ri=50;
+  var a=-Math.PI/2,out='';
+  DONUT.forEach(function(d){
+    var sw=(d.pct/100)*2*Math.PI;
+    var x1=cx+R*Math.cos(a),y1=cy+R*Math.sin(a);
+    var x2=cx+R*Math.cos(a+sw),y2=cy+R*Math.sin(a+sw);
+    var xi1=cx+ri*Math.cos(a),yi1=cy+ri*Math.sin(a);
+    var xi2=cx+ri*Math.cos(a+sw),yi2=cy+ri*Math.sin(a+sw);
+    var lg=sw>Math.PI?1:0;
+    var ma=a+sw/2;
+    var lx=cx+(R+15)*Math.cos(ma),ly=cy+(R+15)*Math.sin(ma);
+    out+='<path d="M'+x1+','+y1+' A'+R+','+R+' 0 '+lg+',1 '+x2+','+y2+' L'+xi2+','+yi2+' A'+ri+','+ri+' 0 '+lg+',0 '+xi1+','+yi1+' Z" fill="'+d.col+'" fill-opacity="0.72" stroke="'+d.col+'" stroke-width="0.5" stroke-opacity="0.5"/>';
+    out+='<text x="'+lx+'" y="'+ly+'" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="'+d.col+'">'+d.pct+'%</text>';
+    a+=sw;
+  });
+  out+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(ri-3)+'" fill="#0f1117"/>';
+  out+='<text x="'+cx+'" y="'+(cy-7)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#818cf8">Source</text>';
+  out+='<text x="'+cx+'" y="'+(cy+8)+'" text-anchor="middle" font-size="9" fill="#94a3b8">Mix</text>';
+  svg.innerHTML=out;
+  var leg=document.getElementById('dleg');
+  var lhtml='';
+  DONUT.forEach(function(d){
+    lhtml+='<div class="dl-row"><span class="dl-dot" style="background:'+d.col+'"></span><span class="dl-lbl">'+d.lbl+'</span><span class="dl-pct">'+d.pct+'%</span></div>';
+  });
+  leg.innerHTML=lhtml;
+}
+
+function buildOrg(){
+  var g=document.getElementById('ogrid');
+  var html='';
+  ORG.forEach(function(p){
+    var hw=(p.hrs/55).toFixed(1);
+    var ti=p.tr==='rising'?'&#8593;':p.tr==='declining'?'&#8595;':'&#8594;';
+    var tc2=p.tr==='rising'?'#22c55e':p.tr==='declining'?'#ef4444':'#94a3b8';
+    var ac=p.sc>=88?'#818cf8':p.sc>=80?'#c084fc':'#6b7280';
+    html+='<div class="org-card" style="border-left-color:'+ac+'"><div class="ocn">'+p.nm+'</div><div class="ocm"><span class="oc-score">&#9889; '+p.sc+'</span><span class="oc-meta">&#9200; '+hw+' hrs/wk</span><span class="oc-meta">&#128101; '+p.pt+'</span><span style="font-size:.7rem;margin-left:auto;color:'+tc2+';font-weight:700">'+ti+'</span></div></div>';
+  });
+  g.innerHTML=html;
+}
+
+function buildSkillGen(){
+  var obj={
+    generatedAtCycle:66,
+    agentRefinementCycle:34,
+    weekOf:"2026-03-20",
+    harvestStatus:"FAILED — consecutive failure #13 — data frozen at SKU cycle 55",
+    sourceFailureGuard:"ACTIVE (Type C Persistent Outage v3.4)",
+    stalenessClock:"11 cycles since last confirmed data",
+    candidateSkills:SKILLS5.map(function(s){
+      return {rank:s.rank,name:s.name,compositeScore:s.comp,automationScore:s.auto,valueScore:s.val,patternId:s.pid,description:s.desc,valueProposition:s.vp};
+    })
   };
-  const CYCLE_BASE=55;
-  let sortKey='composite', sortAsc=false, flt='all';
-  function composite(p){return(p.auto+p.val)/2;}
-  function filteredP(){
-    if(flt==='rising') return P.filter(p=>p.trend==='rising');
-    if(flt==='quickwin') return P.filter(p=>p.auto>=85&&(p.hrs/CYCLE_BASE)>=0.5);
-    return P;
-  }
-  function buildTable(){
-    const base=filteredP();
-    const sorted=[...base].sort((a,b)=>{
-      let va,vb;
-      if(sortKey==='composite'){va=composite(a);vb=composite(b);}
-      else if(sortKey==='auto'){va=a.auto;vb=b.auto;}
-      else if(sortKey==='val'){va=a.val;vb=b.val;}
-      else{va=a.hrs;vb=b.hrs;}
-      return sortAsc?(va-vb):(vb-va);
-    }).slice(0,10);
-    document.getElementById('tbl-count').textContent=`${base.length} pattern${base.length!==1?'s':''} · showing top 10 · click row to expand`;
-    const tbody=document.getElementById('tbl');
-    tbody.innerHTML='';
-    sorted.forEach((p,i)=>{
-      const hpw=(p.hrs/CYCLE_BASE).toFixed(1);
-      const saved=(p.hrs/CYCLE_BASE*(p.auto/100)).toFixed(1);
-      const tInfo=p.trend==='rising'?['↑','tr']:p.trend==='declining'?['↓','td2']:['→','ts'];
-      const trigs=(TRIGGERS[p.id]||['No trigger examples yet']).map(t=>`<div class="exp-trig-item">${t}</div>`).join('');
-      const tr=document.createElement('tr');
-      tr.className='row-main';
-      tr.dataset.id=p.id;
-      tr.innerHTML=`
-        <td class="rank-cell" style="color:${i<3?'var(--purple)':'var(--muted)'}">${i+1}</td>
-        <td><div class="pattern-name">${p.label} <span class="expand-hint">⊕</span></div><div class="pattern-skill">${p.skill}</div></td>
-        <td><div class="source-badges">${p.sources.map(bhtml).join('')}</div></td>
-        <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill ${bclass(p.auto)}" style="width:${p.auto}%"></div></div><span class="score-num ${scolor(p.auto)}">${p.auto}</span></div></td>
-        <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill ${bclass(p.val)}" style="width:${p.val}%"></div></div><span class="score-num ${scolor(p.val)}">${p.val}</span></div></td>
-        <td class="trend-cell ${tInfo[1]}" title="${p.trend}">${tInfo[0]}</td>
-        <td class="time-cell">${hpw}h</td>`;
-      const expTr=document.createElement('tr');
-      expTr.className='row-exp';
-      expTr.innerHTML=`<td colspan="7" class="exp-cell"><div class="exp-inner">
-        <div class="exp-sec">
-          <div class="exp-lbl2">Why automate</div>
-          <div class="exp-txt2">${p.rationale}</div>
-          <div class="exp-lbl2" style="margin-top:10px">Time impact</div>
-          <div class="exp-txt2"><span style="color:var(--red);font-weight:700">${hpw} hrs/week</span> · ${p.hrs.toFixed(0)} hrs total<br>Potential: <span style="color:var(--green);font-weight:700">+${saved} hrs back</span> at ${p.auto}% automation</div>
-          <div class="exp-lbl2" style="margin-top:10px">Composite score</div>
-          <div class="exp-txt2"><span style="color:var(--amber);font-size:1.05rem;font-weight:800">${Math.round(composite(p))}</span>/100 &nbsp;·&nbsp; ${(p.occ||'—').toLocaleString()} occ</div>
-        </div>
-        <div class="exp-sec">
-          <div class="exp-lbl2">Try these Claude prompts</div>
-          <div class="exp-triggers">${trigs}</div>
-        </div>
-        <div class="exp-sec">
-          <div class="exp-lbl2">Candidate skill</div>
-          <div class="exp-txt2" style="font-family:'Cascadia Code','Consolas',monospace;color:var(--purple)">${p.skill}</div>
-          <div class="exp-lbl2" style="margin-top:10px">Sources</div>
-          <div style="margin-top:4px"><div class="source-badges">${p.sources.map(bhtml).join('')}</div></div>
-          <div class="exp-lbl2" style="margin-top:10px">Trend</div>
-          <div class="exp-txt2 ${tInfo[1]}">${tInfo[0]} ${p.trend}</div>
-        </div>
-      </div></td>`;
-      tr.addEventListener('click',()=>{
-        const open=expTr.classList.toggle('open');
-        const hint=tr.querySelector('.expand-hint');
-        if(hint) hint.textContent=open?'⊖':'⊕';
-        tr.style.background=open?'rgba(129,140,248,0.07)':'';
-      });
-      tbody.appendChild(tr);
-      tbody.appendChild(expTr);
-    });
-  }
-  // Filter buttons
-  document.querySelectorAll('.flt-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      flt=btn.dataset.flt;
-      buildTable();
-    });
+  var raw=JSON.stringify(obj,null,2);
+  var hl=raw
+    .replace(/"([^"]+)":/g,'<span class="ck">"$1":</span>')
+    .replace(/: "([^"]*)"/g,': <span class="cs">"$1"</span>')
+    .replace(/: (\d+)/g,': <span class="cn">$1</span>')
+    .replace(/[{}\[\]]/g,function(m){return '<span class="cp">'+m+'</span>';});
+  document.getElementById('sgblock').innerHTML=hl;
+}
+
+function buildCycleHist(){
+  var h=document.getElementById('chist');
+  var mx=0;
+  CHIST.forEach(function(c){if(c.n>mx)mx=c.n;});
+  var html='';
+  CHIST.forEach(function(c){
+    var ht=Math.round((c.n/mx)*88)+8;
+    html+='<div class="cwrap"><div class="ccount">'+c.n+'</div><div class="cbar-c"><div class="cbar '+(c.out?'out':'act')+'" style="height:'+ht+'px"></div></div><div class="clbl">'+c.c+(c.out?'&#9888;':'')+'</div></div>';
   });
-  // Sort column headers
-  document.querySelectorAll('th[data-sort]').forEach(th=>{
-    th.addEventListener('click',()=>{
-      const key=th.dataset.sort;
-      if(sortKey===key) sortAsc=!sortAsc; else{sortKey=key;sortAsc=false;}
-      document.querySelectorAll('th[data-sort]').forEach(h=>{const ic=h.querySelector('.sort-ic');if(ic){ic.classList.remove('act');ic.textContent='▼';}});
-      const ic=th.querySelector('.sort-ic');
-      if(ic){ic.classList.add('act');ic.textContent=sortAsc?'▲':'▼';}
-      buildTable();
-    });
-  });
+  h.innerHTML=html;
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  animCount(document.getElementById('kv1'),41,1100);
+  animCount(document.getElementById('kv2'),95,900);
+  animCount(document.getElementById('kv3'),30,1050);
+  animCount(document.getElementById('kv4'),12,800);
   buildTable();
-})();
-
-// SCATTER
-(function(){
-  const svg=document.getElementById('scatter');
-  const W=620,H=360,pl=52,pr=20,pt=20,pb=48;
-  const pw=W-pl-pr,ph=H-pt-pb;
-  const minA=60,maxA=100,minV=40,maxV=100;
-  const maxH=Math.max(...P.map(p=>p.hrs));
-  function px(a){return pl+(a-minA)/(maxA-minA)*pw;}
-  function py(v){return pt+ph-(v-minV)/(maxV-minV)*ph;}
-  function r(h){return 5+Math.sqrt(h/maxH)*22;}
-
-  let h='<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#818cf8" stop-opacity="0.5"/><stop offset="100%" stop-color="#818cf8" stop-opacity="0"/></linearGradient></defs>';
-
-  // Grid
-  for(let v=50;v<=100;v+=10){
-    const y=py(v);
-    h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#2d2f52" stroke-width="1"/>`;
-    h+=`<text x="${pl-6}" y="${y+4}" text-anchor="end" fill="#64748b" font-size="10">${v}</text>`;
-  }
-  for(let a=60;a<=100;a+=10){
-    const x=px(a);
-    h+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${H-pb}" stroke="#2d2f52" stroke-width="1"/>`;
-    h+=`<text x="${x}" y="${H-pb+16}" text-anchor="middle" fill="#64748b" font-size="10">${a}</text>`;
-  }
-
-  // High-value quadrant
-  h+=`<rect x="${px(80)}" y="${pt}" width="${W-pr-px(80)}" height="${py(80)-pt}" fill="rgba(34,197,94,0.04)" rx="2"/>`;
-  h+=`<text x="${px(80)+6}" y="${pt+12}" fill="#22c55e" font-size="9" opacity="0.5">HIGH VALUE ZONE</text>`;
-
-  // Axis labels
-  h+=`<text x="${W/2}" y="${H-4}" text-anchor="middle" fill="#94a3b8" font-size="11">Automation Score</text>`;
-  h+=`<text x="12" y="${H/2}" text-anchor="middle" fill="#94a3b8" font-size="11" transform="rotate(-90,12,${H/2})">Value Score</text>`;
-
-  // Bubbles
-  P.forEach(p=>{
-    const x=px(p.auto),y=py(p.val),rr=r(p.hrs),c=gradC((p.auto+p.val)/2);
-    const short=p.skill.replace(/-/g,' ').split(' ').slice(0,2).join(' ');
-    h+=`<circle cx="${x}" cy="${y}" r="${rr}" fill="${c}" fill-opacity="0.2" stroke="${c}" stroke-width="1.5" data-id="${p.id}" class="bub" style="cursor:pointer"/>`;
-    if(rr>9) h+=`<text x="${x}" y="${y+3}" text-anchor="middle" fill="${c}" font-size="8" pointer-events="none">${short}</text>`;
-  });
-
-  svg.innerHTML=h;
-  const tip=document.getElementById('tip');
-  svg.querySelectorAll('.bub').forEach(el=>{
-    const p=P.find(d=>d.id===el.dataset.id);
-    el.addEventListener('mousemove',e=>{
-      document.getElementById('tn').textContent=p.label;
-      document.getElementById('ta').textContent=p.auto;
-      document.getElementById('tv').textContent=p.val;
-      document.getElementById('th').textContent=p.hrs.toFixed(1)+' hrs total';
-      document.getElementById('tr2').textContent=p.rationale;
-      tip.style.display='block';
-      tip.style.left=(e.clientX+14)+'px';
-      tip.style.top=(e.clientY-10)+'px';
-    });
-    el.addEventListener('mouseleave',()=>{tip.style.display='none';});
-  });
-})();
-
-// DONUT
-(function(){
-  const data=[
-    {label:'Teams',pct:33,color:'#c084fc'},
-    {label:'Email',pct:23,color:'#fbbf24'},
-    {label:'Meeting',pct:23,color:'#818cf8'},
-    {label:'Document',pct:21,color:'#22c55e'},
-  ];
-  const svg=document.getElementById('donut');
-  const cx=100,cy=95,R=70,ri=42;
-  let start=0,h='';
-  const TAU=2*Math.PI;
-  data.forEach(d=>{
-    const angle=d.pct/100*TAU,end=start+angle,large=angle>Math.PI?1:0;
-    const x1=cx+R*Math.sin(start),y1=cy-R*Math.cos(start);
-    const x2=cx+R*Math.sin(end),y2=cy-R*Math.cos(end);
-    const xi=cx+ri*Math.sin(start),yi=cy-ri*Math.cos(start);
-    const xj=cx+ri*Math.sin(end),yj=cy-ri*Math.cos(end);
-    h+=`<path d="M${xi} ${yi} A${R} ${R} 0 ${large} 1 ${x2} ${y2} L${xj} ${yj} A${ri} ${ri} 0 ${large} 0 ${xi} ${yi} Z" fill="${d.color}" fill-opacity="0.85"/>`;
-    start=end;
-  });
-  h+=`<text x="${cx}" y="${cy-6}" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="800">4</text>`;
-  h+=`<text x="${cx}" y="${cy+12}" text-anchor="middle" fill="#94a3b8" font-size="9">sources</text>`;
-  svg.innerHTML=h;
-  const leg=document.getElementById('dlegend');
-  data.forEach(d=>{
-    const item=document.createElement('div');
-    item.className='legend-item';
-    item.innerHTML=`<div class="legend-dot" style="background:${d.color}"></div><span class="legend-label">${d.label}</span><span class="legend-pct">${d.pct}%</span>`;
-    leg.appendChild(item);
-  });
-})();
-
-// ACTION PLAN — top 3 by estimated hrs reclaimed/week
-(function(){
-  const CYCLE_BASE=55;
-  const AP_CFG=[
-    {id:'meeting-load-triage',      color:'#818cf8',
-     prompt:'"Review my calendar for next week. Flag meetings that could be async, identify scheduling conflicts, recommend which invites to decline or delegate, and draft polite decline messages for low-priority ones."',
-     why:'Calendar overload is your single biggest time sink — 401 hrs across 659 events. You spend ~7.3 hrs/week just deciding which meetings to attend.'},
-    {id:'eval-results-analysis-reporting', color:'#22d3ee',
-     prompt:'"Synthesize this week\'s eval results into a standardized report: capture scenario coverage gaps, pass/fail rates by intent, owner assignments for failing cases, and recommended next-sprint priorities."',
-     why:'Rising trend + highest value score (95). Eval synthesis is a weekly bottleneck across 5 roles. EvalCon and Golden Evals deadlines are accelerating demand.'},
-    {id:'meeting-notes-action-item-capture', color:'#f59e0b',
-     prompt:'"Here is the meeting transcript. Extract all action items with owner and due date, log key decisions, draft a follow-up email to attendees, and create ADO task stubs for any engineering commitments."',
-     why:'339 occ across 55 cycles — fires after every meeting type. Chain head for 2 downstream skills. Most durable pattern in the catalog.'}
-  ];
-  const container=document.getElementById('actionPlan');
-  AP_CFG.forEach((cfg,idx)=>{
-    const p=P.find(x=>x.id===cfg.id);
-    if(!p) return;
-    const hpw=(p.hrs/CYCLE_BASE).toFixed(1);
-    const saved=(p.hrs/CYCLE_BASE*(p.auto/100)).toFixed(1);
-    const card=document.createElement('div');
-    card.className='ap-card';
-    card.style.borderLeft=`4px solid ${cfg.color}`;
-    card.innerHTML=`
-      <div class="ap-rank" style="color:${cfg.color}">#${idx+1}</div>
-      <div class="ap-body">
-        <div>
-          <div class="ap-name">${p.label}</div>
-          <div class="ap-meta"><span style="color:var(--red);font-weight:700">${hpw} hrs/wk</span> &nbsp;·&nbsp; ${p.hrs.toFixed(0)} hrs total &nbsp;·&nbsp; ${p.occ} occ</div>
-          <div class="ap-why">${cfg.why}</div>
-        </div>
-        <div class="ap-gauges">
-          <div class="ap-gauge-row">
-            <span class="ap-gauge-lbl">Auto</span>
-            <div class="score-bar-bg" style="flex:1"><div class="score-bar-fill ${bclass(p.auto)}" style="width:${p.auto}%"></div></div>
-            <span class="score-num ${scolor(p.auto)}">${p.auto}</span>
-          </div>
-          <div class="ap-gauge-row">
-            <span class="ap-gauge-lbl">Value</span>
-            <div class="score-bar-bg" style="flex:1"><div class="score-bar-fill ${bclass(p.val)}" style="width:${p.val}%"></div></div>
-            <span class="score-num ${scolor(p.val)}">${p.val}</span>
-          </div>
-          <div class="ap-save"><span style="color:var(--green);font-size:1.15rem;font-weight:800">+${saved}h</span> <span style="color:var(--muted);font-size:0.74rem">back/wk if automated</span></div>
-        </div>
-        <div class="ap-prompt-box">
-          <div class="ap-prompt-hdr">✦ Try this Claude prompt now</div>
-          <div class="ap-prompt-txt">${cfg.prompt}</div>
-        </div>
-      </div>`;
-    container.appendChild(card);
-  });
-})();
-
-// SKILL GEN JSON
-const top5=[
-  {rank:1,name:"meeting-notes-action-extractor",composite:93,auto:91,val:93,patternId:"meeting-notes-action-item-capture",  occ:339,est:"$175,820"},
-  {rank:2,name:"ado-notification-router",         composite:91,auto:95,val:85,patternId:"ado-notification-triage",           occ:873,est:"$82,784"},
-  {rank:3,name:"eval-report-synthesizer",         composite:91,auto:85,val:95,patternId:"eval-results-analysis-reporting",   occ:438,est:"$288,314"},
-  {rank:4,name:"eval-template-scaffolder",        composite:90,auto:85,val:93,patternId:"eval-template-scaffolder",          occ:183,est:"$144,196"},
-  {rank:5,name:"weekly-status-report-generator",  composite:90,auto:87,val:90,patternId:"weekly-status-report-generation",  occ:152,est:"$113,464"},
-];
-function jk(s){return`<span class="jk">"${s}"</span>`;}
-function js(s){return`<span class="js">"${s}"</span>`;}
-function jn(n){return`<span class="jn">${n}</span>`;}
-let pre=`{\n  ${jk("generatedAtCycle")}: ${jn(64)},\n  ${jk("agentRefinementCycle")}: ${jn(32)},\n  ${jk("dataFrozenAtCycle")}: ${jn(55)},\n  ${jk("consecutiveHarvestFailures")}: ${jn(11)},\n  ${jk("candidateSkills")}: [\n`;
-top5.forEach((s,i)=>{
-  pre+=`    {\n      ${jk("rank")}: ${jn(s.rank)},\n      ${jk("name")}: ${js(s.name)},\n      ${jk("compositeScore")}: ${jn(s.composite)},\n      ${jk("automationScore")}: ${jn(s.auto)},\n      ${jk("valueScore")}: ${jn(s.val)},\n      ${jk("patternId")}: ${js(s.patternId)},\n      ${jk("occurrences")}: ${jn(s.occ)},\n      ${jk("estAnnualValue")}: ${js(s.est)}\n    }${i<4?',':''}\n`;
+  buildBubble();
+  buildDonut();
+  buildOrg();
+  buildSkillGen();
+  buildCycleHist();
 });
-pre+=`  ]\n}`;
-document.getElementById('codepre').innerHTML=pre;
-
-// CYCLE HISTORY
-(function(){
-  const svg=document.getElementById('history');
-  const W=900,H=140,pl=50,pr=20,pt=20,pb=40;
-  const pw=W-pl-pr,ph=H-pt-pb;
-  const hist=[
-    {c:1,n:8},{c:3,n:12},{c:6,n:16},{c:9,n:20},{c:12,n:24},{c:15,n:27},
-    {c:18,n:30},{c:21,n:32},{c:25,n:35},{c:28,n:38},{c:32,n:39},{c:35,n:40},
-    {c:40,n:41},{c:45,n:41},{c:50,n:41},{c:55,n:41},{c:58,n:41},{c:61,n:41},{c:64,n:41},
-  ];
-  const maxN=41,maxC=64;
-  function hx(c){return pl+(c/maxC)*pw;}
-  function hy(n){return pt+ph-(n/maxN)*ph;}
-
-  let h='<defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#818cf8" stop-opacity="0.5"/><stop offset="100%" stop-color="#818cf8" stop-opacity="0"/></linearGradient></defs>';
-
-  // Y gridlines
-  [0,10,20,30,41].forEach(v=>{
-    const y=hy(v);
-    h+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#2d2f52" stroke-dasharray="3,4" stroke-width="1"/>`;
-    h+=`<text x="${pl-6}" y="${y+4}" text-anchor="end" fill="#64748b" font-size="9">${v}</text>`;
-  });
-
-  // Outage zone
-  h+=`<rect x="${hx(53)}" y="${pt}" width="${hx(64)-hx(53)}" height="${ph}" fill="rgba(239,68,68,0.07)" rx="2"/>`;
-  h+=`<text x="${(hx(53)+hx(64))/2}" y="${pt+12}" text-anchor="middle" fill="#ef4444" font-size="8" opacity="0.8">⚠ OUTAGE</text>`;
-
-  // Cycle 55 marker
-  h+=`<line x1="${hx(55)}" y1="${pt}" x2="${hx(55)}" y2="${H-pb}" stroke="#818cf8" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>`;
-  h+=`<text x="${hx(55)}" y="${pt+11}" text-anchor="middle" fill="#818cf8" font-size="8" opacity="0.9">Last data</text>`;
-
-  // Area
-  const pts=hist.map(d=>`${hx(d.c)},${hy(d.n)}`).join(' ');
-  h+=`<polygon points="${pts} ${hx(hist[hist.length-1].c)},${hy(0)} ${hx(hist[0].c)},${hy(0)}" fill="url(#hg)" opacity="0.5"/>`;
-  h+=`<polyline points="${pts}" fill="none" stroke="#818cf8" stroke-width="2" stroke-linejoin="round"/>`;
-
-  // Key dots
-  [1,9,18,28,40,55,64].forEach(c=>{
-    const d=hist.reduce((a,b)=>Math.abs(b.c-c)<Math.abs(a.c-c)?b:a);
-    h+=`<circle cx="${hx(d.c)}" cy="${hy(d.n)}" r="3" fill="#818cf8"/>`;
-  });
-
-  // X labels
-  [1,10,20,30,40,50,55,64].forEach(c=>{
-    h+=`<text x="${hx(c)}" y="${H-pb+14}" text-anchor="middle" fill="#64748b" font-size="9">${c}</text>`;
-  });
-  h+=`<text x="${W/2}" y="${H-2}" text-anchor="middle" fill="#94a3b8" font-size="10">Skilluminator Cycle</text>`;
-  h+=`<text x="10" y="${H/2}" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(-90,10,${H/2})">Patterns</text>`;
-
-  svg.innerHTML=h;
-})();
 </script>
 </body>
 </html>
