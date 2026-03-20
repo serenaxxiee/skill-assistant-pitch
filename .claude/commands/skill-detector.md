@@ -140,17 +140,27 @@ Write the results to `patterns.json` in the current directory with this EXACT sc
 
 Sort patterns by composite score descending. Include ALL patterns found (minimum 5, aim for 10-20).
 
-## PHASE 6 — GENERATE DASHBOARD
+## PHASE 6 — GENERATE DASHBOARD (automatic)
 
-After writing patterns.json, generate the dashboard. Check if `scripts/generate-dashboard.js` exists in the skilluminator repo:
+After writing patterns.json, **automatically** generate the Skilluminator dashboard. This MUST happen every time — do not skip it.
 
-1. If it exists: run `node scripts/generate-dashboard.js --input patterns.json --output dashboard.html`
-2. If not: Tell the user to get it from https://github.com/serenaxxiee/skilluminator/blob/main/scripts/generate-dashboard.js
+1. Locate the generator script at `scripts/generate-dashboard.js` in the skilluminator repo.
+   - If not found: Tell the user to get it from https://github.com/serenaxxiee/skilluminator/blob/main/scripts/generate-dashboard.js
+2. Determine the output path:
+   - Check `.env` for `SKILLUMINATOR_ONEDRIVE_DIR`. If set, output to `$SKILLUMINATOR_ONEDRIVE_DIR/skilluminator_dashboard.html`
+   - Always also generate `output/dashboard.html` in the repo for git tracking
+   - If no OneDrive dir configured, output to `output/skilluminator_dashboard.html`
+3. Run the generator:
+   ```bash
+   node scripts/generate-dashboard.js --input patterns.json --output <output path>
+   ```
+4. If `SKILLUMINATOR_ONEDRIVE_DIR` is set, copy the dashboard there as `skilluminator_dashboard.html`.
+5. Open the dashboard in the browser:
+   - Windows: `start <output path>`
+   - Mac: `open <output path>`
+   - Linux: `xdg-open <output path>`
 
-Then open the dashboard:
-- Windows: `start dashboard.html`
-- Mac: `open dashboard.html`
-- Linux: `xdg-open dashboard.html`
+If the generator fails, report the error but still proceed to Phase 7 with the pattern data you have.
 
 ## PHASE 7 — PRESENT TOP FINDINGS
 
@@ -161,4 +171,4 @@ For the top 3 skill candidates, explain in plain language:
 - **WHY**: Why should you care right now? (name the specific pain)
 - **FUTURE**: What does your work look like with this skill? (before/after with hours)
 
-End with: "Your full dashboard is open in the browser. Run this command again anytime to refresh with new data."
+End with: "Your full dashboard is open in the browser. Run `/skilluminator-dashboard` anytime to regenerate it, or run `/skill-detector` again to refresh with new data."
