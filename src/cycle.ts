@@ -7,13 +7,15 @@ import path from "path";
 import { fileURLToPath } from "url";
 import {
   buildSystemPrompt, buildHarvestPrompt,
-  buildRefinePrompt, buildSummaryPrompt, buildSteeringPrompt,
+  buildRefinePrompt,
 } from "./prompts.js";
-import { getWorkIQMcpConfig, getTeamsMcpConfig, WORKIQ_TOOL, TEAMS_POST_TOOL, TEAMS_READ_TOOL } from "./workiq.js";
+import { getWorkIQMcpConfig, WORKIQ_TOOL } from "./workiq.js";
 import {
   readPatterns, readSignals, appendCycleLog,
+  SUMMARIES_PATH,
   type CycleLog,
 } from "./state.js";
+import { readSteeringMessages, postToTeams } from "./teams-api.js";
 import chalk from "chalk";
 import * as display from "./display.js";
 
@@ -189,7 +191,6 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   display.cycleHeader(cycleNum);
 
   const workiqMcp = getWorkIQMcpConfig();
-  const teamsMcp = getTeamsMcpConfig();
   const systemPrompt = buildSystemPrompt();
 
   const baseOptions: any = {
@@ -203,43 +204,23 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
 
   let harvestTokens = { input: 0, output: 0 };
   let refineTokens = { input: 0, output: 0 };
-  let summaryTokens = { input: 0, output: 0 };
 
-  // ── Phase 0: Steering (every 3 cycles) ────────────────────────
+  // ── Phase 0: Steering (direct API — no agent) ─────────────────
+  display.sectionHeader("Phase 0: Checking Teams for Steering");
   let steeringInput = "";
-  if (cycleNum % 3 === 1 || cycleNum <= 3) {
-    display.sectionHeader("Phase 0: Checking Teams for Steering Input");
-    try {
-      for await (const message of query({
-        prompt: buildSteeringPrompt(cycleNum),
-        options: {
-          ...baseOptions,
-          tools: [],
-          allowedTools: [TEAMS_READ_TOOL],
-          disallowedTools: ["AskUserQuestion"],
-          mcpServers: teamsMcp,
-        },
-      })) {
-        const msg = message as any;
-        if ("result" in msg) {
-          steeringInput = msg.result ?? "";
-        }
-      }
-      if (steeringInput && !steeringInput.toLowerCase().includes("no steering input")) {
-        display.info("Steering", "Found operator instructions");
-        display.agentOutput(steeringInput.slice(0, 300));
-      } else {
-        steeringInput = "";
-        display.info("Steering", "No operator instructions");
-      }
-    } catch (err: any) {
-      display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
+  try {
+    const messages = await readSteeringMessages(120);
+    if (messages.length > 0) {
+      steeringInput = messages.join("\n\n");
+      display.info("Steering", `${messages.length} instruction(s) from operator`);
+      display.agentOutput(steeringInput.slice(0, 300));
+    } else {
+      display.info("Steering", "No operator instructions");
     }
-    display.sectionEnd();
-  } else {
-    display.sectionHeader("Phase 0: Steering — skipped (runs every 3 cycles)");
-    display.sectionEnd();
+  } catch (err: any) {
+    display.warning(`Steering check failed: ${err.message.split("\n")[0]}`);
   }
+  display.sectionEnd();
 
   // ── Phase 1: Harvest (when signals are stale >24h) ────────────
   const ageHrs = signalAgeHours();
@@ -395,65 +376,53 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
   }
   display.sectionEnd();
 
-  // ── Phase 3: Teams update ─────────────────────────────────────
+  // ── Phase 3: Teams update (direct API — no agent) ──────────────
   let summarySent = false;
-  let summaryToolCalls = 0;
   {
-    display.sectionHeader("Phase 3: Sending Summary to Teams");
+    display.sectionHeader("Phase 3: Posting to Teams");
     try {
-      for await (const message of query({
-        prompt: buildSummaryPrompt(cycleNum, prUrl, refineSummary),
-        options: {
-          ...baseOptions,
-          tools: ["Write"],
-          allowedTools: ["Write", TEAMS_POST_TOOL],
-          disallowedTools: ["AskUserQuestion"],
-          mcpServers: teamsMcp,
-        },
-      })) {
-        const msg = message as any;
-        if ("result" in msg) {
-          display.agentOutput((msg.result ?? "").slice(0, 500));
-          const u = extractUsage(msg);
-          summaryTokens.input += u.input;
-          summaryTokens.output += u.output;
-        }
-        if (msg.usage) {
-          const u = extractUsage(msg);
-          summaryTokens.input += u.input;
-          summaryTokens.output += u.output;
-        }
-        const content = msg.message?.content ?? msg.content;
-        if (msg.type === "assistant" && content) {
-          for (const block of content) {
-            if (block.type === "tool_use") {
-              summaryToolCalls++;
-              console.log(
-                chalk.yellow(`  [Teams] `) +
-                chalk.bold.white(block.name ?? "unknown")
-              );
-            }
-          }
-        }
-      }
+      // Build summary from cycle data
+      const raw = readPatterns();
+      const patCount = raw?.patterns?.length ?? 0;
+      const topPat = raw?.patterns
+        ?.filter((p: any) => typeof p.automationScore === "number")
+        ?.sort((a: any, b: any) => ((b.automationScore + b.valueScore) / 2) - ((a.automationScore + a.valueScore) / 2))?.[0];
+      const topName = topPat?.candidateSkillName ?? "none";
+      const topScoreVal = topPat ? Math.round((topPat.automationScore + topPat.valueScore) / 2) : 0;
+
+      const refineOneLiner = refineSummary
+        .split("\n").find((l: string) => l.trim() && !l.startsWith("#") && !l.startsWith("-"))?.trim().slice(0, 100)
+        ?? `${patCount} patterns, top=${topName}`;
+
+      const teamsMsg = [
+        `**Cycle ${cycleNum}** | ${refineOneLiner}`,
+        `**W** ${topName} (score ${topScoreVal}) — ${patCount} patterns tracked`,
+        `**L** cycle took ${Math.round((Date.now() - startMs) / 60000)}min, still not fast enough`,
+        prUrl ? `**PR** ${prUrl}` : "",
+      ].filter(Boolean).join("\n");
+
+      await postToTeams(teamsMsg, `Skilluminator — Cycle ${cycleNum} Update`);
       summarySent = true;
-      display.success("Summary sent to Teams");
-      display.info("Tokens (summary)", `${formatTokens(summaryTokens.input)} in / ${formatTokens(summaryTokens.output)} out`);
+      display.success("Summary posted to Teams");
+
+      // Also append to summaries file
+      const summaryMd = `\n## Cycle ${cycleNum}\n\n${teamsMsg}\n`;
+      const existing = existsSync(SUMMARIES_PATH) ? readFileSync(SUMMARIES_PATH, "utf-8") : "# Skilluminator Summaries\n";
+      writeFileSync(SUMMARIES_PATH, existing + summaryMd, "utf-8");
     } catch (err: any) {
-      display.failure(`Summary error: ${err.message}`);
+      display.failure(`Teams post failed: ${err.message.split("\n")[0]}`);
     }
     display.sectionEnd();
   }
 
   // ── Token usage totals ────────────────────────────────────────
-  const totalInput = harvestTokens.input + refineTokens.input + summaryTokens.input;
-  const totalOutput = harvestTokens.output + refineTokens.output + summaryTokens.output;
+  const totalInput = harvestTokens.input + refineTokens.input;
+  const totalOutput = harvestTokens.output + refineTokens.output;
   const totalTokens = totalInput + totalOutput;
 
   display.sectionHeader("Token Usage");
   display.info("Harvest", `${formatTokens(harvestTokens.input)} in / ${formatTokens(harvestTokens.output)} out`);
   display.info("Refine", `${formatTokens(refineTokens.input)} in / ${formatTokens(refineTokens.output)} out`);
-  display.info("Teams", `${formatTokens(summaryTokens.input)} in / ${formatTokens(summaryTokens.output)} out`);
   display.info("Cycle Total", `${formatTokens(totalInput)} in / ${formatTokens(totalOutput)} out = ${formatTokens(totalTokens)} total`);
 
   const history = loadUsageHistory();
@@ -462,8 +431,8 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
     timestamp: new Date().toISOString(),
     harvest: { inputTokens: harvestTokens.input, outputTokens: harvestTokens.output, totalTokens: harvestTokens.input + harvestTokens.output, toolCalls: harvestToolCalls },
     refine: { inputTokens: refineTokens.input, outputTokens: refineTokens.output, totalTokens: refineTokens.input + refineTokens.output, toolCalls: refineToolCalls },
-    summary: { inputTokens: summaryTokens.input, outputTokens: summaryTokens.output, totalTokens: summaryTokens.input + summaryTokens.output, toolCalls: summaryToolCalls },
-    total: { inputTokens: totalInput, outputTokens: totalOutput, totalTokens, toolCalls: harvestToolCalls + refineToolCalls + summaryToolCalls },
+    summary: null,
+    total: { inputTokens: totalInput, outputTokens: totalOutput, totalTokens, toolCalls: harvestToolCalls + refineToolCalls },
   };
   history.cycles.push(cycleUsage);
   history.cumulative.inputTokens += totalInput;
