@@ -111,3 +111,57 @@ The `weekly-status-report-generator` pattern has now appeared in **every single 
 ---
 
 *Skilluminator has been running autonomously so you don't have to think about this. You're welcome. 🤖✨*
+
+## Summary — Cycles 10-12 (2026-03-20)
+
+## 🤖 Skilluminator Report — Cycles 10–12
+
+Hey team! Your resident automation bloodhound is back with the Cycles 10–12 roundup. Three more cycles down, zero manual tasks automated *by you*, but plenty of receipts gathered *on* you. Let's get into it.
+
+---
+
+### 🔍 What I Did
+Over cycles 10–12, Skilluminator reused **31 harvested M365 signals** (collected ~23h prior) across email, calendar, Teams, and SharePoint analysis. Each cycle cross-checked patterns for drift, stability, and signal strength. The catalog now stands at **30 individual patterns** and **9 org-wide patterns** — a tighter, higher-confidence list than ever.
+
+---
+
+### 🏆 Top Highlights (The "Just Build These Already" List)
+- 🥇 **`eval-design-advisor`** — New top candidate! Evaluation design work is recurring, structured, and crying out for a Claude skill to scaffold the thinking.
+- 🥈 **`meeting-notes-action-extractor`** — Our faithful #1 from previous cycles holds strong. Still the most obvious automation in the catalog. Someone is still typing action items by hand. We've had words.
+- 🥉 **`eval-enablement-deck-consolidator`** — Enablement decks are being assembled piece-by-piece, cycle after cycle. This one's practically writing its own spec.
+- **`ado-notification-router`** — The ADO inbox situation remains... chaotic. This skill would bring order to the noise.
+- **`weekly-status-report-generator`** — It's back. It's always back. Like a reliable coworker who shows up even when no one asked. Except this one wastes your time instead of saving it.
+
+---
+
+### 😲 Interesting Finds
+- **31 signals reused across all 3 cycles** with no fresh harvest needed — which means these patterns are *stable*. Not noise, not a one-off Tuesday — these are genuine recurring workflows baked into daily operations.
+- Two eval-adjacent patterns (`eval-design-advisor` + `eval-enablement-deck-consolidator`) co-dominating the top 5 suggests evaluation prep is a significant, underautomated chunk of the workweek. Worth a closer look.
+- `partner-eval-enablement-pack-generator` joining the top 7 is a new entrant — partner-facing work appears to be ramping up.
+
+---
+
+### 😂 Dumb Stuff (Lovingly Roasted)
+**`weekly-status-report-generator`** has now appeared in the top candidates across *multiple summary cycles*. At this point it's not a pattern, it's a *cry for help*. Someone, somewhere, every single Friday, is opening a blank doc and typing "This week I..." from scratch. We salute your dedication to manual labor. 🫡
+
+Honorable mention: **`calendar-triage-advisor`** — a skill literally designed to tell you which meetings you probably shouldn't be in. The fact that this keeps scoring high implies... you already know. You just need someone (Claude) to say it out loud.
+
+---
+
+### 🕳️ Gaps & Thin Signals
+- **0 net-new patterns discovered** across these 3 cycles — signals were reused, not freshly harvested. The catalog is stable, but a fresh WorkIQ harvest next cycle would confirm nothing has shifted.
+- **9 org-wide patterns** is relatively lean — broader cross-user signal sampling could surface more team-wide automation candidates.
+- `calendar-triage-advisor` has signal but needs behavioral depth — *which* meetings are being flagged? More granular calendar data would sharpen this one.
+
+---
+
+### 🔮 Next Steps (Cycles 13–15)
+1. **Trigger a fresh M365 harvest** — 31 signals at 23h old is fine, but fresher data = higher confidence scores.
+2. **Start spec-writing for `eval-design-advisor`** — it's earned it. Time to move from pattern → prototype.
+3. **Investigate the partner-eval signal** — is `partner-eval-enablement-pack-generator` a one-person habit or a team-wide pattern?
+4. **Retire or promote** any patterns that have plateaued — a lean catalog beats a bloated one.
+5. **Deep-dive calendar data** to give `calendar-triage-advisor` the signal quality it deserves.
+
+---
+
+*Skilluminator: finding your repetitive habits so you don't have to face them yourself. 🕵️🤖*

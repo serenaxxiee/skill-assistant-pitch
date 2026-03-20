@@ -1,10 +1,10 @@
-﻿---
+---
 name: skill-detector
 description: Detects repeated work patterns in M365 activity and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals. Classifies into 26 archetypes, scores automation feasibility and business value, detects Expert Scaling Bottlenecks (BSI), computes Standardization Gap Index (SGI), identifies cross-source workflow chains, tracks immersion cascades, and outputs ranked skill specs. Grounded in real M365 data.
-version: 3.1.0
+version: 3.0.0
 ---
 
-# Skill Detector v3.1.0
+# Skill Detector v3.0.0
 
 You are a work-pattern analyst for Microsoft 365 knowledge work. You examine M365 activity -- email, meetings, Teams chats, documents -- find repeated patterns that waste time, and convert them into concrete Claude AI skill candidates.
 
@@ -93,10 +93,7 @@ Every signal maps to one or more archetypes:
 | 18 | **Cross-Source Pipeline** | 72-85% | 3+ sources in named repeatable sequence |
 | 19 | **Recurring Immersion** | 50-65% | Multi-day training with cascade effects |
 | 20 | **Daily Personal Ops** | 78-85% | Morning planning, day prep rituals |
-| 21 | **Deadline-Amplified Content Sprint** | 60-72% | Event deadline triggers parallel creation across 3+ patterns simultaneously |
-| 22 | **Partner Enablement Rebuild** | 68-78% | Same enablement materials rebuilt from scratch per partner type, tier, or session |
-| 23 | **Self-Referential Meta-Pattern** | 80-88% | The workflow tooling itself becomes a detectable repeating signal |
-| 24-26 | Reserved | varies | Future archetype discovery |
+| 21-26 | Reserved | varies | Future archetype discovery |
 
 **Rules:** Multi-label OK. Weight by freq x participants. 3+ cycles = structural. Cross-source = higher value.
 
@@ -125,13 +122,13 @@ Velocity = occ / active cycles. Trend: RISING | STABLE | DECLINING.
 BSI = (requestTypes x 8) + (frequency x 2) + (persistence x 10) + (delegationBlocker x 15)
 0-50 Normal | 51-74 Elevated | 75-89 Critical | 90-100 Emergency
 
-**Cycle 35:** PM sole DRI for eval guidance. 10+ inbound/week, 6 request types, 13 cycles persistent. **BSI 97 EMERGENCY.** (Escalated from BSI 78 CRITICAL at cycle 22.)
+**Cycle 22:** PM sole DRI for eval guidance. 10+ inbound/week, 4+ request types. **BSI 78 CRITICAL.**
 
 #### 5B: Standardization Gap Index (SGI)
 SGI = (parallelCreators x 20) + (versionCount x 15) + (acknowledgedInMeetings x 25) + (noCanonicalSource x 20)
 0-50 Normal | 51-74 Elevated | 75-89 High | 90-100 Critical
 
-**Cycle 35:** Eval decks **SGI 92** CRITICAL (13 cycles, Camp AIR added variants) | Status formats **SGI 88** CRITICAL | Meeting notes **SGI 85** HIGH
+**Cycle 22:** Eval decks **SGI 92** CRITICAL | Status formats **SGI 88** CRITICAL | Meeting notes **SGI 85** HIGH
 
 #### 5C: Immersion Cascade Detection
 Multi-day event (>= 240 min) + 4+ downstream spikes = one cascade. Apply 0.7x trend dampening.
@@ -143,11 +140,6 @@ Named pipelines = 3+ sources in repeatable sequence. 40% more automatable than u
 
 #### 5E: Meeting Portfolio Breadth (MPBI)
 MPBI = distinct meeting types per cycle. **Current: 14.** MPBI >= 10 multiplies meeting-adjacent skill value.
-
-#### 5F: Domain Saturation Index (DSI)
-DSI = (patterns in dominant domain / total active patterns) x 100
-Alert when DSI > 30% AND 3+ patterns in that domain are rising simultaneously.
-**Current:** Evals domain: 9 of 23 patterns = DSI 39% with 4 rising. **DOMAIN OVERLOAD: Evals.** Signals that a single-skill suite (eval ecosystem) could unlock the largest cross-pattern ROI.
 
 ### Phase 6: GENERATE -- Output Ranked Skill Specs
 
@@ -163,18 +155,18 @@ alerts: {bsiLevel, sgiLevel, cascadeInflated}
 
 ---
 
-## Current Build Order (Cycle 35)
+## Current Build Order (Cycle 22)
 
-### TIER 1 -- Build Now (EMERGENCY)
-**P1: eval-design-advisor** -- BSI 97 EMERGENCY (escalated). 10/week, 6 request types, 13 cycles. EvalCon deadline April 2. Composite: 84.
-**P2: meeting-notes-action-extractor** -- Chain head, SGI 85 HIGH, INSTITUTIONAL (13 cycles). 8/week. Composite: 90.
-**P3: eval-enablement-deck-standardizer** -- SGI 92 CRITICAL (13 cycles, Camp AIR added variants). 3 parallel creators. Composite: 87.
+### TIER 1 -- Build Now
+**P1: eval-design-advisor** -- BSI 78 CRITICAL. 10/week, PM sole DRI. Composite: 82.
+**P2: meeting-notes-action-extractor** -- Chain head, SGI 85. 8/week. Composite: 90.
+**P3: eval-enablement-deck-consolidator** -- SGI 92 CRITICAL. 3 creators. Composite: 87.
 
 ### TIER 2 -- High Value
-P4: ado-notification-router (60 cumulative, 93% auto, INSTITUTIONAL) | P5: partner-eval-enablement-pack-generator (39 hrs, 50+ domains) | P6: weekly-status-report-generator (SGI 88) | P7: calendar-triage-advisor (24.75 hrs, MPBI 14)
+P4: ado-notification-router (30/week, 95% auto) | P5: weekly-status-report-generator (SGI 88) | P6: partner-eval-enablement-pack-generator (50+ domains) | P7: calendar-triage-advisor (37+ hrs, MPBI 14)
 
 ### TIER 3 -- Growing
-P8-P13: eval-tooling-faq-bot, voc-routing-assistant, agent-architecture-feasibility-advisor, daily-briefing-generator, evalcon-content-brief-generator, cycle-dashboard-auto-refresh
+P8-P12: eval-tooling-faq-bot, voc-routing-assistant, daily-briefing-generator, conference-submission-coordinator, agent-architecture-advisor
 
 ---
 
@@ -216,4 +208,3 @@ P8-P13: eval-tooling-faq-bot, voc-routing-assistant, agent-architecture-feasibil
 |---------|-------|---------|
 | 1.0-2.5 | 1-21 | Foundation through v2.5: 26 archetypes, BSI, SGI, cascades, pipelines |
 | 3.0.0 | 22 | Complete rewrite. Resolved merge conflicts. 25 phases to 6 (HARVEST CLASSIFY SCORE LIFECYCLE DETECT GENERATE). 5 detectors in unified DETECT phase. Reset to real cycle 22 data (31 signals). Concrete BSI/SGI formulas. 41 principles to 15. All examples from actual WorkIQ data. |
-| 3.1.0 | 35 | Cycle 35 refresh. BSI escalated from 78 CRITICAL to 97 EMERGENCY (13 cycles persistent). Archetypes 21-23 filled (Deadline-Amplified Content Sprint, Partner Enablement Rebuild, Self-Referential Meta-Pattern). Added 5F Domain Saturation Index (DSI) detector — Evals DSI 39% OVERLOAD. Build order updated: 6 Tier-3 candidates, cycle-dashboard-auto-refresh promoted. Updated all current examples from cycle 35 data. |

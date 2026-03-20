@@ -47,9 +47,11 @@ async function main(): Promise<void> {
   display.success("Claude Agent SDK found");
   startFeedServer();
 
-  // Resume cycle count from persisted history
+  // Resume cycle count from persisted history (use max cycleNum, not array length)
   const history = readCycleHistory();
-  let cycleNum = history.cycles.length;
+  let cycleNum = history.cycles.length > 0
+    ? Math.max(...history.cycles.map((c) => c.cycleNum))
+    : 0;
   if (cycleNum > 0) {
     display.success(`Resuming from cycle ${cycleNum}`);
   }

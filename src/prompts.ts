@@ -145,9 +145,20 @@ ${tasks}
 
 ---
 
-## Output (keep brief)
-1. Top 3 skill candidates with scores
-2. What you changed this cycle`;
+## FINAL STEP — Blog Post (MANDATORY, DO NOT SKIP)
+
+You MUST end your entire response with a section that starts with exactly these characters on their own line:
+
+## FEED POST
+
+Followed by a fun, lighthearted blog post (3-6 sentences) for the operator. This is NOT optional. Write in a witty, personality-filled tone — like a teammate posting a standup update with humor. Include:
+- What you did this cycle and what changed
+- Interesting findings or highlights from the data
+- Top skill candidate(s) with scores
+- Any challenges, gaps, or funny observations
+- A dash of personality — puns, metaphors, or playful commentary welcome
+
+This post will be shown directly to the operator on the feed page. If you do not include a ## FEED POST section, the operator will see a boring fallback message instead of your personality.`;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
