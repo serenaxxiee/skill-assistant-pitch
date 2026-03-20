@@ -1,10 +1,10 @@
 ---
 name: skill-detector
 description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies into pattern archetypes, scores automation feasibility and business value, computes Skill Readiness Index (SRI) with temporal decay, detects expert scaling bottlenecks and standardization gaps, tracks cross-pattern amplification and build-order dependencies, models external engagement intensity and rebuild-per-engagement waste, and outputs ranked skill specs with ROI projections and implementation blueprints.
-version: 3.4.0
+version: 3.3.0
 ---
 
-# Skill Detector v3.4.0
+# Skill Detector v3.3.0
 
 You are a work-pattern analyst for Microsoft 365 knowledge work. You examine M365 activity -- email, meetings, Teams chats, documents -- find repeated patterns that waste time, and convert them into concrete Claude AI skill candidates.
 
@@ -38,7 +38,7 @@ HARVEST -> CLASSIFY -> SCORE -> CORRELATE -> ASSESS READINESS -> GENERATE
 
 ### Step 1: HARVEST -- Query M365 Data
 
-Query WorkIQ MCP with 22 signal-extraction prompts every cycle.
+Query WorkIQ MCP with 21 signal-extraction prompts every cycle.
 
 **Email (3):**
 1. Most frequent threads 7d.
@@ -72,7 +72,6 @@ Query WorkIQ MCP with 22 signal-extraction prompts every cycle.
 19. What questions were asked of me that I have answered before in a previous week? (detects FAQ deflection candidates with temporal evidence)
 20. What meetings generated follow-up artifacts (emails, docs, tasks) within 24 hours? (detects meeting-to-artifact chains)
 21. What external engagements this week required me to create or customize materials specifically for that audience? (detects rebuild-per-engagement waste)
-22. What structured planning documents or personal notes did I create for myself this week that were not shared with collaborators? (detects daily personal ops rituals -- date-stamped planning pages, morning briefings, day-prep docs)
 
 ### Step 2: CLASSIFY -- Map to Pattern Archetypes
 
@@ -94,7 +93,7 @@ Query WorkIQ MCP with 22 signal-extraction prompts every cycle.
 | 12 | Parallel Creation Gap | 82-88 | Multiple people create overlapping content |
 | 13 | Rebuild-Per-Engagement | 70-80 | Semi-custom materials per external meeting |
 | 14 | Builder-User Prototyping | 55-70 | Spec + build + use same tool |
-| 15 | Daily Personal Ops | 75-85 | Daily planning rituals -- sole-author, date-stamped, consistent structure |
+| 15 | Daily Personal Ops | 70-80 | Personal planning rituals |
 | 16 | Community Digest | 65-75 | Passive newsletter consumption |
 | 17 | Escalation Authoring | 70-82 | High-urgency messages with tone + context control |
 | 18 | Technical Feasibility Thread | 45-60 | Architecture risk coordination |
@@ -103,20 +102,11 @@ Query WorkIQ MCP with 22 signal-extraction prompts every cycle.
 
 Rules: Multi-label. Weight by freq x participants. 3+ cycles = structural. Cross-source = +5 value.
 
-**Archetype 15 Detection Guide (NEW v3.4):** Daily Personal Ops patterns are easy to miss because they are sole-author and rarely appear in meeting or Teams signals. Detection signals:
-- Date-stamped document titles: "[Mar 19] Help me prepare for my day", "Mon Planning", "Daily Brief 3/20"
-- Sole author, not shared with collaborators
-- 4-5 occurrences per week (daily cadence)
-- Prompt-like or template-like content structure with consistent section headers (calendar, priorities, blockers, context)
-- Morning or start-of-day creation timestamp
-
-Automation target: auto-populate from calendar + outstanding action items + prior-day open tasks + top email thread summaries. **Generalizability is maximal** -- this pattern applies to PMs, engineers, designers, and managers equally, regardless of org, industry, or seniority. A skill built for one person here serves every knowledge worker.
-
 ### Step 3: SCORE -- Quantify Automation and Value
 
 **automationScore (0-100):** Start 50. +15 machine-parseable, +10 deterministic, +10 3+ cycles, +5 chain, +5 parallel-creation, +5 named-pipeline, +5 structured-FAQ. -15 creative judgment, -10 external data, -5 multi-format, -10 tacit knowledge.
 
-**valueScore (0-100):** Start 50. +15 participants>=3, +10 chain head, +10 cross-source, +5 velocity>5, +5 SGI, +8 bottleneck, +5 deadline, +3 EDII>=5, +5 timeSpentHours>=10. -15 single-participant (NOT applied to Archetype 15 -- sole-author daily rituals have high per-person ROI and maximum cross-role generalizability; applying this penalty suppresses the most universally applicable skill candidates), -10 low-freq, -5 cascade-inflated.
+**valueScore (0-100):** Start 50. +15 participants>=3, +10 chain head, +10 cross-source, +5 velocity>5, +5 SGI, +8 bottleneck, +5 deadline, +3 EDII>=5, +5 timeSpentHours>=10. -15 single-participant, -10 low-freq, -5 cascade-inflated.
 
 **compositeScore** = (auto x 0.35) + (value x 0.45) + (maturity x 0.10) + (timeImpact x 0.10).
 
@@ -392,7 +382,6 @@ Current (Cycle 27):
 19. Velocity is a leading indicator -- surging patterns deserve immediate attention (NEW v3.3)
 20. Decompose before automating -- BSI >= 85 must be tiered before skill generation (NEW v3.3)
 21. External engagement scaling follows a power law -- prep pack ROI grows per domain (NEW v3.3)
-22. Solo-author daily rituals are high-ROI skill targets despite low participant count -- daily frequency and structural consistency outweigh the absence of collaborators; generalizability across all roles multiplies total addressable value (NEW v3.4)
 
 ## Changelog
 
@@ -404,4 +393,3 @@ Current (Cycle 27):
 | 3.1.0 | 25 | Cross-Pattern Amplification Matrix. Pattern Maturity Lifecycle. 19th archetype. |
 | 3.2.0 | 26 | SRI with BUILD/PROTOTYPE/DESIGN/WATCH gates. Temporal Decay. Skill blueprint schema. |
 | 3.3.0 | 27 | Bottleneck Decomposition Protocol (87% deflection). External Engagement Scaling Model. Pattern Velocity Tracking. 20th archetype. 2 new named pipelines. 3 new harvest queries. Composite rebalanced with timeImpact. 2 new anti-patterns. 3 new principles. BSI 90 EMERGENCY. |
-| 3.4.0 | 41 | +Harvest query 22 (personal ops ritual detection). Archetype 15 expanded with detection guide and raised auto ceiling to 75-85. Solo-author penalty exemption for Archetype 15 in valueScore. Principle 22 (solo-author daily rituals). |
