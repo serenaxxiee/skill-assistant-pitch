@@ -26,6 +26,13 @@ const CLI_JS = path.join(
 
 const USAGE_PATH = path.join(__dirname, "..", "data", "token-usage.json");
 
+// ── Performance config ──────────────────────────────────────────────
+const REFINE_MODEL = process.env.SKILLUMINATOR_REFINE_MODEL ?? "claude-sonnet-4-6";
+const HARVEST_MODEL = process.env.SKILLUMINATOR_HARVEST_MODEL ?? "claude-sonnet-4-6";
+const REFINE_MAX_TURNS = parseInt(process.env.SKILLUMINATOR_REFINE_MAX_TURNS ?? "25", 10);
+const HARVEST_MAX_TURNS = parseInt(process.env.SKILLUMINATOR_HARVEST_MAX_TURNS ?? "15", 10);
+const SKIP_PR = process.env.SKILLUMINATOR_SKIP_PR === "true";
+
 // ── Token usage tracking ────────────────────────────────────────────
 
 interface PhaseUsage {
@@ -197,7 +204,6 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
     pathToClaudeCodeExecutable: CLI_JS,
     permissionMode: "bypassPermissions",
     allowDangerouslySkipPermissions: true,
-    model: "claude-opus-4-6",
     systemPrompt,
   };
 
@@ -237,6 +243,8 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
         prompt: buildHarvestPrompt(cycleNum),
         options: {
           ...baseOptions,
+          model: HARVEST_MODEL,
+          maxTurns: HARVEST_MAX_TURNS,
           tools: ["Write", "Bash"],
           allowedTools: ["Write", "Bash", WORKIQ_TOOL],
           disallowedTools: ["AskUserQuestion"],
@@ -301,6 +309,8 @@ export async function runCycle(cycleNum: number): Promise<CycleResult> {
       prompt: buildRefinePrompt(cycleNum, steeringInput || undefined),
       options: {
         ...baseOptions,
+        model: REFINE_MODEL,
+        maxTurns: REFINE_MAX_TURNS,
         tools: ["Read", "Write", "Edit", "Bash", "Glob"],
         allowedTools: ["Read", "Write", "Edit", "Bash", "Glob"],
         disallowedTools: ["AskUserQuestion"],
