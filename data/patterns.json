@@ -1,198 +1,189 @@
 {
-  "lastUpdatedCycle": 69,
-  "totalCyclesRun": 69,
+  "lastUpdatedCycle": 70,
+  "totalCyclesRun": 70,
   "weekOf": "2026-03-20",
-  "harvestStatusCycle29": "HARVEST FAILED (agent refinement cycle 29, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId with the same generic error as agent cycle 28. Zero signals harvested. Patterns DB remains at internal cycle 55 state (last successful harvest). No occurrenceCount increments, no new patterns added, no archival decisions triggered this pass. Consecutive agent-cycle harvest failures: 2 (cycles 28-29). All cycle-55 accumulated values carry forward unchanged.",
-  "harvestStatusCycle30": "HARVEST FAILED (agent refinement cycle 30, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #3 (agent cycles 28-30, Skilluminator cycles 54-56). WorkIQ is confirmed ghosting — three separate harvest attempts across three calendar days have all returned identical null payload. OPERATOR ESCALATION RECOMMENDED: (1) Verify M365 Copilot license/auth session; (2) Accept WorkIQ EULA if pending; (3) Check for service outage in M365 admin center. Pattern staleness policy: because failures are source-connectivity failures (not pattern absence), NO pattern trend downgrades triggered this cycle. No occurrenceCount increments. Skilluminator cycle 56 accumulated values carry forward from cycle 55 unchanged. Resurrection registry and spawn registry unchanged. Archival rule suspended pending connectivity restoration.",
-  "harvestStatusCycle57": "HARVEST FAILED (Skilluminator cycle 57, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #4 (agent cycles 28–31, Skilluminator cycles 53–57). WorkIQ has now failed across four separate agent-cycle attempts spanning multiple calendar days. Source-Failure Guard ACTIVE: archival rule FROZEN, all trend downgrades SUSPENDED (Type C Persistent Outage per v2.6 Connectivity Protocol). Operator escalation CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA; (3) Check M365 service health dashboard. Pattern data reflects internal cycle 55 state (last successful harvest). No occurrence counts incremented. All cycle-55 accumulated scores, trends, and velocities carry forward unchanged. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle58": "HARVEST FAILED (Skilluminator cycle 58, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #5 (Skilluminator cycles 53–58). Source-Failure Guard ACTIVE (Type C Persistent Outage): archival rule FROZEN, all trend downgrades SUSPENDED. No occurrenceCount increments. Pattern data continues to reflect internal cycle 55 state (last successful harvest). Operator escalation remains CRITICAL. All cycle-55 accumulated scores, trends, and velocities carry forward unchanged.",
-  "harvestStatusCycle59": "HARVEST FAILED (Skilluminator cycle 59, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #6 (Skilluminator cycles 53–59). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.7 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (4 cycles since last confirmed data). No occurrenceCount increments. Pattern data reflects internal cycle 55 state (last successful harvest). OPERATOR ESCALATION URGENT: (1) Verify M365 Copilot license in admin center; (2) Re-accept WorkIQ EULA; (3) Check M365 Service Health dashboard at admin.microsoft.com. Skill-detector v2.7.0 deployed this cycle — archetype table gap-fill (rows 11–22) and full 15-query harvest list added. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle60": "HARVEST FAILED (Skilluminator cycle 60, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #7 (Skilluminator cycles 53–60). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.7 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (5 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Dashboard v60 deployed this cycle — org-wide section removed (individual patterns only), Action Plan cards with time-cost and automation recommendations added. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle61": "HARVEST FAILED (Skilluminator cycle 61, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #8 (Skilluminator cycles 53–61). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.8 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (6 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v2.8.0 deployed this cycle — First-Run/Cold-Start Protocol added (Phase 0), Adaptive Query Sequencing heuristic added to Phase 1 (follow-the-signal), Query Yield Triage matrix added, Principle 43 and Anti-pattern 23 added. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle62": "HARVEST FAILED (Skilluminator cycle 62, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #9 (Skilluminator cycles 53–62). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.8 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (7 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Dashboard v62 deployed this cycle — expandable pattern rows with trigger examples, automation rationale, and per-pattern time-savings math added to the Skills table. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle63": "HARVEST FAILED (Skilluminator cycle 63, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #10 (Skilluminator cycles 53–63). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.8 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (8 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v2.8.0 deployed this cycle — Phase 0 First-Run/Cold-Start Protocol finalized; Adaptive Query Sequencing heuristic + Query Yield Triage matrix added to Phase 1; Anti-pattern 23 (Query Uniformity Trap) and Principle 43 (Signal Density Routing) added; version header, cycle counts, and ROI line updated to reflect 63-cycle evidence base. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle64": "HARVEST FAILED (Skilluminator cycle 64, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #11 (Skilluminator cycles 53–64). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.8 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (9 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Dashboard v64 deployed this cycle — sortable column headers added to Skills table (click Automation / Value / Hrs / Occ to re-sort); expandable pattern rows added (click any row to reveal Claude prompt examples, automation rationale, and per-pattern time/savings breakdown); filter bar added above table (All / Rising Only / Quick Wins modes). OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle65": "HARVEST FAILED (Skilluminator cycle 65, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #12 (Skilluminator cycles 53–65). Source-Failure Guard ACTIVE (Type C Persistent Outage, v2.9 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (10 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v2.9.0 deployed this cycle — Role-Based Persona Query Library added to Phase 1 HARVEST (PM, Engineer, Designer, Manager, Exec starter queries); Structured Output Card format added to GENERATE phase with role context, Monday CTA, and effort estimate; Connectivity Resilience Tier table added to Cold-Start Protocol; Anti-pattern 24 (Role Assumption Bias) and Principle 44 (Persona-First Querying) added. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA if pending; (3) Check M365 Service Health dashboard at admin.microsoft.com. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle67": "HARVEST FAILED (agent refinement cycle 35 / Skilluminator cycle 67, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #14 (Skilluminator cycles 53–67, agent refinement cycles 28–35). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (12 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v3.1.0 deployed this cycle — SKILL.md file corruption remediated (prior Edit operations caused 10MB character-interleave corruption); Pattern Cluster Map added to GENERATE phase (groups patterns by automation archetype: content-gen, triage/routing, pipeline/transform, coordination); Persistent Outage Mode added as Phase 5 (explicit guidance for 12+ consecutive dry cycles; self-report + stale history blending; honest confidence labeling). Anti-pattern 26 (Corruption-Blind Editing) and Principle 46 (File Health First) added. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA at https://github.com/microsoft/work-iq-mcp; (3) Check M365 Service Health dashboard at admin.microsoft.com; (4) Confirm Claude agent SDK auth session has not expired. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle68": "HARVEST FAILED (agent refinement cycle 36 / Skilluminator cycle 68, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #15 (Skilluminator cycles 53–68, agent refinement cycles 28–36). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (13 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Dashboard v68 deployed this cycle — 'Hours at Risk' horizontal bar chart added (top 10 patterns by cumulative time cost, with automation savings overlay); filter tabs added to skills table (All / Rising / Quick Wins / High Value); all cycle counters updated to 68. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA at https://github.com/microsoft/work-iq-mcp; (3) Check M365 Service Health dashboard at admin.microsoft.com; (4) Confirm Claude agent SDK auth session has not expired. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle69": "HARVEST FAILED (agent refinement cycle 37 / Skilluminator cycle 69, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #16 (Skilluminator cycles 53–69, agent refinement cycles 28–37). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (14 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v3.2.0 deployed this cycle — SKILL.md corruption remediated (file had grown to 9.3MB of character-interleave garbage via repeated Edit operations); v3.2.0 introduces Output Quality improvements: Pattern Quality Scorecard (PQS) rubric, Implementation Effort Matrix (IEM), Skill Skeleton template for generated candidates, and role-aware Monday Morning Action CTAs per card. Anti-pattern 27 (Output Vagueness Trap) and Principle 47 (Concrete-First Output) added. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA at https://github.com/microsoft/work-iq-mcp; (3) Check M365 Service Health dashboard at admin.microsoft.com; (4) Confirm Claude agent SDK auth session has not expired. Resurrection registry and spawn registry unchanged.",
-  "harvestStatusCycle66": "HARVEST FAILED (agent refinement cycle 34 / Skilluminator cycle 66, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #13 (Skilluminator cycles 53–66, agent refinement cycles 28–34). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.4 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (11 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v34.0 deployed this cycle — version header and consecutive-failure commentary updated; all patternRule notes incremented to failure #13; watch-only promotion criteria re-stated (knowledge-forum-facilitation, peer-concept-translation); loop-workspace-collaboration-ops retirement risk note updated to 45+ cycles since last re-confirmation. OPERATOR ESCALATION CRITICAL: (1) Verify M365 Copilot license activation in admin center; (2) Re-accept WorkIQ EULA at https://github.com/microsoft/work-iq-mcp; (3) Check M365 Service Health dashboard at admin.microsoft.com; (4) Confirm Claude agent SDK auth session has not expired. Resurrection registry and spawn registry unchanged.",
+  "harvestStatusCycle70": "HARVEST SUCCEEDED (agent refinement cycle 38 / Skilluminator cycle 70, 2026-03-20) — 25 signals harvested across email (9), meeting (4), teams (7), document (5) sources. CONSECUTIVE FAILURE STREAK BROKEN after 17 failed cycles (53–69). Source-Failure Guard DEACTIVATED. Staleness clock RESET. 25 active patterns updated with fresh occurrence counts, timeSpentHours, and trends. Notable signals: Azure DevOps Notification Triage (freq=25, 25h/wk), Skill Framework Authoring (freq=7, 21h/wk), Eval Tooling Q&A (freq=10, 15h/wk). builder-user-prototype surged to RISING (+15 occ, +30.5h from skill/dashboard authoring). knowledge-forum-facilitation promoted from 'signal' to 'confirmed' maturity (cycle 70 confirms second sighting). Archival rule RE-ACTIVATED for future cycles. Note: signals.json cycleNum field reads 47 (internal counter artifact); all data treated as cycle 70 per agent refinement context.",
+  "harvestStatusCycle69": "HARVEST FAILED (agent refinement cycle 37 / Skilluminator cycle 69, 2026-03-20) — All 15 of 15 WorkIQ queries returned null response and null conversationId. Error: 'An error occurred while processing your request.' CONSECUTIVE FAILURE #16 (Skilluminator cycles 53–69, agent refinement cycles 28–37). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol): archival rule FROZEN, all trend downgrades SUSPENDED, staleness clock running (14 cycles since last confirmed data at cycle 55). No occurrenceCount increments. No new patterns. No trend changes. Pattern data reflects internal cycle 55 state (last successful harvest). Skill-detector v3.2.0 deployed this cycle — SKILL.md corruption remediated (file had grown to 9.3MB of character-interleave garbage via repeated Edit operations); v3.2.0 introduces Output Quality improvements: Pattern Quality Scorecard (PQS) rubric, Implementation Effort Matrix (IEM), Skill Skeleton template for generated candidates, and role-aware Monday Morning Action CTAs per card. Anti-pattern 27 (Output Vagueness Trap) and Principle 47 (Concrete-First Output) added. OPERATOR ESCALATION CRITICAL.",
+  "harvestStatusCycle68": "HARVEST FAILED (agent refinement cycle 36 / Skilluminator cycle 68, 2026-03-20) — CONSECUTIVE FAILURE #15 (Skilluminator cycles 53–68). Source-Failure Guard ACTIVE. Dashboard v68 deployed: Hours at Risk chart added. OPERATOR ESCALATION CRITICAL.",
+  "harvestStatusCycle67": "HARVEST FAILED (agent refinement cycle 35 / Skilluminator cycle 67, 2026-03-20) — CONSECUTIVE FAILURE #14 (Skilluminator cycles 53–67). Source-Failure Guard ACTIVE. Skill-detector v3.1.0 deployed. OPERATOR ESCALATION CRITICAL.",
+  "harvestStatusCycle66": "HARVEST FAILED (agent refinement cycle 34 / Skilluminator cycle 66, 2026-03-20) — CONSECUTIVE FAILURE #13. Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.4 Connectivity Protocol). OPERATOR ESCALATION CRITICAL.",
+  "harvestStatusCycle65": "HARVEST FAILED (Skilluminator cycle 65) — CONSECUTIVE FAILURE #12. Skill-detector v2.9.0 deployed. OPERATOR ESCALATION CRITICAL.",
   "patterns": [
     {
       "patternId": "meeting-notes-action-item-capture",
       "label": "Meeting Notes & Action Item Capture",
       "sources": ["document", "meeting", "email", "teams"],
-      "occurrenceCount": 339,
+      "occurrenceCount": 349,
       "participantCount": 4,
-      "timeSpentHoursTotal": 67.70,
+      "timeSpentHoursTotal": 70.20,
       "automationScore": 91,
       "valueScore": 93,
       "candidateSkillName": "meeting-notes-action-extractor",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 6.16,
       "spawnedChildren": ["transcript-to-loop-ppt-pipeline"],
-      "llmRationale": "Cycle 55: +8 occ from Large Knowledge-Sharing Forums (3), V-Team Syncs (3), Deep Technical Sessions (2). +7.5hr. Loop doc structure (Agenda→Notes→Decisions→Follow-up) re-validated across all meeting types. Chain head for transcript pipeline. STABLE across 55 unbroken cycles."
+      "llmRationale": "Cycle 70: +10 occ from Standing V-Team Syncs (3), 1:1 Design Reviews (3), Cross-Source Meeting→Follow-ups (3), Camp AIR workshop (1). +2.5h. Loop doc structure (Agenda→Notes→Decisions→Follow-up) re-validated. Chain head for transcript pipeline. STABLE across 70 unbroken cycles."
     },
     {
       "patternId": "ado-notification-triage",
       "label": "Azure DevOps Notification Triage",
       "sources": ["email", "teams"],
-      "occurrenceCount": 873,
+      "occurrenceCount": 903,
       "participantCount": 3,
-      "timeSpentHoursTotal": 31.84,
+      "timeSpentHoursTotal": 34.34,
       "automationScore": 95,
       "valueScore": 85,
       "candidateSkillName": "ado-notification-router",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 15.87,
-      "llmRationale": "Cycle 55: +40 occ (ADO Streams freq=30 + Cross-Source DevOps freq=10). +1.5hr. HIGH-VOLUME, LOW-INTERACTION confirmed — 30 notifications/week, 60min handling. DEEP SATURATION at 873 occ. Decomposition into 5 workstream sub-classifiers CRITICAL — overdue 16+ cycles. Highest automation score (95)."
+      "llmRationale": "Cycle 70: +30 occ from ADO Notification Triage email (freq=25, 60min) and ADO Triage & Customer-Ask Deduplication Teams (freq=8, 60min). +2.5h. MASSIVE volume — 25 email notifications + 8 Teams triage threads = 25h/wk manual processing. DEEP SATURATION at 903 occ. Decomposition into 5 workstream sub-classifiers remains CRITICAL. Highest automation score (95)."
     },
     {
       "patternId": "eval-results-analysis-reporting",
       "label": "Agent Eval Setup, Analysis & Standardized Reporting",
       "sources": ["document", "teams", "email", "meeting"],
-      "occurrenceCount": 438,
+      "occurrenceCount": 452,
       "participantCount": 5,
-      "timeSpentHoursTotal": 110.89,
+      "timeSpentHoursTotal": 113.14,
       "automationScore": 85,
       "valueScore": 95,
       "candidateSkillName": "eval-report-synthesizer",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 7.96,
-      "llmRationale": "Cycle 55: +12 occ from Deep Technical Sessions (Golden Evals kickoff, Actionability brainstorm) and Eval Strategy Teams threads (freq=10). +4.0hr. RISING — eval strategy and actionability discussions surging. Highest value score in catalog (95). EvalCon deadline pressure accelerating."
+      "llmRationale": "Cycle 70: +14 occ from EvalCon Planning & Positioning Thread Teams (freq=5, 60min), Eval Tooling Q&A Teams (partial, freq=5), Cross-Source EvalCon Loop (freq=2), Customer Ask→Eval Deep Dive→Guidance (freq=2). +2.25h. RISING — EvalCon April 2 deadline creating urgency. Highest value score in catalog (95). 452 occ across 70 cycles."
     },
     {
       "patternId": "meeting-load-triage",
       "label": "Calendar Overload & Meeting Invite Triage",
       "sources": ["meeting", "email", "teams"],
-      "occurrenceCount": 659,
+      "occurrenceCount": 668,
       "participantCount": 6,
-      "timeSpentHoursTotal": 401.64,
+      "timeSpentHoursTotal": 415.64,
       "automationScore": 77,
       "valueScore": 95,
       "candidateSkillName": "calendar-triage-advisor",
       "firstSeenCycle": 4,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 11.98,
       "engagementIntensityIndex": 34,
       "meetingPortfolioBreadth": 12,
-      "llmRationale": "Cycle 55: +8 occ (Camp AIR 480min single-block + 7 conflict/reschedule chat events). +8.5hr. STABLE. Camp AIR generating daily join-late and conflict signals. MPBI 12. Highest cumulative time in catalog (401 hrs)."
+      "llmRationale": "Cycle 70: +9 occ from Full-Day Camp AIR workshop (1, 480min), Standing V-Team Syncs (3, 150min), Customer Eval Deep Dive (2, 120min), Design Reviews (3, 90min). +14.0h. STABLE. Camp AIR full-day format driving highest single-block time cost. Cumulative 415h is highest in catalog. MPBI 12."
     },
     {
       "patternId": "cross-tool-context-fragmentation",
       "label": "Cross-Tool Issue Thread Fragmentation & Context Loss",
       "sources": ["teams", "email", "document", "meeting"],
-      "occurrenceCount": 326,
+      "occurrenceCount": 334,
       "participantCount": 5,
-      "timeSpentHoursTotal": 51.94,
+      "timeSpentHoursTotal": 52.44,
       "automationScore": 78,
       "valueScore": 92,
       "candidateSkillName": "knowledge-context-consolidator",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 5.93,
       "spawnedChildren": ["skill-library-socialization"],
-      "llmRationale": "Cycle 55: +17 occ from Artifact Exchange in Chat (freq=15, GitHub/SharePoint/zip/dashboard) and Announcement→Chat flow. +1.4hr. STABLE. Chat-as-transport-layer for GitHub repos, ZIPs, Loop components confirmed. Teams is the primary integration hub."
+      "llmRationale": "Cycle 70: +8 occ from File-Share Review Notifications email (freq=4, 15min) and Collaborative Docs via Teams (freq=6, partial). +0.5h. STABLE. File-share notifications confirm fragmentation pattern — artifacts shared via chat remain primary integration mechanism."
     },
     {
       "patternId": "copilot-platform-faq-responder",
       "label": "Copilot / Agent Platform Architecture Q&A",
       "sources": ["teams", "meeting", "email"],
-      "occurrenceCount": 230,
+      "occurrenceCount": 239,
       "participantCount": 6,
-      "timeSpentHoursTotal": 67.80,
+      "timeSpentHoursTotal": 69.80,
       "automationScore": 74,
       "valueScore": 92,
       "candidateSkillName": "copilot-platform-faq-responder",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 4.18,
       "spawnedChildren": ["eval-coaching-and-scoping"],
-      "llmRationale": "Cycle 55: +8 occ from Large Knowledge-Sharing Forums (CAPE Architecture Call, Copilot Studio Office Hours, BizChat Offline Eval Office Hour) and Mentorship sessions. +4.0hr. STABLE — Office Hours sustain baseline. Forum pattern: listen → clarify → redirect to docs/follow-up syncs."
+      "llmRationale": "Cycle 70: +9 occ from Eval Tooling Q&A Teams (partial, freq=5) and Agent Architecture & Cross-Org Strategy Teams (freq=4, 75min). +2.0h. STABLE — A365 cross-org discussions and eval tooling Q&A sustain baseline. Agent architecture strategy discussions now a regular thread."
     },
     {
       "patternId": "training-event-artifact-coordinator",
       "label": "Training / Hackathon / Immersion Event Artifact Coordination",
       "sources": ["meeting", "teams", "document", "email"],
-      "occurrenceCount": 300,
+      "occurrenceCount": 310,
       "participantCount": 7,
-      "timeSpentHoursTotal": 244.36,
+      "timeSpentHoursTotal": 259.11,
       "automationScore": 72,
       "valueScore": 93,
       "candidateSkillName": "event-artifact-coordinator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 5.45,
-      "llmRationale": "Cycle 55: +4 occ (Camp AIR 480min block + Camp AIR→Transcript→Guidance pipeline, freq=3). +10.0hr. RISING — Camp AIR March cohort ongoing. Single immersion block generates 6+ downstream signal types: transcript, Loop, deck, repo, forum reference, guidance artifact."
+      "llmRationale": "Cycle 70: +10 occ from Full-Day Workshop Camp AIR (1, 480min), Camp AIR Logistics Teams (6, 45min), Cross-Source Meeting→Teams→Document (3, 45min). +14.75h. RISING — Camp AIR March cohort ongoing. Single 8h workshop generates 6+ downstream signals: logistics chat, SharePoint links, Loop pages, decks, ZIP prototypes."
     },
     {
       "patternId": "recurring-meeting-agenda-generator",
       "label": "Recurring Meeting Agenda Preparation",
       "sources": ["meeting", "document", "teams"],
-      "occurrenceCount": 268,
+      "occurrenceCount": 274,
       "participantCount": 6,
-      "timeSpentHoursTotal": 82.52,
+      "timeSpentHoursTotal": 84.02,
       "automationScore": 84,
       "valueScore": 86,
       "candidateSkillName": "recurring-agenda-generator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 4.87,
-      "llmRationale": "Cycle 55: +8 occ from V-Team Cross-Org Syncs (3) and Loop Documents as Coordination Hubs (5). +3.5hr. STABLE. 12 confirmed recurring meeting types. Loop docs serve as living agenda/summary hubs, referenced across meetings and chats."
+      "llmRationale": "Cycle 70: +6 occ from Standing V-Team Weekly Sync (3, 150min) and 1:1 & Small-Group Design Reviews (3, 90min). +1.5h. STABLE. 12 confirmed recurring meeting types. V-Team large-attendance format (Project Crucible) and 1:1 design review cadence both confirmed."
     },
     {
       "patternId": "eval-template-scaffolder",
       "label": "Eval Framework Template & Coverage Model Scaffolding",
       "sources": ["document", "teams", "meeting"],
-      "occurrenceCount": 183,
+      "occurrenceCount": 190,
       "participantCount": 4,
-      "timeSpentHoursTotal": 55.46,
+      "timeSpentHoursTotal": 56.46,
       "automationScore": 85,
       "valueScore": 93,
       "candidateSkillName": "eval-template-scaffolder",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 3.33,
       "spawnedChildren": ["customer-enablement-asset-standardization"],
-      "llmRationale": "Cycle 55: +6 occ from Deep Technical Sessions (Golden Evals kickoff) and Eval Frameworks/Tooling Artifacts docs (freq=4, 90min). +2.5hr. STABLE — eval framework artifact creation sustained. Dashboards, scenario libraries, skill-detector packages confirm pattern."
+      "llmRationale": "Cycle 70: +7 occ from Eval Tooling Q&A Teams (tool-call accuracy, citations, DA evals, freq=5) and Customer Ask→Eval Deep Dive→Guidance pipeline (freq=2). +1.0h. STABLE — eval template scaffolding sustained by EvalCon prep and customer enablement demand."
     },
     {
       "patternId": "broadcast-email-classifier",
       "label": "Operational FYI Broadcast Email Classification",
       "sources": ["email"],
-      "occurrenceCount": 216,
+      "occurrenceCount": 219,
       "participantCount": 1,
-      "timeSpentHoursTotal": 13.37,
+      "timeSpentHoursTotal": 13.70,
       "automationScore": 92,
       "valueScore": 43,
       "candidateSkillName": "broadcast-email-classifier",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "mature",
       "velocity": 3.93,
-      "llmRationale": "Cycle 55: +3 occ from Leadership/Program Announcements (EvalCon announcement, internal previews). +0.5hr. STABLE. Broadcast → Teams discussion → action item pattern confirmed. Passive digest intake consistent."
+      "llmRationale": "Cycle 70: +3 occ from EvalCon Coordination & Leadership Nudges email (freq=3, 20min) — forwarded announcements and deadline pressure emails. +0.33h. STABLE. Email→Teams escalation chain confirmed (EvalCon announcement triggers Teams planning thread)."
     },
     {
       "patternId": "stakeholder-fyi-classifier",
@@ -209,75 +200,75 @@
       "trend": "declining",
       "maturity": "mature",
       "velocity": 1.82,
-      "llmRationale": "Cycle 55: +2 occ (weak signal from Leadership Announcements overlap). +0.25hr. DECLINING — crossed 100 occ graduation threshold but volume insufficient to revive. Signal remains vestigial."
+      "llmRationale": "Cycle 70: NO SIGNAL. Not confirmed in this cycle's harvest. DECLINING — last seen cycle 55, absent through cycle 70. Signal absorbed into broadcast-email-classifier. No resurrection trigger observed."
     },
     {
       "patternId": "builder-user-prototype",
       "label": "Self-Authored Tool & Prototype Building",
       "sources": ["document", "teams"],
-      "occurrenceCount": 162,
+      "occurrenceCount": 177,
       "participantCount": 3,
-      "timeSpentHoursTotal": 44.75,
+      "timeSpentHoursTotal": 75.25,
       "automationScore": 70,
       "valueScore": 90,
       "candidateSkillName": "prototype-scaffold-generator",
       "firstSeenCycle": 10,
-      "lastSeenCycle": 55,
-      "trend": "stable",
+      "lastSeenCycle": 70,
+      "trend": "rising",
       "maturity": "institutional",
       "velocity": 2.95,
-      "llmRationale": "Cycle 55: +4 occ from Eval Frameworks and Tooling Artifacts (dashboard, scenario library, skill-detector). +1.5hr. STABLE. Builder-user at scale — skill-detector ZIP packaging is meta-pattern. Dashboards often created post-meeting then shared in Teams."
+      "llmRationale": "Cycle 70: STRONG SURGE. +15 occ from Skill Framework & Automation Artifact Authoring (freq=7, 180min=21h), Cycle Dashboard Creation (freq=3, 90min=4.5h), Agent Runtime & Dev Artifact Management (freq=5, 60min=5h). +30.5h — single-cycle high. RISING. PM is primary author of Skilluminator/dashboard/SKILL.md artifacts. Meta-pattern: builder building automation tools. Automatable scaffold layer could accelerate future artifact creation 3-5x."
     },
     {
       "patternId": "partner-eval-enablement-meetings",
       "label": "Partner & Customer Eval Enablement Coordination",
       "sources": ["meeting", "email", "document", "teams"],
-      "occurrenceCount": 214,
+      "occurrenceCount": 218,
       "participantCount": 5,
-      "timeSpentHoursTotal": 101.64,
+      "timeSpentHoursTotal": 105.14,
       "automationScore": 74,
       "valueScore": 91,
       "candidateSkillName": "partner-eval-enablement-pack-generator",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 3.89,
-      "llmRationale": "Cycle 55: +7 occ from Customer/Field Coordination Threads (freq=5) and Customer Signal→Meeting→Toolkit pipeline (freq=2). +2.25hr. RISING — customer eval pain points, actionability brainstorm, playbook/prototype/dashboard creation chain validated."
+      "llmRationale": "Cycle 70: +4 occ from Customer/Partner Eval Deep Dive (freq=2, 120min) and Cross-Source Customer Ask→Eval Deep Dive→Tooling Guidance (freq=2, 90min). +3.5h. RISING — customer eval pain points and tooling deep dives driving meeting demand. Use-cases, screen share issues, eval tooling deep dive pattern confirmed."
     },
     {
       "patternId": "fragmented-action-item-tracking",
       "label": "Action Items Tracked Across Fragmented Systems",
       "sources": ["teams", "meeting", "email", "document"],
-      "occurrenceCount": 123,
+      "occurrenceCount": 126,
       "participantCount": 4,
-      "timeSpentHoursTotal": 19.05,
+      "timeSpentHoursTotal": 19.55,
       "automationScore": 82,
       "valueScore": 88,
       "candidateSkillName": "unified-action-item-tracker",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 2.24,
-      "llmRationale": "Cycle 55: +3 occ from V-Team Cross-Org Syncs (status review, gap identification, ownership assignment). +0.75hr. STABLE. No unified tracker remains core gap — status review + gap ID + ownership assignment cycle repeats weekly."
+      "llmRationale": "Cycle 70: +3 occ from Standing V-Team Weekly Sync (status review, gap ID, ownership). +0.5h. STABLE. No unified tracker remains core gap — status review + gap ID + ownership assignment cycle repeats weekly across Loop, ADO, Teams."
     },
     {
       "patternId": "weekly-status-report-generation",
       "label": "Weekly Project Status Report Generation",
       "sources": ["document", "email", "teams"],
-      "occurrenceCount": 152,
+      "occurrenceCount": 157,
       "participantCount": 4,
-      "timeSpentHoursTotal": 43.64,
+      "timeSpentHoursTotal": 44.14,
       "automationScore": 87,
       "valueScore": 90,
       "candidateSkillName": "weekly-status-report-generator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 2.76,
-      "llmRationale": "Cycle 55: +5 occ from V-Team Syncs and cross-org alignment meetings. +1.0hr. RISING — 5-format parallel creation sustained. Project Crucible, CAPE Compete, Customer Engagement Sync all require weekly status artifacts."
+      "llmRationale": "Cycle 70: +5 occ from Standing V-Team Syncs (3, Project Crucible large-attendance) and EvalCon Planning Teams threads (2). +0.5h. RISING — 5-format parallel creation sustained. V-Team Cross-Org Syncs confirmed primary trigger. EvalCon adds new status reporting surface."
     },
     {
       "patternId": "action-owner-chasing",
@@ -294,162 +285,162 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 4.29,
-      "llmRationale": "ARCHIVED. 36 consecutive cycles absent (last seen cycle 19). Signal fully absorbed into fragmented-action-item-tracking and post-meeting-external-followup-drafter."
+      "llmRationale": "ARCHIVED. 51+ consecutive cycles absent (last seen cycle 19). Signal fully absorbed into fragmented-action-item-tracking and post-meeting-external-followup-drafter."
     },
     {
       "patternId": "voc-customer-ask-dedup-routing",
       "label": "VoC / Customer Ask Deduplication & Routing",
       "sources": ["teams", "email"],
-      "occurrenceCount": 109,
+      "occurrenceCount": 117,
       "participantCount": 4,
-      "timeSpentHoursTotal": 17.45,
+      "timeSpentHoursTotal": 18.45,
       "automationScore": 84,
       "valueScore": 85,
       "candidateSkillName": "voc-ask-deduplicator",
       "firstSeenCycle": 1,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 1.98,
       "spawnedChildren": ["customer-signal-to-guidance-pipeline"],
-      "llmRationale": "Cycle 55: +5 occ from Customer/Field Coordination Threads (eval adoption, CRM, customer playbooks). +0.75hr. STABLE. PM functions as informal routing layer between field, PM, and PG. Often escalates into 1:1 or small group meetings."
+      "llmRationale": "Cycle 70: +8 occ from ADO Triage & Customer-Ask Deduplication Teams (freq=8, 60min — 'Is this a duplicate?' decision loop, Eval-DRI channel). +1.0h. STABLE. PM functions as informal routing layer between field, PM, and PG."
     },
     {
       "patternId": "redundant-deck-creation",
       "label": "Redundant Deck Creation & Consolidation",
       "sources": ["document", "meeting", "teams"],
-      "occurrenceCount": 111,
+      "occurrenceCount": 116,
       "participantCount": 4,
-      "timeSpentHoursTotal": 44.15,
+      "timeSpentHoursTotal": 45.15,
       "automationScore": 72,
       "valueScore": 88,
       "candidateSkillName": "deck-content-reuse-advisor",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 2.02,
-      "llmRationale": "Cycle 55: +3 occ from Presentation Decks (pitch decks, enablement decks, Camp AIR materials). +1.25hr. STABLE — Camp AIR and enablement materials sustain pattern. Pattern: deck draft → review in chat → reuse across meetings."
+      "llmRationale": "Cycle 70: +5 occ from 1:1 Design Reviews (deck reviews with manager, freq=3) and Camp AIR Logistics (decks/prototypes shared, freq=2). +1.0h. STABLE — Camp AIR enablement materials and manager review decks sustain pattern."
     },
     {
       "patternId": "post-meeting-external-followup-drafter",
       "label": "External Stakeholder Post-Meeting Recap & Escalation",
       "sources": ["email", "meeting"],
-      "occurrenceCount": 158,
+      "occurrenceCount": 160,
       "participantCount": 5,
-      "timeSpentHoursTotal": 38.56,
+      "timeSpentHoursTotal": 39.06,
       "automationScore": 85,
       "valueScore": 87,
       "candidateSkillName": "external-meeting-followup-drafter",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 2.87,
-      "llmRationale": "Cycle 55: +5 occ from V-Team Syncs (status review, ownership) and Customer/Field Coordination threads (eval adoption escalations). +0.75hr. RISING. Three urgency tiers active: standard follow-up, urgent technical escalation, urgent administrative escalation."
+      "llmRationale": "Cycle 70: +2 occ from Customer/Partner Eval Deep Dive (follow-up recaps required post-meeting, freq=2). +0.5h. RISING. Three urgency tiers confirmed: standard follow-up, urgent technical escalation, urgent administrative escalation."
     },
     {
       "patternId": "transcript-to-loop-ppt-pipeline",
       "label": "Meeting Transcript to Summary to Loop/PPT Pipeline",
       "sources": ["meeting", "document", "teams"],
-      "occurrenceCount": 174,
+      "occurrenceCount": 185,
       "participantCount": 4,
-      "timeSpentHoursTotal": 53.73,
+      "timeSpentHoursTotal": 56.23,
       "automationScore": 88,
       "valueScore": 85,
       "candidateSkillName": "meeting-summary-publisher",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 3.16,
-      "llmRationale": "Cycle 55: +9 occ from Camp AIR block, Loop Docs as Coordination Hubs (freq=5), and Camp AIR→Transcript→Guidance pipeline (freq=3). +4.0hr. RISING — Loop doc hub pattern and Camp AIR transcript pipeline both reinforcing. Referenced later in other forums validates pipeline."
+      "llmRationale": "Cycle 70: +11 occ from Camp AIR Logistics Teams (SharePoint links, Loop pages, freq=4), Collaborative Docs via Teams (Loop pages, decks, freq=4), Cross-Source Meeting→Teams→Document (freq=3). +2.5h. RISING — Loop doc hub pattern and Camp AIR transcript pipeline reinforcing. Artifacts shared in Teams confirm pipeline end-to-end."
     },
     {
       "patternId": "access-governance-alert-classifier",
       "label": "Access Governance & Compliance Alert Triage",
       "sources": ["email"],
-      "occurrenceCount": 136,
+      "occurrenceCount": 146,
       "participantCount": 1,
-      "timeSpentHoursTotal": 7.08,
+      "timeSpentHoursTotal": 8.16,
       "automationScore": 91,
       "valueScore": 55,
       "candidateSkillName": "access-governance-alert-router",
       "firstSeenCycle": 3,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "mature",
       "velocity": 2.47,
-      "llmRationale": "Cycle 55: +4 occ from Security/Compliance Alerts (Purview, DLP, credentials/keys file alerts). +0.33hr. STABLE. Pattern: alert → manual file fix. Six alert categories: File Blocked, Admin elevation/revocation, Loop workspace, Purview, Digital Compliance, Open Source."
+      "llmRationale": "Cycle 70: +10 occ from Security & DLP Compliance Remediation email (freq=6, Purview/DLP/credentials/cert key alerts) and Cross-Source Security Alert→File Edit→Compliance Resolution (freq=4). +1.08h. STABLE. Pattern: Purview alert → open file → sanitize → re-save confirmed. Six alert categories active."
     },
     {
       "patternId": "team-status-standardization-gap",
       "label": "Team Status Update Parallel Creation & Standardization Gap",
       "sources": ["document", "teams", "email"],
-      "occurrenceCount": 104,
+      "occurrenceCount": 107,
       "participantCount": 4,
-      "timeSpentHoursTotal": 31.92,
+      "timeSpentHoursTotal": 32.42,
       "automationScore": 87,
       "valueScore": 87,
       "candidateSkillName": "team-status-template-generator",
       "firstSeenCycle": 11,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "institutional",
       "velocity": 1.89,
-      "llmRationale": "Cycle 55: +3 occ from V-Team Syncs. +0.5hr. STABLE. GRADUATED — crossed 100 occ threshold. SGI CRITICAL. 5 parallel formats active. Weekly status creation still fragmented across Loop, Teams, email."
+      "llmRationale": "Cycle 70: +3 occ from Standing V-Team Syncs (status review across Loop, Teams, email). +0.5h. STABLE. GRADUATED — crossed 100 occ threshold. SGI CRITICAL. 5 parallel formats active."
     },
     {
       "patternId": "eval-coaching-and-scoping",
       "label": "Eval Design Scoping & Edge-Case Expert Coaching",
       "sources": ["teams", "meeting"],
-      "occurrenceCount": 228,
+      "occurrenceCount": 243,
       "participantCount": 4,
-      "timeSpentHoursTotal": 53.34,
+      "timeSpentHoursTotal": 57.09,
       "automationScore": 84,
       "valueScore": 92,
       "candidateSkillName": "eval-design-advisor",
       "firstSeenCycle": 9,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 4.15,
       "bottleneckSeverityIndex": 87,
-      "llmRationale": "Cycle 55: +15 occ from Deep Technical Sessions (Golden Evals/Actionability), Eval Strategy Teams threads (SEVAL, agent quality, orchestration, freq=10), and Mentorship sessions (eval-driven development concepts, freq=5). +3.5hr. RISING. BSI 87 CRITICAL. PM sole DRI for 8+ request types. Pattern: question → conceptual answer → link to repo/doc → offer meeting."
+      "llmRationale": "Cycle 70: +15 occ from Eval Tooling Q&A Teams (CLI, DA evals, telemetry, tool-call accuracy, citations, IcM escalation, freq=10), EvalCon Planning Teams (freq=3), Cross-Source Customer Ask→Eval Deep Dive (freq=2). +3.75h. RISING. BSI 87 CRITICAL. EvalCon April 2 deadline creating coaching surge. PM sole DRI for 8+ request types."
     },
     {
       "patternId": "presentation-narrative-framing",
       "label": "Presentation Narrative Shaping & Framing Requests",
       "sources": ["teams", "document"],
-      "occurrenceCount": 55,
+      "occurrenceCount": 57,
       "participantCount": 4,
-      "timeSpentHoursTotal": 19.51,
+      "timeSpentHoursTotal": 20.01,
       "automationScore": 70,
       "valueScore": 75,
       "candidateSkillName": "presentation-narrative-framer",
       "firstSeenCycle": 11,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "stable",
       "maturity": "confirmed",
       "velocity": 1.00,
-      "llmRationale": "Cycle 55: +3 occ from Presentation Decks (pitch deck, enablement deck, Camp AIR materials). +1.25hr. STABLE. Pattern: deck draft → review in chat → reuse. Consistent low-velocity signal."
+      "llmRationale": "Cycle 70: +2 occ from 1:1 and Small-Group Design Reviews (deck review with manager, process gaps, sequencing). +0.5h. STABLE. Consistent low-velocity signal — deck narrative review in 1:1 context."
     },
     {
       "patternId": "skill-library-socialization",
       "label": "AI Skill Library Artifact Socialization & Evangelism",
       "sources": ["teams", "document"],
-      "occurrenceCount": 113,
+      "occurrenceCount": 118,
       "participantCount": 3,
-      "timeSpentHoursTotal": 12.42,
+      "timeSpentHoursTotal": 13.42,
       "automationScore": 77,
       "valueScore": 80,
       "candidateSkillName": "skill-library-socializer",
       "firstSeenCycle": 8,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "institutional",
       "velocity": 2.05,
-      "llmRationale": "Cycle 55: +5 occ from Artifact Exchange in Chat (GitHub repos, SharePoint links, zips, dashboards, repo links, freq=15). +0.75hr. RISING. Teams confirmed as primary distribution hub. Chat acts as transport layer for artifact socialization."
+      "llmRationale": "Cycle 70: +5 occ from Skill Framework & Automation Artifact Authoring (Skilluminator, SKILL.md, dashboard.html, ZIP packages, freq=5 shared instances). +1.0h. RISING. Teams confirmed as primary distribution hub for skill artifacts. Skilluminator-to-Teams sharing chain validated."
     },
     {
       "patternId": "solution-library-pipeline-ops",
@@ -466,43 +457,43 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 1.27,
-      "llmRationale": "ARCHIVED. 36 consecutive cycles absent (last seen cycle 19). Resurrection condition not met."
+      "llmRationale": "ARCHIVED. 51+ consecutive cycles absent (last seen cycle 19). Resurrection condition not met."
     },
     {
       "patternId": "customer-enablement-asset-standardization",
       "label": "Customer Enablement Materials Rebuilt Per Engagement",
       "sources": ["document", "teams", "meeting"],
-      "occurrenceCount": 36,
+      "occurrenceCount": 38,
       "participantCount": 4,
-      "timeSpentHoursTotal": 7.25,
+      "timeSpentHoursTotal": 7.75,
       "automationScore": 79,
       "valueScore": 86,
       "candidateSkillName": "customer-enablement-pack-generator",
       "firstSeenCycle": 18,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "confirmed",
       "velocity": 0.65,
       "spawnedFrom": "eval-template-scaffolder",
-      "llmRationale": "Cycle 55: +3 occ from Customer/Field Coordination Threads (playbooks, CRM, field coordination). +0.5hr. RISING — Customer-facing playbook demand confirmed. Customer/field threads often escalate into small group meetings to build enablement artifacts."
+      "llmRationale": "Cycle 70: +2 occ from Cross-Source Customer Ask→Eval Deep Dive→Tooling Guidance pipeline (customer pain points → meeting → shared artifacts). +0.5h. RISING — Customer-facing playbook demand confirmed. Customer/field threads escalate into artifact creation."
     },
     {
       "patternId": "customer-signal-to-guidance-pipeline",
       "label": "Customer Signal to Internal Alignment to Guidance Artifact",
       "sources": ["meeting", "email", "teams", "document"],
-      "occurrenceCount": 26,
+      "occurrenceCount": 28,
       "participantCount": 4,
-      "timeSpentHoursTotal": 10.00,
+      "timeSpentHoursTotal": 10.50,
       "automationScore": 75,
       "valueScore": 81,
       "candidateSkillName": "customer-signal-synthesizer",
       "firstSeenCycle": 18,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "confirmed",
       "velocity": 0.47,
       "spawnedFrom": "voc-customer-ask-dedup-routing",
-      "llmRationale": "Cycle 55: +2 occ from Cross-Source Customer Signal→Meeting→Toolkit pipeline (customer eval pain points → actionability brainstorm → playbooks/prototypes/dashboards). +1.5hr. RISING. Pipeline validated: customer signal → DRI routing → guidance artifact creation."
+      "llmRationale": "Cycle 70: +2 occ from Cross-Source Customer Ask→Eval Deep Dive Meeting→Tooling Guidance (chat planning → meeting → shared docs/links). +0.5h. RISING. Pipeline validated: customer signal → DRI routing → guidance artifact creation."
     },
     {
       "patternId": "daily-briefing-generator",
@@ -519,41 +510,41 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 5.00,
-      "llmRationale": "ARCHIVED. 34 consecutive cycles absent (last seen cycle 21). Resurrected at cycle 21 after 13 dormant cycles, confirmed through cycle 26, then declined. No signal cycles 27-55."
+      "llmRationale": "ARCHIVED. 49+ consecutive cycles absent (last seen cycle 21). Resurrected at cycle 21 after 13 dormant cycles, confirmed through cycle 26, then declined. No signal cycles 27-70."
     },
     {
       "patternId": "knowledge-forum-facilitation",
       "label": "Knowledge Forum Facilitation & Expert Redirect",
       "sources": ["meeting", "teams"],
-      "occurrenceCount": 3,
+      "occurrenceCount": 7,
       "participantCount": 4,
-      "timeSpentHoursTotal": 3.00,
+      "timeSpentHoursTotal": 5.50,
       "automationScore": 70,
       "valueScore": 78,
       "candidateSkillName": "knowledge-forum-facilitator",
       "firstSeenCycle": 55,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
-      "maturity": "signal",
+      "maturity": "confirmed",
       "velocity": 0.05,
-      "llmRationale": "NEW cycle 55. CAPE Architecture Call, Copilot Studio Office Hours, BizChat Offline Eval Office Hour (freq=3, 180min). Repeating facilitation pattern: listen → ask clarifying questions → redirect to docs or follow-up sync. High participant reach. Distinct from copilot-platform-faq-responder (async Q&A) — this is synchronous forum facilitation at scale. Automatable as pre-built answer packs + redirect decision tree."
+      "llmRationale": "Cycle 70: +4 occ from Agent Architecture & Cross-Org Strategy Teams (freq=4, strategy-level forums) and Eval Tooling Q&A Teams (facilitating clarifying Q&A). +2.5h. PROMOTED to 'confirmed' maturity (2nd confirmed sighting). Synchronous forum facilitation at scale: listen → clarify → redirect to docs. Distinct from copilot-platform-faq-responder (async). Pre-built answer packs + redirect decision tree remains best automation path."
     },
     {
       "patternId": "peer-concept-translation",
       "label": "Peer Mentorship & Concept Translation to Mental Models",
       "sources": ["teams", "meeting"],
-      "occurrenceCount": 5,
+      "occurrenceCount": 6,
       "participantCount": 3,
-      "timeSpentHoursTotal": 1.00,
+      "timeSpentHoursTotal": 1.50,
       "automationScore": 65,
       "valueScore": 82,
       "candidateSkillName": "concept-translation-guide",
       "firstSeenCycle": 55,
-      "lastSeenCycle": 55,
+      "lastSeenCycle": 70,
       "trend": "rising",
       "maturity": "signal",
       "velocity": 0.09,
-      "llmRationale": "NEW cycle 55. Mentorship and Peer Sense-Making signal (Teams, freq=5, 60min). Pattern: colleague confusion about eval-driven development/orchestration/models → expert explains → shared mental model forms. HIGH VALUE: scales rare expertise to broader team. Adjacent to eval-coaching-and-scoping but distinct — this is conceptual translation for non-experts. Automation: codified concept explainers with worked examples."
+      "llmRationale": "Cycle 70: +1 occ from 1:1 Design Reviews (process gaps, eval-driven development sequencing concepts). +0.5h. Still 'signal' maturity — low frequency. Pattern confirmed present: conceptual translation in 1:1 context. Needs 2+ more cycles with higher frequency to promote."
     },
     {
       "patternId": "approval-workflow-orchestrator",
@@ -570,7 +561,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 2.30,
-      "llmRationale": "ARCHIVED. 43+ consecutive cycles absent."
+      "llmRationale": "ARCHIVED. 58+ consecutive cycles absent."
     },
     {
       "patternId": "incident-doc-coordinator",
@@ -587,7 +578,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 18.00,
-      "llmRationale": "ARCHIVED. 45+ consecutive cycles absent."
+      "llmRationale": "ARCHIVED. 60+ cycles absent."
     },
     {
       "patternId": "newsletter-content-production",
@@ -604,7 +595,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 1.00,
-      "llmRationale": "ARCHIVED. 45+ consecutive cycles absent."
+      "llmRationale": "ARCHIVED. 60+ cycles absent."
     },
     {
       "patternId": "recruiting-interview-coordinator",
@@ -621,7 +612,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 12.00,
-      "llmRationale": "ARCHIVED. 47+ consecutive cycles absent."
+      "llmRationale": "ARCHIVED. 62+ consecutive cycles absent."
     },
     {
       "patternId": "escalation-email-drafter",
@@ -638,7 +629,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 2.00,
-      "llmRationale": "ARCHIVED. 50+ cycles absent. Signal absorbed into post-meeting-external-followup-drafter."
+      "llmRationale": "ARCHIVED. 65+ cycles absent. Signal absorbed into post-meeting-external-followup-drafter."
     },
     {
       "patternId": "review-prep-deck-maintenance",
@@ -655,7 +646,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 2.00,
-      "llmRationale": "ARCHIVED. 50+ cycles absent."
+      "llmRationale": "ARCHIVED. 65+ cycles absent."
     },
     {
       "patternId": "link-access-management",
@@ -706,7 +697,7 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 1.67,
-      "llmRationale": "ARCHIVED. 49+ cycles absent."
+      "llmRationale": "ARCHIVED. 64+ cycles absent."
     },
     {
       "patternId": "ffv2-rollout-runbook-assistant",
@@ -723,36 +714,36 @@
       "trend": "archived",
       "maturity": "archived",
       "velocity": 1.67,
-      "llmRationale": "ARCHIVED. 52+ cycles absent. FFv2 rollout matured."
+      "llmRationale": "ARCHIVED. 67+ cycles absent. FFv2 rollout matured."
     }
   ],
   "orgWidePatterns": [
-    { "patternId": "meeting-notes-action-item-capture",         "compositeScore": 92, "participantCount": 4, "timeSpentHoursTotal": 67.70,  "cycleConfirmed": 55 },
-    { "patternId": "eval-results-analysis-reporting",           "compositeScore": 90, "participantCount": 5, "timeSpentHoursTotal": 110.89, "cycleConfirmed": 55 },
-    { "patternId": "ado-notification-triage",                   "compositeScore": 90, "participantCount": 3, "timeSpentHoursTotal": 31.84,  "cycleConfirmed": 55 },
-    { "patternId": "eval-template-scaffolder",                  "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 55.46,  "cycleConfirmed": 55 },
-    { "patternId": "weekly-status-report-generation",           "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 43.64,  "cycleConfirmed": 55 },
-    { "patternId": "eval-coaching-and-scoping",                 "compositeScore": 88, "participantCount": 4, "timeSpentHoursTotal": 53.34,  "cycleConfirmed": 55 },
-    { "patternId": "team-status-standardization-gap",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 31.92,  "cycleConfirmed": 55 },
-    { "patternId": "transcript-to-loop-ppt-pipeline",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 53.73,  "cycleConfirmed": 55 },
-    { "patternId": "meeting-load-triage",                       "compositeScore": 86, "participantCount": 6, "timeSpentHoursTotal": 401.64, "cycleConfirmed": 55 },
-    { "patternId": "post-meeting-external-followup-drafter",    "compositeScore": 86, "participantCount": 5, "timeSpentHoursTotal": 38.56,  "cycleConfirmed": 55 },
-    { "patternId": "fragmented-action-item-tracking",           "compositeScore": 85, "participantCount": 4, "timeSpentHoursTotal": 19.05,  "cycleConfirmed": 55 },
-    { "patternId": "recurring-meeting-agenda-generator",        "compositeScore": 85, "participantCount": 6, "timeSpentHoursTotal": 82.52,  "cycleConfirmed": 55 },
-    { "patternId": "cross-tool-context-fragmentation",          "compositeScore": 85, "participantCount": 5, "timeSpentHoursTotal": 51.94,  "cycleConfirmed": 55 },
-    { "patternId": "voc-customer-ask-dedup-routing",            "compositeScore": 85, "participantCount": 4, "timeSpentHoursTotal": 17.45,  "cycleConfirmed": 55 },
-    { "patternId": "copilot-platform-faq-responder",            "compositeScore": 83, "participantCount": 6, "timeSpentHoursTotal": 67.80,  "cycleConfirmed": 55 },
-    { "patternId": "partner-eval-enablement-meetings",          "compositeScore": 83, "participantCount": 5, "timeSpentHoursTotal": 101.64, "cycleConfirmed": 55 },
-    { "patternId": "training-event-artifact-coordinator",       "compositeScore": 83, "participantCount": 7, "timeSpentHoursTotal": 244.36, "cycleConfirmed": 55 },
-    { "patternId": "builder-user-prototype",                    "compositeScore": 80, "participantCount": 3, "timeSpentHoursTotal": 44.75,  "cycleConfirmed": 55 },
-    { "patternId": "redundant-deck-creation",                   "compositeScore": 80, "participantCount": 4, "timeSpentHoursTotal": 44.15,  "cycleConfirmed": 55 },
-    { "patternId": "customer-enablement-asset-standardization", "compositeScore": 83, "participantCount": 4, "timeSpentHoursTotal": 7.25,   "cycleConfirmed": 55 },
-    { "patternId": "skill-library-socialization",               "compositeScore": 79, "participantCount": 3, "timeSpentHoursTotal": 12.42,  "cycleConfirmed": 55 },
-    { "patternId": "customer-signal-to-guidance-pipeline",      "compositeScore": 78, "participantCount": 4, "timeSpentHoursTotal": 10.00,  "cycleConfirmed": 55 },
-    { "patternId": "access-governance-alert-classifier",        "compositeScore": 73, "participantCount": 1, "timeSpentHoursTotal": 7.08,   "cycleConfirmed": 55 },
-    { "patternId": "knowledge-forum-facilitation",              "compositeScore": 74, "participantCount": 4, "timeSpentHoursTotal": 3.00,   "cycleConfirmed": 55 },
-    { "patternId": "presentation-narrative-framing",            "compositeScore": 73, "participantCount": 4, "timeSpentHoursTotal": 19.51,  "cycleConfirmed": 55 },
-    { "patternId": "peer-concept-translation",                  "compositeScore": 74, "participantCount": 3, "timeSpentHoursTotal": 1.00,   "cycleConfirmed": 55 },
+    { "patternId": "meeting-notes-action-item-capture",         "compositeScore": 92, "participantCount": 4, "timeSpentHoursTotal": 70.20,  "cycleConfirmed": 70 },
+    { "patternId": "eval-results-analysis-reporting",           "compositeScore": 90, "participantCount": 5, "timeSpentHoursTotal": 113.14, "cycleConfirmed": 70 },
+    { "patternId": "ado-notification-triage",                   "compositeScore": 90, "participantCount": 3, "timeSpentHoursTotal": 34.34,  "cycleConfirmed": 70 },
+    { "patternId": "eval-template-scaffolder",                  "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 56.46,  "cycleConfirmed": 70 },
+    { "patternId": "weekly-status-report-generation",           "compositeScore": 89, "participantCount": 4, "timeSpentHoursTotal": 44.14,  "cycleConfirmed": 70 },
+    { "patternId": "eval-coaching-and-scoping",                 "compositeScore": 88, "participantCount": 4, "timeSpentHoursTotal": 57.09,  "cycleConfirmed": 70 },
+    { "patternId": "team-status-standardization-gap",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 32.42,  "cycleConfirmed": 70 },
+    { "patternId": "transcript-to-loop-ppt-pipeline",           "compositeScore": 87, "participantCount": 4, "timeSpentHoursTotal": 56.23,  "cycleConfirmed": 70 },
+    { "patternId": "meeting-load-triage",                       "compositeScore": 86, "participantCount": 6, "timeSpentHoursTotal": 415.64, "cycleConfirmed": 70 },
+    { "patternId": "post-meeting-external-followup-drafter",    "compositeScore": 86, "participantCount": 5, "timeSpentHoursTotal": 39.06,  "cycleConfirmed": 70 },
+    { "patternId": "fragmented-action-item-tracking",           "compositeScore": 85, "participantCount": 4, "timeSpentHoursTotal": 19.55,  "cycleConfirmed": 70 },
+    { "patternId": "recurring-meeting-agenda-generator",        "compositeScore": 85, "participantCount": 6, "timeSpentHoursTotal": 84.02,  "cycleConfirmed": 70 },
+    { "patternId": "cross-tool-context-fragmentation",          "compositeScore": 85, "participantCount": 5, "timeSpentHoursTotal": 52.44,  "cycleConfirmed": 70 },
+    { "patternId": "voc-customer-ask-dedup-routing",            "compositeScore": 85, "participantCount": 4, "timeSpentHoursTotal": 18.45,  "cycleConfirmed": 70 },
+    { "patternId": "copilot-platform-faq-responder",            "compositeScore": 83, "participantCount": 6, "timeSpentHoursTotal": 69.80,  "cycleConfirmed": 70 },
+    { "patternId": "partner-eval-enablement-meetings",          "compositeScore": 83, "participantCount": 5, "timeSpentHoursTotal": 105.14, "cycleConfirmed": 70 },
+    { "patternId": "training-event-artifact-coordinator",       "compositeScore": 83, "participantCount": 7, "timeSpentHoursTotal": 259.11, "cycleConfirmed": 70 },
+    { "patternId": "builder-user-prototype",                    "compositeScore": 80, "participantCount": 3, "timeSpentHoursTotal": 75.25,  "cycleConfirmed": 70 },
+    { "patternId": "redundant-deck-creation",                   "compositeScore": 80, "participantCount": 4, "timeSpentHoursTotal": 45.15,  "cycleConfirmed": 70 },
+    { "patternId": "customer-enablement-asset-standardization", "compositeScore": 83, "participantCount": 4, "timeSpentHoursTotal": 7.75,   "cycleConfirmed": 70 },
+    { "patternId": "skill-library-socialization",               "compositeScore": 79, "participantCount": 3, "timeSpentHoursTotal": 13.42,  "cycleConfirmed": 70 },
+    { "patternId": "customer-signal-to-guidance-pipeline",      "compositeScore": 78, "participantCount": 4, "timeSpentHoursTotal": 10.50,  "cycleConfirmed": 70 },
+    { "patternId": "access-governance-alert-classifier",        "compositeScore": 73, "participantCount": 1, "timeSpentHoursTotal": 8.16,   "cycleConfirmed": 70 },
+    { "patternId": "knowledge-forum-facilitation",              "compositeScore": 74, "participantCount": 4, "timeSpentHoursTotal": 5.50,   "cycleConfirmed": 70 },
+    { "patternId": "presentation-narrative-framing",            "compositeScore": 73, "participantCount": 4, "timeSpentHoursTotal": 20.01,  "cycleConfirmed": 70 },
+    { "patternId": "peer-concept-translation",                  "compositeScore": 74, "participantCount": 3, "timeSpentHoursTotal": 1.50,   "cycleConfirmed": 70 },
     { "patternId": "stakeholder-fyi-classifier",                "compositeScore": 78, "participantCount": 5, "timeSpentHoursTotal": 10.94,  "cycleConfirmed": 55 }
   ],
   "spawnRegistry": {
@@ -775,8 +766,8 @@
         "dormantCycles": 13,
         "currentStatus": "archived",
         "lastSeenCycle": 21,
-        "triggerSignal": "Daily Personal Day-Prep Planning Page freq=5 ([Mar 19] Help me prepare for my day)",
-        "reason": "PM resumed structured daily planning artifact after 13 dormant cycles. Confirmed cycles 21-26. Absent cycles 27-55 — ARCHIVED at cycle 55."
+        "triggerSignal": "Daily Personal Day-Prep Planning Page freq=5",
+        "reason": "PM resumed structured daily planning artifact after 13 dormant cycles. Confirmed cycles 21-26. Absent cycles 27-70 — ARCHIVED."
       },
       {
         "patternId": "solution-library-pipeline-ops",
@@ -786,16 +777,16 @@
         "currentStatus": "archived",
         "lastSeenCycle": 19,
         "triggerSignal": "Weekly Solution Library Check-In Monday 9:05-9:30 AM",
-        "reason": "Recurring Monday meeting restored at cycle 21; absent again through cycle 55. ARCHIVED."
+        "reason": "Recurring Monday meeting restored at cycle 21; absent again through cycle 70. ARCHIVED."
       }
     ]
   },
   "skillGeneratorInput": {
-    "generatedAtCycle": 69,
-    "agentRefinementCycle": 37,
-    "skilluminatorCycle": 69,
+    "generatedAtCycle": 70,
+    "agentRefinementCycle": 38,
+    "skilluminatorCycle": 70,
     "weekOf": "2026-03-20",
-    "harvestNote": "Skilluminator cycle 69 / agent refinement cycle 37: harvest failed (0 signals) — CONSECUTIVE FAILURE #16. Data reflects internal cycle 55 state (last successful harvest). Top 5 rankings unchanged. WorkIQ connectivity outage persistent; Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol), archival rule FROZEN (staleness clock: 14 cycles since last confirmed data at cycle 55). knowledge-forum-facilitation and peer-concept-translation remain at 'signal' maturity — require 2+ confirmation cycles post-connectivity-restore before promotion to patternRules. No trend downgrades applied. Skill-detector v3.2.0 deployed: SKILL.md corruption remediated, Output Quality improvements added (PQS rubric, IEM, Skill Skeleton template, role-aware Monday CTAs). All top-5 candidates remain VALIDATED (occ >= 100 across 55+ unbroken cycles).",
+    "harvestNote": "Cycle 70: HARVEST SUCCEEDED — 25 signals harvested. Consecutive failure streak BROKEN (cycles 53–69, 17 failures). Source-Failure Guard DEACTIVATED. All top-5 candidates re-confirmed with fresh occurrence increments. ADO notifications confirmed at 25 instances/week (25h/wk — highest single-week signal volume). builder-user-prototype surged RISING (+30.5h). EvalCon April 2 deadline amplifying eval-related patterns. knowledge-forum-facilitation promoted to 'confirmed' maturity.",
     "candidateSkills": [
       {
         "rank": 1,
@@ -804,14 +795,14 @@
         "automationScore": 91,
         "valueScore": 93,
         "patternId": "meeting-notes-action-item-capture",
-        "description": "Ingests meeting transcript, agenda, or Loop doc; emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for transcript-to-loop and post-meeting-external-followup downstream. 339 occurrences across 55 unbroken cycles.",
+        "description": "Ingests meeting transcript, agenda, or Loop doc; emits structured action items with owner/due-date, decisions log, follow-up email draft, and ADO task stubs. Chain head for transcript-to-loop and post-meeting-external-followup downstream. 349 occurrences across 70 unbroken cycles.",
         "triggerExamples": [
           "Extract action items from today's Camp AIR standup and update the Loop doc",
           "Summarize external customer meeting into Loop page with owners and due dates",
           "Create standardized 1:1 notes template for all recurring meetings",
           "Generate post-meeting recap broadcast from CAPE Architecture Call"
         ],
-        "valueProposition": "Replaces ~67.70 hrs across 4 roles. 339 occ over 55 cycles. Chain head for 2 downstream patterns. Est. ~$175,820/yr."
+        "valueProposition": "Replaces ~70.20 hrs across 4 roles. 349 occ over 70 cycles. Chain head for 2 downstream patterns. Est. ~$182,520/yr."
       },
       {
         "rank": 2,
@@ -820,14 +811,14 @@
         "automationScore": 95,
         "valueScore": 85,
         "patternId": "ado-notification-triage",
-        "description": "Classifies ADO notification emails by work-item type (Task, Requirement, Bug, Feature, Epic), workstream prefix, and urgency. Routes action-required to correct role; auto-archives FYI. DEEP SATURATION at 873 occ. Highest automation score (95). Decomposition into 5 workstream sub-classifiers CRITICAL.",
+        "description": "Classifies ADO notification emails by work-item type (Task, Requirement, Bug, Feature, Epic), workstream prefix, and urgency. Routes action-required to correct role; auto-archives FYI. DEEP SATURATION at 903 occ. Cycle 70 confirmed: 25 email notifications + 8 Teams triage threads = ~33h/wk manual processing. Highest automation score (95).",
         "triggerExamples": [
           "Triage my ADO inbox — what needs action vs FYI?",
           "Classify ADO notifications by workstream: IcM vs coverage vs AI Eval",
           "Which Bug/Requirement notifications require PM response before EOD?",
           "Route this Task notification to the correct DRI based on workstream prefix"
         ],
-        "valueProposition": "Eliminates ~31.84 hrs. 873 occ SATURATED at 40/week. Highest automation (95). Est. ~$82,784/yr."
+        "valueProposition": "Eliminates ~34.34 hrs cumulative. 903 occ SATURATED. 25 notifications/day confirmed in cycle 70. Highest automation (95). Est. ~$89,284/yr."
       },
       {
         "rank": 3,
@@ -836,14 +827,14 @@
         "automationScore": 85,
         "valueScore": 95,
         "patternId": "eval-results-analysis-reporting",
-        "description": "Ingests eval results, strategy discussions, actionability brainstorms, and customer donated evals. Produces standardized reports with gap analysis. RISING trend. 438 occurrences, 5 participants. Highest value score in catalog (95). EvalCon deadline amplifying urgency.",
+        "description": "Ingests eval results, strategy discussions, actionability brainstorms, and customer donated evals. Produces standardized reports with gap analysis. RISING trend. 452 occurrences, 5 participants. Highest value score in catalog (95). EvalCon April 2 deadline amplifying urgency.",
         "triggerExamples": [
           "Synthesize eval progress from CAPE leadership threads and customer donated evals discussion",
           "Generate eval strategy and actionability analysis from Deep Technical Working Session notes",
           "Prepare Golden Evals kickoff report from meeting transcript",
           "Create eval strategy overview merging Teams threads and meeting artifacts"
         ],
-        "valueProposition": "Saves ~110.89 hrs across 5 roles. Highest value score (95). RISING. Est. ~$288,314/yr."
+        "valueProposition": "Saves ~113.14 hrs across 5 roles. Highest value score (95). RISING. Est. ~$294,164/yr."
       },
       {
         "rank": 4,
@@ -852,14 +843,14 @@
         "automationScore": 85,
         "valueScore": 93,
         "patternId": "eval-template-scaffolder",
-        "description": "Scaffolds eval framework templates, scenario libraries, and coverage models. Spawned customer-enablement-asset-standardization. 183 occurrences. STABLE across 52 cycles since first seen at cycle 3.",
+        "description": "Scaffolds eval framework templates, scenario libraries, and coverage models. Spawned customer-enablement-asset-standardization. 190 occurrences. STABLE across 67 cycles since first seen at cycle 3. EvalCon and Golden Evals sustaining demand.",
         "triggerExamples": [
           "Generate an eval template for a 3-intent Copilot Studio agent",
           "Scaffold a coverage model for BizChat offline evaluation",
           "Create scenario library structure for Golden Evals framework",
           "Build eval coverage matrix for SEVAL agent quality assessment"
         ],
-        "valueProposition": "Saves ~55.46 hrs across 4 roles. 183 occ STABLE. Spawns customer enablement. Est. ~$144,196/yr."
+        "valueProposition": "Saves ~56.46 hrs across 4 roles. 190 occ STABLE. Spawns customer enablement. Est. ~$146,796/yr."
       },
       {
         "rank": 5,
@@ -868,14 +859,14 @@
         "automationScore": 87,
         "valueScore": 90,
         "patternId": "weekly-status-report-generation",
-        "description": "Generates standardized weekly status reports from Loop docs, Teams threads, email updates, and meeting notes. Resolves 5-format parallel creation gap. RISING trend. 152 occurrences, 4 participants. V-Team Cross-Org Syncs now confirmed primary trigger.",
+        "description": "Generates standardized weekly status reports from Loop docs, Teams threads, email updates, and meeting notes. Resolves 5-format parallel creation gap. RISING trend. 157 occurrences, 4 participants. V-Team Cross-Org Syncs and EvalCon confirmed as primary triggers in cycle 70.",
         "triggerExamples": [
           "Generate this week's CAPE eval status merging all sources",
           "Draft unified XFN Report Out from parallel Teams posts this week",
           "Create EOD debrief template for Camp AIR daily standup follow-up",
           "Refresh weekly status from Loop doc, Teams, and email summaries"
         ],
-        "valueProposition": "Saves ~43.64 hrs across 4 roles. 152 occ RISING. 5 parallel formats. Est. ~$113,464/yr."
+        "valueProposition": "Saves ~44.14 hrs across 4 roles. 157 occ RISING. 5 parallel formats. Est. ~$114,764/yr."
       }
     ]
   }
