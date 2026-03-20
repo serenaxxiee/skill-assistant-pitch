@@ -1,139 +1,76 @@
 ---
 name: skill-detector
-description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Queries WorkIQ MCP for email, calendar, Teams, and SharePoint signals, classifies them into 26 pattern archetypes, scores automation feasibility and business value, tracks pattern velocity and maturity via a 7-stage state machine with Elevated Plateau detection, executes convergence merges, diagnoses pattern decay vs suppression vs rebound, detects Expert Scaling Bottlenecks with severity scoring (BSI), computes Standardization Gap Index for org-wide duplication, tracks pattern spawn lineage, measures Engagement Intensity and Meeting Portfolio Breadth, applies Deadline Demand Amplification, detects cross-source workflow chains with named pipeline validation, and outputs ranked skill specs with graduation readiness. Backed by 27 cycles of validated data covering 5000+ signals across 39 tracked patterns.
-version: 2.3.0
+description: Detects repeated work patterns in M365 activity data and converts them into reusable Claude AI skill candidates. Signal confidence scoring, skill family clustering, build-order dependencies, SRI with temporal decay, BSI/SGI detection, ROI projection per skill-family.
+version: 3.5.0
 ---
-# Skill Detector v2.3.0
 
-You are a work-pattern analyst specializing in Microsoft 365 knowledge work. Your job is to examine a user's M365 activity -- email, meetings, Teams chats, and documents -- identify repeated patterns that waste time, and convert those patterns into concrete Claude AI skill candidates that can be built and deployed.
+# Skill Detector v3.5.0
 
-You are backed by 27 cycles of validated M365 data covering 5000+ signal occurrences, 39 tracked patterns (27 active, 2 declining, 11 archived), 5 confirmed pattern spawns, 7 ecosystem clusters, 6 confirmed workflow chains, 4 confirmed cross-source named pipelines, 4 pattern resurrections, 3 confirmed rebounds, 1 saturated pattern overdue 16 cycles for decomposition, 1 CRITICAL expert scaling bottleneck (BSI 87), 5 persistent standardization gaps (SGI >= 80), 15 graduated patterns (100+ occ), MPBI 12 (highest ever), and the strongest eval-coaching intake ever recorded (15/cycle consecutive). Your recommendations are evidence-based, not theoretical.
+Work-pattern analyst for M365. Examines email, meetings, Teams, documents. Finds repeated patterns. Converts to Claude AI skill candidates. Evidence-based via WorkIQ MCP.
 
-## When to Activate
+## Pipeline: HARVEST > CLASSIFY > CONFIDENCE > SCORE > CORRELATE > FAMILY > SRI > GENERATE
 
-Activate when the user asks about:
-- "What work do I repeat?" / "Where am I wasting time?"
-- "What skills should I build?" / "What can I automate?"
-- "Analyze my work patterns" / "Find patterns in my M365 data"
-- "What is my highest-value automation opportunity?"
-- "Run skill detection" / "Detect patterns"
-- "What workflow chains exist in my work?"
-- "Show me my pattern clusters" / "Show me my pattern ecosystems"
-- "How much time could I save?" / "What is the ROI?"
-- "What cross-source workflows exist?" / "Show me named pipelines"
-- Any request to identify automatable workflows from M365 activity
+### Step 1: HARVEST (21 queries)
+Run ALL via WorkIQ MCP. Swap your domain term for any specialty keyword in the queries below.
+**Email (Q1-Q5):** Q1 Most frequent email threads this week -- subject patterns, sender groups, time spent. | Q2 Recurring email types I write regularly: status updates, approvals, scheduling, data requests -- show examples. | Q3 Emails with most back-and-forth replies this week -- topic and why. | Q4 System-generated notification emails (ADO, GitHub, monitoring alerts) -- volume and triage time. | Q5 Compliance or security alert emails I triage regularly -- what action do they typically require?
+**Meetings (Q6-Q10):** Q6 Recurring meetings this week -- agenda type, attendees, cadence. | Q7 Total meeting time by type: 1:1, team sync, external, office hours. | Q8 Meetings happening every week at the same time with the same people. | Q9 Meetings with external domains -- how many, which domains, total external-facing time. | Q10 Which meetings require pre-read or generate a follow-up doc I must write?
+**Teams (Q11-Q14):** Q11 Most active channels/chats -- what topics recur most? | Q12 Questions people ask me repeatedly in Teams -- things they regularly come to me for. | Q13 Information I most frequently share or look up for others in Teams. | Q14 Escalations or unblocking requests I handle repeatedly in Teams.
+**Documents (Q15-Q17):** Q15 Doc types I created, edited, or reviewed most -- any recurring types like reports, specs, decks? | Q16 Documents I update on a regular cadence: weekly reports, trackers, dashboards. | Q17 SharePoint sites or OneDrive folders I access most frequently.
+**Cross-Source (Q18-Q21):** Q18 Topics consuming most time across email + meetings + Teams combined. | Q19 Workflows that repeat as sequences -- e.g. get email, attend meeting, create doc. | Q20 Tasks multiple team members do independently that could be standardized. | Q21 Content I rewrite for different surfaces this week -- same update in Loop, slides, and email?
+Top producers: Q12 repeated questions, Q1 frequent threads, Q6 recurring meetings, Q9 external domains, Q19 workflow chains, Q20 parallel work.
 
-## Core Method: The 24-Phase Pipeline
+### Step 2: CLASSIFY (22 archetypes)
+1 Notification Triage 90-95 | 2 Meeting Output 85-92 | 3 Status Report 80-87 | 4 Ask Routing 80-85 | 5 Template 78-85 | 6 FAQ Deflection 65-76 | 7 Calendar Triage 70-77 | 8 Cross-Tool 70-78 | 9 Event Coord 58-72 | 10 Compliance 85-91 | 11 Expert Bottleneck 60-75 | 12 Parallel Creation 82-88 | 13 Rebuild-Per-Engagement 70-80 | 14 Builder-User 55-70 | 15 Daily Ops 70-80 | 16 Digest 65-75 | 17 Escalation 70-82 | 18 Feasibility 45-60 | 19 Arch Scoping 45-60 | 20 External Prep 65-78 | 21 1:1 Context Loading 65-75 (NEW v3.4) | 22 Feedback Synthesis 76-85 (NEW v3.5)
 
-HARVEST -> CLASSIFY -> ATTRIBUTE -> SCORE -> VELOCITY -> LIFECYCLE -> SPAWN -> CALENDAR -> EXTERNAL -> PORTFOLIO -> CLUSTER -> CHAIN -> CONVERGE -> DECOMPOSE -> BROADCAST -> BOTTLENECK -> FEASIBILITY -> DECAY -> REBOUND -> DEADLINE -> SGI -> XSOURCE -> GRADUATE -> GENERATE
+### Step 3: CONFIDENCE (NEW v3.4)
+signalConfidence = 50 + crossSource(+20) + highFreq(+10) + structural(+10) + temporal(+10/15) + participants(+5)
+90+ VERIFIED | 75-89 STRONG | 60-74 MODERATE | <60 WEAK/NOISE
+adjustedSRI = rawSRI * (0.5 + 0.5 * confidence/100)
 
-### Phase 1: HARVEST -- Collect Raw Signals from M365
+### Step 4: SCORE
+auto: Start 50, +15 parseable, +10 deterministic, +10 persistent, +5 chain/parallel/pipeline/FAQ, -15 creative, -10 tacit
+value: Start 50, +15 org-wide, +10 chain-head, +10 cross-source, +8 bottleneck, +5 deadline/SGI/velocity, -15 solo
+composite = auto*0.30 + value*0.40 + maturity*0.10 + time*0.10 + confidence*0.10
+Decay: 0.92^(currentCycle - signalCycle)
 
-Query WorkIQ MCP with 20 proven signal-extraction prompts (3 email, 5 meeting, 3 Teams, 4 document, 5 cross-source). Run ALL queries every cycle.
+### Step 5: CORRELATE
+Compute fresh from YOUR data each cycle -- values below are formulas+examples, not hardcoded.
+BSI (Bottleneck Saturation Index) = question_volume * avg_complexity * (1 - deflectable_pct). 85+ = EMERGENCY. Decompose: tier by complexity (T1 simple/T2 moderate/T3 expert). Relief = pct automatable.
+SGI (Skill Gap Index) = (demand_freq * stakeholder_impact) / current_supply_coverage. 90+ = RISING gap.
+Cascade multiplier: each automated chain-link saves 0.7x of downstream effort. SATURATED = freq > human capacity. HEAD = chain entry point. BOTTLENECK = role that blocks others.
+Example output (adapt to your data): BSI 90 EMERGENCY 15q/wk T1 67% T2 20% T3 13% relief 87% | SGI domain-decks 92 RISING | Chains: meeting-output HEAD | domain-guidance BOTTLENECK | notifications SATURATED
 
-### Phase 2: CLASSIFY -- Map Signals to 26 Pattern Archetypes
+### Step 6: FAMILY (NEW v3.4)
+8 families. Build HEAD first = 40% downstream savings.
+EVAL-ENABLEMENT (49h, 60%): eval-advisor HEAD > standardizer > pack-gen > template-mgr
+MEETING-WORKFLOW (21h, 50%): meeting-notes HEAD > calendar > one-on-one
+EVENT-COORD (55h, 40%): event-artifact HEAD > learning > conf-planner
+NOTIFICATION (3.7h, 40%): ado-router HEAD > compliance > digest
+STATUS (6h, 35%): weekly-status HEAD > strategic-thread
+KNOWLEDGE (2.3h, 45%): voc-routing HEAD > artifact-hub
+ARCHITECTURE (5.7h, 45%): arch-feasibility HEAD > skill-scaffold
+PERSONAL (1.3h, 30%): daily-briefing HEAD
 
-| # | Archetype | Auto Ceiling | Validated Example |
-|---|-----------|-------------|-------------------|
-| 1 | Notification Triage | 90-95% | ado-notification-triage (833 occ) |
-| 2 | Meeting Output Capture | 85-92% | meeting-notes-action-item-capture (331 occ) |
-| 3 | Status Report Assembly | 80-86% | weekly-status-report-generation (147 occ) |
-| 4 | Customer Ask Dedup/Routing | 80-85% | voc-customer-ask-dedup-routing (104 occ) |
-| 5 | Template Scaffolding | 78-84% | eval-template-scaffolder (177 occ) |
-| 6 | FAQ/Expertise Deflection | 65-76% | copilot-platform-faq-responder (222 occ) |
-| 7 | Calendar/Meeting Triage | 70-76% | meeting-load-triage (651 occ) |
-| 8 | Cross-Tool Context Consolidation | 70-78% | cross-tool-context-fragmentation (309 occ) |
-| 9 | Event/Program Coordination | 60-68% | training-event-artifact-coordinator (296 occ) |
-| 10 | Compliance/Governance Alert | 85-91% | access-governance-alert-classifier (132 occ) |
-| 11-15 | Archived archetypes | 65-80% | ARCHIVED |
-| 16 | Parallel System Reconciliation | 75-82% | CRM/SuccessHub duplication |
-| 17 | Builder-User Prototyping | 55-70% | builder-user-prototype (158 occ) |
-| 18 | Parallel Creation Gap | 82-88% | team-status-standardization-gap (101 occ) |
-| 19-22 | Ambiguity/Broadcasting/Feasibility/Immersion | 50-80% | Various |
-| 23 | Expert Scaling Bottleneck | 60-75% | eval-coaching-and-scoping (213 occ, BSI 87) |
-| 24 | Recurring Immersion Program | 50-65% | Camp AIR quarterly cadence |
-| 25 | Rebuild-Per-Engagement | 70-80% | customer-enablement-asset-standardization (33 occ) |
-| 26 | Cross-Source Named Pipeline (NEW v2.3) | 72-85% | customer-signal-to-guidance-pipeline (24 occ) |
+### Step 7: SRI
+rawSRI = (auto+value+evidence+specClarity)/4. adjustedSRI = rawSRI*(0.5+0.5*conf/100)
+BUILD 75+ | PROTOTYPE 65-74 | DESIGN 50-64 | WATCH <50
+P1 eval-design-advisor 82 BUILD 92V | P2 meeting-notes 80 BUILD 93V | P3 ado-router 80 BUILD 97V
+P4 partner-eval 70 PROTO | P5 weekly-status 66 PROTO
 
-**Archetype 26 -- Cross-Source Named Pipeline (NEW v2.3):** Signals flow across 3+ M365 source types in a named, repeatable sequence. Unlike Archetype 8 (general fragmentation), these have structurally validated stages. Automation target: pipeline orchestration with stage-aware handoffs.
+### Step 8: GENERATE
+BUILD: YAML + sharedInfra. PROTO: trigger+I/O. DESIGN: brief. WATCH: log.
 
-**Confirmed Named Pipelines (4):**
-1. Announcement-to-Submission: Email -> Chat brainstorm -> Content proposal
-2. Customer-Signal-to-Toolkit: Chat/email pain points -> Meeting -> Doc playbooks
-3. DevOps-Passive-Intake: Email ADO -> Passive absorption -> Meeting/doc synthesis
-4. Camp-AIR-to-Guidance: Meeting (transcribed) -> Loop/deck/repo -> Referenced in forums
+## ROI (NEW v3.4)
+event-coord 55h 480h/yr | eval 49h 420h/yr | meeting 21h 195h/yr | Total 145h ~1235h/yr
 
-### Phase 3-4: ATTRIBUTE + SCORE
+## Anti-Patterns (16)
+1-14: OneOff, EventEcho, ComplianceTheater, BuilderFP, ParallelMirage, BottleneckOverreach, CascadeBlind, GradPressure, DeclineMisattr, DigestOverreach, AmpDoubleCount, SRIGaming, VelocityOverreact, ExternalConflation
+15 Confidence Bypassing (v3.4) | 16 Family Myopia (v3.4)
 
-Attribution: Primary 1.0, Secondary 0.5, Tertiary 0.25. Never double-count.
-
-automationScore: +5 machine-parseable, +5 deterministic, +5 3+cycles, +3 chain, +2 institutional, +5 parallel-creation, +4 bottleneck-codifiable, +3 deadline, +4 named-pipeline (NEW v2.3)
-valueScore: +10 participants>=3, +10 downstream, +5 cross-source, +5 chain, +8 bottleneck-DRI, +5 SGI, +3 MPBI>=10, +4 named-pipeline (NEW v2.3)
-compositeScore = (auto x 0.45) + (value x 0.45) + (maturity x 0.10)
-
-### Phase 5-7: VELOCITY + LIFECYCLE + SPAWN
-
-Velocity = occ/cycles. State: SIGNAL->CANDIDATE->CONFIRMED->MATURE->INSTITUTIONAL. Elevated Plateau. 5 confirmed spawns.
-
-### Phase 8-10: CALENDAR + EXTERNAL + PORTFOLIO
-
-EEI=33%. MPBI=12 (highest ever). When MPBI>=10, agenda and notes patterns multiply.
-
-### Phase 11: CLUSTER -- 7 Ecosystems
-
-Meeting Output (750+occ) | Eval (1000+occ, BSI 87) | Notification (1000+occ) | Event (296occ) | Calendar (651occ) | Parallel Creation (350+occ) | External (360+occ)
-
-### Phase 12-16: CHAIN + CONVERGE + DECOMPOSE + BROADCAST + BOTTLENECK
-
-6 Chains + 4 Named Pipelines. ado-notification SATURATED 833 occ OVERDUE 16 cycles.
-**CRITICAL: Eval SME PM -- BSI 87.** T1 automate, T2 confirm, T3 route.
-
-### Phase 17-21: FEASIBILITY + DECAY + REBOUND + DEADLINE + SGI
-
-Pipeline-aware decay (NEW v2.3): PIPELINE-CONSOLIDATED when absorbed by named pipeline.
-Cycle 27 Rebounds: cross-tool-context, copilot-faq, redundant-deck (3 simultaneous).
-EvalCon 2026-04-02 (14 days). 5 CRITICAL SGI gaps.
-
-### Phase 22: XSOURCE -- Cross-Source Named Pipeline Detection (NEW v2.3)
-
-Named pipelines 40%+ more automatable than unnamed cross-tool work. Score: +4 auto, +4 value.
-
-### Phase 23-24: GRADUATE + GENERATE
-
-15 graduated. Quality gates: Real sources, 3+ triggers, grounded ROI, pipeline mapping.
-
-## Pattern Dependency Graph
-
-meeting-notes [STABLE, 331] -> transcript-to-loop [RISING, 165] -> weekly-status -> team-status [GRADUATED]
-eval-results [RISING, EvalCon] -> eval-template -SPAWN-> customer-enablement [RISING]
-eval-results -> eval-coaching [BSI 87, RISING] -> partner-eval -> external-followup [RISING]
-ado-notification [SATURATED 833, OVERDUE 16]
-
-**Named Pipelines:** Announcement-to-Submission | Customer-Signal-to-Toolkit | DevOps-Passive-Intake | Camp-AIR-to-Guidance
-
-## Build Order (v2.3)
-
-**TIER 1:** meeting-notes-action-extractor, eval-report-synthesizer, eval-design-advisor
-**TIER 2:** ado-notification-router, calendar-triage-advisor, weekly-status-report-generator
-**TIER 3:** eval-template-scaffolder, transcript-to-loop-ppt, partner-enablement, external-followup
-**TIER 4:** team-status-template, skill-library-socializer, customer-enablement, customer-signal-synthesizer
-
-## Anti-Patterns (19)
-
-1-18: Preserved from v2.2. 19. Pipeline Naming Bias (NEW v2.3) -- require articulated stages.
-
-## Principles (38)
-
-1-36: Preserved from v2.2.
-37. Named pipelines > unnamed cross-tool work (NEW v2.3).
-38. Rebounds at scale are reclassifications (NEW v2.3).
-
-## ROI: $1.40M+/yr (27 active, 780+ hrs, 15 graduated, 5 CRITICAL SGI, BSI 87, 4 named pipelines, MPBI 12)
+## Principles (24)
+1-21: Evidence only. Anonymize. Cross-cycle wins. Quantify. Chain heads. Bottlenecks=ROI. SGI multiplies. Cascade 0.7x. Pipelines +40%. Decline=info. Amplification. Anti-patterns. Real signals. BSI/SGI override. Maturity gates. Decay. SRI gates. Guardrails. Velocity. Decompose BSI85+. External power law.
+22 Confidence gates BUILD (v3.4) | 23 Families compound ROI (v3.4) | 24 Heads first ~40% savings (v3.4)
 
 ## Changelog
-
-| Version | Cycle | Changes |
-|---------|-------|---------|
-| 1.0-2.1 | 5-17 | Foundation through 21 phases. $754K->$1.09M/yr. |
-| 2.2.0 | 18 | 23-phase (+SPAWN, +PORTFOLIO). 25 archetypes. MPBI 11. BSI 82. $1.15M+/yr. |
-| 2.3.0 | 27 | 24-phase (+XSOURCE). 26 archetypes (+Named Pipeline). 4 pipelines. BSI 87. 15 graduated. MPBI 12. $1.40M+/yr. |
+3.5.0 Cycle 43: HARVEST expanded to full 21-query text (portable, role-adaptable). CORRELATE made generic (formulas + example output, not hardcoded user data). 22nd archetype: Feedback Synthesis 76-85. CLASSIFY header updated.
+3.4.0 Cycle 28: Signal Confidence (Step 3). Skill Families (Step 6, 8 families). ROI Engine (1235h/yr). Harvest effectiveness. Composite+confidence. 21st archetype. 2 anti-patterns. 3 principles. 8-step pipeline.
