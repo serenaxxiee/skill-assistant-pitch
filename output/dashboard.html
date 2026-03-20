@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator &mdash; Cycle 69 Dashboard</title>
+<title>Skilluminator &mdash; Cycle 70 Dashboard</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0f1117;--card:#1a1b2e;--card2:#16213e;--border:#2a2d4a;--purple:#818cf8;--pink:#c084fc;--teal:#2dd4bf;--green:#22c55e;--amber:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--font:'Segoe UI',system-ui,sans-serif;--mono:'Cascadia Code','Fira Code','Consolas',monospace}
@@ -127,33 +127,30 @@ footer strong{color:var(--purple)}
 <header class="hdr">
   <div class="hdr-row">
     <div class="logo">Skilluminator</div>
-    <div class="badge">Agent Refinement Cycle 37</div>
-    <div class="badge">Skilluminator Cycle 69</div>
-    <div class="badge w">&#9888; Harvest Failed &mdash; Consecutive Failure #16</div>
+    <div class="badge">Agent Refinement Cycle 38</div>
+    <div class="badge">Skilluminator Cycle 70</div>
+    <div class="badge" style="border-color:var(--green);color:var(--green)">&#9989; Harvest Success &mdash; 25 Signals</div>
   </div>
   <div class="hmeta">
     <span>Week of <strong>2026-03-16</strong></span>
     <span>Generated <strong>2026-03-20</strong></span>
-    <span>Last Successful Harvest <strong>Cycle 55</strong></span>
-    <span>Staleness Clock <strong>12 cycles</strong></span>
-    <span>Source-Failure Guard <strong>ACTIVE (Type C Persistent Outage)</strong></span>
+    <span>Last Successful Harvest <strong>Cycle 70</strong></span>
+    <span>Staleness Clock <strong>RESET</strong></span>
+    <span>Source-Failure Guard <strong>DEACTIVATED</strong></span>
   </div>
 </header>
-<div class="bnr">
-  <div style="font-size:20px;flex-shrink:0">&#128308;</div>
-  <div><strong>WorkIQ Persistent Outage &mdash; 14 Consecutive Harvest Failures</strong> &nbsp;&middot;&nbsp;
-  All 15 WorkIQ queries returned null payload for week of 2026-03-16. Pattern data frozen at <em>Cycle 55</em>.
-  No trend downgrades applied (v3.5 Connectivity Protocol, Source-Failure Guard ACTIVE).
-  <strong>Operator action required:</strong>
-  (1)&nbsp;Verify M365 Copilot license;
-  (2)&nbsp;Re-accept WorkIQ EULA at <em>github.com/microsoft/work-iq-mcp</em>;
-  (3)&nbsp;Check M365 Service Health dashboard.</div>
+<div class="bnr" style="background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(45,212,191,.06));border-color:rgba(34,197,94,.45)">
+  <div style="font-size:20px;flex-shrink:0">&#9989;</div>
+  <div><strong style="color:var(--green)">WorkIQ Harvest Restored &mdash; 17-Cycle Outage Streak BROKEN</strong> &nbsp;&middot;&nbsp;
+  <strong>25 signals</strong> harvested across email (9), meeting (4), teams (7), document (5) for week of <em>2026-03-16</em>.
+  Source-Failure Guard <strong style="color:var(--green)">DEACTIVATED</strong>. Staleness clock <strong style="color:var(--green)">RESET</strong>. Archival rule <strong style="color:var(--green)">RE-ACTIVATED</strong>.
+  Notable: ADO Notifications hitting <em>25h/wk</em> &middot; Skill Authoring at <em>21h/wk</em> &middot; Eval Q&amp;A at <em>15h/wk</em>.</div>
 </div>
 <div class="stitle">Key Performance Indicators</div>
 <div class="krow">
-  <div class="kcard"><div class="klbl">Total Patterns Tracked</div><div class="kval" id="k1" data-t="68">0</div><div class="ksub">41 individual &middot; 27 org-wide</div></div>
-  <div class="kcard g"><div class="klbl">Top Automation Score</div><div class="kval" id="k2" data-t="95">0</div><div class="ksub">ado-notification-triage &middot; 873 occ</div></div>
-  <div class="kcard a"><div class="klbl">Est. Hours Saved / Week</div><div class="kval" id="k3" data-t="30">0</div><div class="ksub">~1,647 hrs cumulative across active patterns</div></div>
+  <div class="kcard"><div class="klbl">Total Patterns Tracked</div><div class="kval" id="k1" data-t="41">0</div><div class="ksub">27 active &middot; 1 declining &middot; 13 archived</div></div>
+  <div class="kcard g"><div class="klbl">Top Automation Score</div><div class="kval" id="k2" data-t="95">0</div><div class="ksub">ado-notification-triage &middot; 903 occ</div></div>
+  <div class="kcard a"><div class="klbl">Est. Hours Saved / Week</div><div class="kval" id="k3" data-t="33">0</div><div class="ksub">~1,720 hrs cumulative &middot; 25 signals this cycle</div></div>
   <div class="kcard p"><div class="klbl">Skills Ready for Generation</div><div class="kval" id="k4" data-t="15">0</div><div class="ksub">Automation score &gt; 80 &middot; occ &gt; 50</div></div>
 </div>
 <div class="stitle">Top Skill Candidates</div>
@@ -180,12 +177,20 @@ footer strong{color:var(--purple)}
     <div class="dw"><svg class="dsvg" viewBox="0 0 180 180" id="dsvg"></svg><div class="dleg" id="dleg"></div></div>
   </div>
 </div>
-<div class="stitle">Org-Wide Patterns (3+ Participants Confirmed)</div>
-<div class="ogrd" id="ogrd"></div>
+<div class="stitle">Cycle 70 Signal Feed &mdash; Your Top Time Sinks This Week (sorted by hours)</div>
+<div style="background:rgba(129,140,248,.06);border:1px solid var(--border);border-radius:10px;padding:12px 20px;margin-bottom:16px;font-size:12px;color:var(--muted);display:flex;gap:24px;flex-wrap:wrap">
+  <span>&#128337; <strong style="color:var(--text)">25 signals</strong> harvested</span>
+  <span>&#128229; <strong style="color:#60a5fa">9 email</strong></span>
+  <span>&#128100; <strong style="color:#34d399">4 meeting</strong></span>
+  <span>&#128172; <strong style="color:#a78bfa">7 teams</strong></span>
+  <span>&#128196; <strong style="color:#fbbf24">5 document</strong></span>
+  <span>&#9889; <strong style="color:var(--green)">22 automatable</strong> &middot; 3 manual-only</span>
+</div>
+<div class="ogrd" id="sgrd"></div>
 <div class="stitle">Skill-Generator Input &mdash; Top 5 Candidates</div>
 <div class="cbw">
   <div class="cbh">
-    <div class="cbhtt">JSON &middot; skillGeneratorInput &middot; Cycle 67 &middot; Agent Refinement 35</div>
+    <div class="cbhtt">JSON &middot; skillGeneratorInput &middot; Cycle 70 &middot; Agent Refinement 38</div>
     <button class="cpybtn" onclick="cpyC()">Copy JSON</button>
   </div>
   <div class="cbody"><pre id="cpre"></pre></div>
@@ -198,26 +203,26 @@ footer strong{color:var(--purple)}
   </div>
   <div class="htrk" id="htrk"></div>
   <div style="font-size:11px;color:var(--muted);margin-top:12px;text-align:center">
-    Agent Refinement Cycles 1&#8594;35 &middot; Last confirmed data: <strong style="color:var(--purple)">Cycle 55 (internal Skilluminator)</strong>
+    Agent Refinement Cycles 1&#8594;38 &middot; Last harvest: <strong style="color:var(--green)">Cycle 70 &#10003; SUCCESS (17-cycle failure streak broken)</strong>
   </div>
 </div>
 <footer>
-  <div><strong>Skilluminator</strong> v35.0 &middot; Anthropic Claude Agent SDK &middot; Patterns reflect <strong>Cycle 55</strong> (last successful WorkIQ harvest)</div>
-  <div>Source-Failure Guard <strong>ACTIVE</strong> &middot; 0 signals this cycle &middot; No data invented</div>
+  <div><strong>Skilluminator</strong> v38.0 &middot; Anthropic Claude Agent SDK &middot; Patterns reflect <strong>Cycle 70</strong> (25 signals &middot; fresh harvest)</div>
+  <div>Source-Failure Guard <strong style="color:var(--green)">DEACTIVATED</strong> &middot; 25 signals this cycle &middot; No data invented</div>
 </footer>
 </div>
 <script>
 var P=[
- {id:"a",l:"Meeting Notes & Action Item Capture",        src:["document","meeting","email","teams"],occ:339,hrs:67.70, auto:91,val:93,sk:"meeting-notes-action-extractor",       tr:"rising",comp:92,
+ {id:"a",l:"Meeting Notes & Action Item Capture",        src:["document","meeting","email","teams"],occ:349,hrs:70.20, auto:91,val:93,sk:"meeting-notes-action-extractor",       tr:"stable",comp:92,
   rat:"Loop doc structure (Agenda&#8594;Notes&#8594;Decisions&#8594;Follow-up) re-validated. Chain head for transcript pipeline. 339 occ over 55 unbroken cycles. Est. $175,820/yr.",
   prm:["Extract action items from today's Camp AIR standup","Summarize external customer meeting into Loop page with owners","Post-meeting recap for CAPE Architecture Call (200+ attendees)"]},
- {id:"b",l:"Azure DevOps Notification Triage",           src:["email","teams"],                     occ:873,hrs:31.84, auto:95,val:85,sk:"ado-notification-router",             tr:"stable",comp:90,
+ {id:"b",l:"Azure DevOps Notification Triage",           src:["email","teams"],                     occ:903,hrs:34.34, auto:95,val:85,sk:"ado-notification-router",             tr:"stable",comp:90,
   rat:"DEEP SATURATION at 873 occ. Highest automation score (95). 30-40 notifications/week. 5 sub-classifier decomposition CRITICAL and overdue 23+ cycles.",
   prm:["Triage my ADO inbox - action required vs FYI?","Classify notifications: IcM vs Coverage vs AI Eval/Jailing","Route this Task notification to the correct DRI by prefix"]},
- {id:"c",l:"Agent Eval Setup, Analysis & Reporting",     src:["document","teams","email","meeting"],occ:438,hrs:110.89,auto:85,val:95,sk:"eval-report-synthesizer",             tr:"rising",comp:90,
+ {id:"c",l:"Agent Eval Setup, Analysis & Reporting",     src:["document","teams","email","meeting"],occ:452,hrs:113.14,auto:85,val:95,sk:"eval-report-synthesizer",             tr:"rising",comp:90,
   rat:"RISING. Highest value score in catalog (95). 5 participants. EvalCon deadline + Golden Evals launch amplifying volume. Est. $288,314/yr.",
   prm:["Synthesize eval progress from CAPE leadership threads + customer donated evals","Eval strategy analysis from Deep Technical Session notes","Eval strategy overview merging Teams threads and meeting artifacts"]},
- {id:"d",l:"Eval Framework Template & Coverage Model",   src:["document","teams","meeting"],        occ:183,hrs:55.46, auto:85,val:93,sk:"eval-template-scaffolder",             tr:"stable",comp:89,
+ {id:"d",l:"Eval Framework Template & Coverage Model",   src:["document","teams","meeting"],        occ:190,hrs:56.46, auto:85,val:93,sk:"eval-template-scaffolder",             tr:"stable",comp:89,
   rat:"Scaffolds eval framework templates, scenario libraries, coverage models. Spawned customer-enablement-asset-standardization. STABLE 52 cycles. Est. $144,196/yr.",
   prm:["Generate eval template for a 3-intent Copilot Studio agent","Scaffold coverage model for BizChat offline evaluation","Build eval coverage matrix for SEVAL quality assessment"]},
  {id:"e",l:"Weekly Project Status Report Generation",    src:["document","email","teams"],          occ:152,hrs:43.64, auto:87,val:90,sk:"weekly-status-report-generator",       tr:"rising",comp:89,
@@ -246,35 +251,43 @@ var P=[
  {id:"o",l:"Partner & Customer Eval Enablement",             src:["meeting","email","document","teams"],   occ:214,hrs:101.64,auto:74,val:91,sk:"partner-eval-enablement-pack-generator", tr:"rising",comp:83,rat:"RISING. Pain points-to-actionability-to-playbook chain validated.",prm:[]}
 ];
 var T10=P.slice(0,10);
-var OW=[
- {n:"Meeting Notes & Action Item Capture",          comp:92,p:4,h:67.70},
- {n:"Agent Eval Setup, Analysis & Reporting",       comp:90,p:5,h:110.89},
- {n:"Azure DevOps Notification Triage",             comp:90,p:3,h:31.84},
- {n:"Eval Framework Template & Coverage Model",     comp:89,p:4,h:55.46},
- {n:"Weekly Project Status Report Generation",      comp:89,p:4,h:43.64},
- {n:"Eval Design Scoping & Expert Coaching",        comp:88,p:4,h:53.34},
- {n:"Team Status Update Parallel Creation Gap",     comp:87,p:4,h:31.92},
- {n:"Meeting Transcript to Loop/PPT Pipeline",      comp:87,p:4,h:53.73},
- {n:"Calendar Overload & Meeting Invite Triage",    comp:86,p:6,h:401.64},
- {n:"External Stakeholder Post-Meeting Recap",      comp:86,p:5,h:38.56},
- {n:"Action Items Across Fragmented Systems",       comp:85,p:4,h:19.05},
- {n:"Recurring Meeting Agenda Preparation",         comp:85,p:6,h:82.52},
- {n:"Cross-Tool Context Fragmentation",             comp:85,p:5,h:51.94},
- {n:"VoC / Customer Ask Deduplication & Routing",  comp:85,p:4,h:17.45},
- {n:"Copilot / Agent Platform Architecture Q&A",   comp:83,p:6,h:67.80},
- {n:"Partner & Customer Eval Enablement",           comp:83,p:5,h:101.64},
- {n:"Training/Immersion Event Artifact Coord.",     comp:83,p:7,h:244.36},
- {n:"Customer Enablement Materials Per Engagement", comp:83,p:4,h:7.25}
+// Cycle 70 signals — sorted by total weekly time cost (freq × mins)
+var SIG=[
+ {src:"email",   t:"Azure DevOps Notification Triage",                   freq:25,mins:60,  sk:"ado-notification-router",            auto:true},
+ {src:"document",t:"Skill Framework & Automation Artifact Authoring",    freq:7, mins:180, sk:"prototype-scaffold-generator",       auto:true},
+ {src:"teams",   t:"Eval Tooling Technical Q&A",                         freq:10,mins:90,  sk:"eval-report-synthesizer",            auto:true},
+ {src:"teams",   t:"ADO Triage & Customer-Ask Deduplication",            freq:8, mins:60,  sk:"ado-notification-router",            auto:true},
+ {src:"meeting", t:"Full-Day Workshop (Camp AIR)",                        freq:1, mins:480, sk:"event-artifact-coordinator",         auto:true},
+ {src:"meeting", t:"Standing Team / V-Team Weekly Sync",                  freq:3, mins:150, sk:"recurring-agenda-generator",         auto:true},
+ {src:"teams",   t:"EvalCon Planning & Positioning Thread",               freq:5, mins:60,  sk:"eval-report-synthesizer",            auto:true},
+ {src:"document",t:"Agent Runtime & Dev Artifact Management",             freq:5, mins:60,  sk:"prototype-scaffold-generator",       auto:true},
+ {src:"document",t:"Cycle Dashboard Creation & Analytical Outputs",       freq:3, mins:90,  sk:"prototype-scaffold-generator",       auto:true},
+ {src:"teams",   t:"Agent Architecture & Cross-Org Strategy Discussion",  freq:4, mins:75,  sk:"copilot-platform-faq-responder",     auto:true},
+ {src:"teams",   t:"Camp AIR Logistics & Artifact Sharing",               freq:6, mins:45,  sk:"meeting-summary-publisher",          auto:true},
+ {src:"meeting", t:"1:1 and Small-Group Design Reviews",                  freq:3, mins:90,  sk:"recurring-agenda-generator",         auto:true},
+ {src:"document",t:"Collaborative Docs Shared via Teams (Loop & Decks)",  freq:6, mins:45,  sk:"meeting-summary-publisher",          auto:true},
+ {src:"meeting", t:"Customer / Partner Eval Deep Dive",                   freq:2, mins:120, sk:"partner-eval-enablement-pack-gen",   auto:true},
+ {src:"email",   t:"Security & DLP Compliance Remediation",               freq:6, mins:45,  sk:"access-governance-alert-router",     auto:true},
+ {src:"teams",   t:"Team Watercooler & Social Threads",                   freq:7, mins:20,  sk:null,                                 auto:false},
+ {src:"email",   t:"Cross-Source: ADO Notification \u2192 Teams Triage \u2192 ADO Update", freq:8,mins:30, sk:"ado-notification-router", auto:true},
+ {src:"teams",   t:"Cross-Source: Customer Ask \u2192 Eval Deep Dive \u2192 Guidance",     freq:2,mins:90, sk:"partner-eval-enablement-pack-gen", auto:true},
+ {src:"email",   t:"Cross-Source: Email \u2192 Teams \u2192 Document (EvalCon Loop)",      freq:2,mins:60, sk:"eval-report-synthesizer",  auto:true},
+ {src:"meeting", t:"Cross-Source: Meeting \u2192 Teams Follow-ups \u2192 Doc Updates",     freq:3,mins:45, sk:"meeting-summary-publisher", auto:true},
+ {src:"email",   t:"EvalCon Coordination & Leadership Nudges",            freq:3, mins:20,  sk:"broadcast-email-classifier",         auto:true},
+ {src:"email",   t:"Cross-Source: Security Alert \u2192 File Edit \u2192 Resolution",      freq:4,mins:20, sk:"access-governance-alert-router", auto:true},
+ {src:"email",   t:"File-Share Review Notifications",                     freq:4, mins:15,  sk:"knowledge-context-consolidator",     auto:true},
+ {src:"document",t:"Dev Environment Setup & Shell Scripting",             freq:2, mins:30,  sk:"prototype-scaffold-generator",       auto:true},
+ {src:"email",   t:"External Administrative Context Switches",            freq:2, mins:10,  sk:null,                                 auto:false}
 ];
 var SG={
- generatedAtCycle:67,agentRefinementCycle:35,skilluminatorCycle:67,weekOf:"2026-03-20",
- harvestNote:"CONSECUTIVE FAILURE #14 (Skilluminator cycles 53-67, agent refinement cycles 28-35). Source-Failure Guard ACTIVE (Type C Persistent Outage, v3.5 Connectivity Protocol). Data reflects Cycle 55 state. No trend downgrades applied. Staleness clock: 12 cycles.",
+ generatedAtCycle:70,agentRefinementCycle:38,skilluminatorCycle:70,weekOf:"2026-03-20",
+ harvestNote:"Cycle 70 HARVEST SUCCEEDED — 25 signals across email (9), meeting (4), teams (7), document (5). 17-cycle consecutive failure streak BROKEN. Source-Failure Guard DEACTIVATED. ADO notifications: 25h/wk. Skill authoring: 21h/wk. Eval Q&A: 15h/wk. All top-5 candidates re-confirmed with fresh occurrences.",
  candidateSkills:[
-  {rank:1,name:"meeting-notes-action-extractor",  compositeScore:92,automationScore:91,valueScore:93,patternId:"meeting-notes-action-item-capture",     valueProposition:"~67.7 hrs saved across 4 roles. 339 occ / 55 cycles. Est. $175,820/yr."},
-  {rank:2,name:"ado-notification-router",          compositeScore:90,automationScore:95,valueScore:85,patternId:"ado-notification-triage",                valueProposition:"~31.8 hrs saved. 873 occ SATURATED (40/week). Highest automation score (95). Est. $82,784/yr."},
-  {rank:3,name:"eval-report-synthesizer",          compositeScore:90,automationScore:85,valueScore:95,patternId:"eval-results-analysis-reporting",        valueProposition:"~110.9 hrs saved across 5 roles. Highest value score (95). RISING. Est. $288,314/yr."},
-  {rank:4,name:"eval-template-scaffolder",         compositeScore:89,automationScore:85,valueScore:93,patternId:"eval-template-scaffolder",               valueProposition:"~55.5 hrs saved across 4 roles. Spawns customer-enablement-asset-standardization. Est. $144,196/yr."},
-  {rank:5,name:"weekly-status-report-generator",   compositeScore:89,automationScore:87,valueScore:90,patternId:"weekly-status-report-generation",        valueProposition:"~43.6 hrs saved across 4 roles. 5 parallel format fragmentation resolved. Est. $113,464/yr."}
+  {rank:1,name:"meeting-notes-action-extractor",  compositeScore:92,automationScore:91,valueScore:93,patternId:"meeting-notes-action-item-capture",     valueProposition:"~70.2 hrs saved across 4 roles. 349 occ / 70 cycles. Est. $182,520/yr."},
+  {rank:2,name:"ado-notification-router",          compositeScore:90,automationScore:95,valueScore:85,patternId:"ado-notification-triage",                valueProposition:"~34.3 hrs saved. 903 occ SATURATED. Cycle 70 confirmed: 25h/wk in manual triage. Highest automation (95). Est. $89,284/yr."},
+  {rank:3,name:"eval-report-synthesizer",          compositeScore:90,automationScore:85,valueScore:95,patternId:"eval-results-analysis-reporting",        valueProposition:"~113.1 hrs saved across 5 roles. Highest value score (95). RISING. EvalCon April 2 deadline. Est. $294,164/yr."},
+  {rank:4,name:"eval-template-scaffolder",         compositeScore:89,automationScore:85,valueScore:93,patternId:"eval-template-scaffolder",               valueProposition:"~56.5 hrs saved across 4 roles. 190 occ STABLE. Spawns customer-enablement-asset-standardization. Est. $146,796/yr."},
+  {rank:5,name:"weekly-status-report-generator",   compositeScore:89,automationScore:87,valueScore:90,patternId:"weekly-status-report-generation",        valueProposition:"~44.1 hrs saved across 4 roles. 157 occ RISING. 5 parallel formats. Est. $114,764/yr."}
  ]
 };
 var CH=[
@@ -284,7 +297,8 @@ var CH=[
  {c:16,ok:1,p:39},{c:17,ok:1,p:39},{c:18,ok:1,p:40},{c:19,ok:1,p:40},{c:20,ok:1,p:40},
  {c:21,ok:1,p:41},{c:22,ok:1,p:41},{c:23,ok:1,p:41},{c:24,ok:1,p:41},{c:25,ok:1,p:41},
  {c:26,ok:1,p:41},{c:27,ok:1,p:41},{c:28,ok:0,p:41},{c:29,ok:0,p:41},{c:30,ok:0,p:41},
- {c:31,ok:0,p:41},{c:32,ok:0,p:41},{c:33,ok:0,p:41},{c:34,ok:0,p:41},{c:35,ok:0,p:41}
+ {c:31,ok:0,p:41},{c:32,ok:0,p:41},{c:33,ok:0,p:41},{c:34,ok:0,p:41},{c:35,ok:0,p:41},
+ {c:36,ok:0,p:41},{c:37,ok:0,p:41},{c:38,ok:1,p:41}
 ];
 // KPI
 function animN(el,t){var d=1400,s=performance.now();(function f(n){var p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(f);})(s);}
@@ -373,12 +387,38 @@ rt();
  var leg=document.getElementById('dleg');
  src.forEach(function(s){var row=document.createElement('div');row.className='lrow';row.innerHTML='<div class="ldot" style="background:'+s.col+'"></div><div class="llbl">'+s.l+'</div><div class="lcnt">'+s.c+'</div><div class="lpct">'+Math.round(s.c/tot*100)+'%</div>';leg.appendChild(row);});
 })();
-// ORG GRID
+// SIGNAL FEED (Cycle 70 harvest)
 (function(){
- var g=document.getElementById('ogrd');
- OW.slice(0,18).forEach(function(p){
+ var g=document.getElementById('sgrd');
+ if(!g)return;
+ var srcCls={email:'sb-e',meeting:'sb-m',teams:'sb-t',document:'sb-d'};
+ var srcIcon={email:'&#128229;',meeting:'&#128100;',teams:'&#128172;',document:'&#128196;'};
+ // sort by total weekly minutes desc
+ var sorted=SIG.slice().sort(function(a,b){return(b.freq*b.mins)-(a.freq*a.mins);});
+ var maxMins=sorted[0].freq*sorted[0].mins;
+ sorted.forEach(function(s){
+  var totalMins=s.freq*s.mins;
+  var totalHrs=(totalMins/60).toFixed(1);
+  var pct=Math.round((totalMins/maxMins)*100);
   var card=document.createElement('div');card.className='ocard';
-  card.innerHTML='<div class="onm">'+p.n+'</div><div class="ometa"><div class="och">&#128101; <strong>'+p.p+'</strong> participants</div><div class="och">&#8987; <strong>'+p.h.toFixed(0)+'h</strong> cumulative</div><div class="och">&#11088; <strong>'+p.comp+'</strong> score</div></div><div class="obar"><div class="otrk"><div class="ofil" style="width:'+p.comp+'%"></div></div></div>';
+  var autoTag=s.auto
+   ?'<span style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:.04em">&#9889; AUTOMATABLE</span>'
+   :'<span style="font-size:10px;color:var(--muted)">manual-only</span>';
+  var skTag=s.sk
+   ?'<div class="och" style="margin-top:4px">&#8594;&nbsp;<span style="font-family:var(--mono);font-size:10px;color:var(--purple)">'+s.sk+'</span></div>'
+   :'';
+  card.innerHTML=
+   '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'
+   +'<span class="sb '+srcCls[s.src]+'">'+srcIcon[s.src]+' '+s.src+'</span>'
+   +autoTag
+   +'</div>'
+   +'<div class="onm" style="padding-left:0;font-size:12px;line-height:1.4">'+s.t+'</div>'
+   +'<div class="ometa" style="padding-left:0;margin-top:8px">'
+   +'<div class="och">&#128257; <strong>'+s.freq+'&times;</strong>/wk</div>'
+   +'<div class="och" style="color:var(--amber)">&#8987; <strong>'+totalHrs+'h</strong> this week</div>'
+   +skTag
+   +'</div>'
+   +'<div class="obar" style="padding-left:0;margin-top:10px"><div class="otrk"><div class="ofil" style="width:'+pct+'%;background:linear-gradient(90deg,'+(s.auto?'var(--purple),var(--pink)':'var(--muted),var(--muted)')+')"></div></div><span style="font-size:10px;color:var(--muted);margin-left:8px">'+totalMins+'min/wk</span></div>';
   g.appendChild(card);
  });
 })();
