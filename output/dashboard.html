@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skilluminator — Cycle 29 Dashboard</title>
+<title>Skilluminator — Cycle 57 Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -122,6 +122,47 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
 .ddot{width:10px;height:10px;border-radius:2px;flex-shrink:0;margin-right:9px}
 .dleft{display:flex;align-items:center}
 .dpct{font-weight:700;color:var(--text)}
+/* ── SKILL CARDS ── */
+.skillcards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.sc-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;position:relative;overflow:hidden;transition:border-color .25s,transform .2s,box-shadow .25s}
+.sc-card:hover{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 8px 40px rgba(129,140,248,.15)}
+.sc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink))}
+.sc-rank{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800}
+.sc-r1{background:linear-gradient(135deg,#f59e0b,#fcd34d);color:#111}
+.sc-r2{background:linear-gradient(135deg,#94a3b8,#c0cfe0);color:#111}
+.sc-r3{background:linear-gradient(135deg,#c2410c,#f97316);color:#fff}
+.sc-rn{background:var(--card2);color:var(--muted);border:1px solid var(--border)}
+.sc-name{font-size:0.84rem;font-weight:700;font-family:'Cascadia Code','Fira Code',monospace;color:var(--purple);margin-bottom:6px;padding-right:42px;line-height:1.3}
+.sc-desc{font-size:0.74rem;color:var(--muted);line-height:1.55;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sc-triple{display:flex;gap:16px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.sc-met{display:flex;flex-direction:column;gap:2px}
+.sc-met-l{font-size:0.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sc-met-v{font-size:1.45rem;font-weight:800;letter-spacing:-1px;line-height:1.1}
+.sc-brow{margin-bottom:8px}
+.sc-blbl{display:flex;justify-content:space-between;font-size:0.67rem;color:var(--muted);margin-bottom:3px}
+.sc-bbg{height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.sc-bfill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.34,1.56,.64,1)}
+.sc-trig{background:var(--card2);border-left:2px solid var(--border);padding:5px 9px;border-radius:0 5px 5px 0;font-size:0.69rem;color:var(--muted);line-height:1.4;margin-bottom:4px}
+.sc-trig:first-child{border-left-color:var(--purple)}
+.sc-foot{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.sc-roi{display:inline-flex;align-items:center;gap:4px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;color:var(--green)}
+.sc-tp{font-size:0.69rem;padding:3px 8px;border-radius:10px;font-weight:600}
+.sc-tp-r{background:rgba(34,197,94,.1);color:var(--green)}
+.sc-tp-s{background:rgba(148,163,184,.1);color:var(--muted)}
+.sc-tp-d{background:rgba(239,68,68,.1);color:var(--red)}
+.sc-conf{font-size:0.67rem;color:var(--muted);margin-left:auto}
+/* ── ROI BARS ── */
+.roi-grid{display:grid;grid-template-columns:190px 1fr 74px;align-items:center;gap:12px;margin-bottom:9px}
+.roi-lbl{font-size:0.74rem;font-weight:600;color:var(--text);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.roi-bg{height:12px;background:var(--border);border-radius:6px;overflow:hidden;cursor:default}
+.roi-fill{height:100%;border-radius:6px;opacity:.75}
+.roi-val{font-size:0.75rem;font-weight:700;white-space:nowrap}
+@media(max-width:700px){.roi-grid{grid-template-columns:1fr;gap:3px}.roi-lbl{text-align:left}}
+/* ── FILTER PILLS ── */
+.filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.fpill{background:var(--card2);border:1px solid var(--border);padding:5px 14px;border-radius:20px;font-size:0.73rem;color:var(--muted);cursor:pointer;transition:all .2s;user-select:none}
+.fpill:hover{border-color:var(--purple);color:var(--text)}
+.fpill.active{background:var(--purple);border-color:var(--purple);color:#fff}
 </style>
 </head>
 <body>
@@ -136,15 +177,15 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
       <h1>Skilluminator</h1>
     </div>
     <div class="meta-row">
-      <div class="badge"><span class="dot dot-purple"></span>Agent Refinement Cycle 29</div>
+      <div class="badge"><span class="dot dot-purple"></span>Agent Refinement Cycle 57</div>
       <div class="badge"><span class="dot dot-amber"></span>Patterns DB · Internal Cycle 55</div>
-      <div class="badge"><span class="dot dot-green"></span>Week of 2026-03-17</div>
+      <div class="badge"><span class="dot dot-green"></span>Week of 2026-03-20</div>
       <div class="badge"><span class="dot dot-green"></span>Generated 2026-03-20</div>
       <div class="badge"><span class="dot dot-red"></span>41 Individual · 27 Org-Wide Patterns</div>
     </div>
     <div class="harvest-warn">
-      ⚠️&nbsp;<div><strong style="color:#fca5a5">Harvest Alert — 2 Consecutive Agent-Cycle Failures</strong><br>
-      Agent cycles 28 &amp; 29: all 15 WorkIQ queries returned null (week of 2026-03-16). Dashboard renders from last successful harvest (internal cycle 55). All scores, velocities, and trends reflect that confirmed state. No data was fabricated.</div>
+      ⚠️&nbsp;<div><strong style="color:#fca5a5">Harvest Alert — 4 Consecutive Agent-Cycle Failures (Type C Persistent Outage)</strong><br>
+      Agent cycles 28–31 (Skilluminator cycles 53–57): all 15 WorkIQ queries returned null each run. <strong style="color:#fca5a5">Source-Failure Guard ACTIVE</strong> — trend downgrades frozen, archival rule suspended. Dashboard renders from last successful harvest (internal cycle 55). All scores, velocities, and trends reflect that confirmed state. No data was fabricated. Escalation recommended: verify M365 Copilot license, re-accept WorkIQ EULA, check service health dashboard.</div>
     </div>
   </div>
 </div>
@@ -181,6 +222,7 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
 <!-- ── 2. TABLE ── -->
 <section>
   <div class="section-title">Top Skill Candidates — Ranked by Composite Score</div>
+  <div class="filter-row" id="filter-row"></div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -223,16 +265,21 @@ pre{padding:22px;font-family:'Cascadia Code','Fira Code','Courier New',monospace
   <div class="org-grid" id="ogrid"></div>
 </section>
 
-<!-- ── 6. SKILL GEN INPUT ── -->
+<!-- ── 6. SKILL CARDS ── -->
 <section>
-  <div class="section-title">Skill-Generator Input — Top 5 Candidates</div>
-  <div class="code-wrap">
-    <div class="code-hdr">
-      <span class="code-hdr-l">skillGeneratorInput.candidateSkills · internal cycle 55 · agent cycle 29 refresh</span>
-      <span class="lang-tag">JSON</span>
-    </div>
-    <pre id="codeblock"></pre>
+  <div class="section-title">Top Skill Recommendations — Generation Queue</div>
+  <div class="skillcards-grid" id="skillcards"></div>
+</section>
+
+<!-- ── 6b. ROI IMPACT ── -->
+<section>
+  <div class="section-title">Time Savings Impact — Hours at Risk by Pattern</div>
+  <div class="chart-card" style="padding:24px 28px">
+    <div class="chart-title">Recoverable Hours If Automated <span class="chart-sub">top 12 active patterns &middot; green=rising &middot; amber=stable &middot; hover for detail</span></div>
+    <div id="roi-bars" style="margin-top:18px"></div>
   </div>
+</section>
+
 </section>
 
 <!-- ── 7. CYCLE HISTORY ── -->
@@ -340,7 +387,7 @@ function findLbl(id){const p=PAT.find(x=>x.id===id);return p?p.label:id.replace(
 // ═══════════════════════════════════════════
 // KPI ANIMATION
 // ═══════════════════════════════════════════
-const kpiTargets=[[0,68],[1,95],[2,30],[3,5]];
+const kpiTargets=[[0,41],[1,95],[2,30],[3,5]];
 kpiTargets.forEach(([i,target])=>{
   const el=document.getElementById('kpi'+i);
   const dur=1200+i*100;
@@ -496,7 +543,7 @@ ORGWIDE.forEach(o=>{
 // ═══════════════════════════════════════════
 // SKILL GEN JSON
 // ═══════════════════════════════════════════
-document.getElementById('codeblock').textContent=JSON.stringify(SKILLGEN,null,2);
+// skill card rendering below replaces JSON dump
 
 // ═══════════════════════════════════════════
 // CYCLE HISTORY BARS
@@ -520,6 +567,104 @@ document.getElementById('codeblock').textContent=JSON.stringify(SKILLGEN,null,2)
       b.style.height=b.dataset.target+'px';
     });
   }));
+})();
+
+// ═══════════════════════════════════════════
+// SKILL CARDS
+// ═══════════════════════════════════════════
+(function(){
+  const RCLS=['sc-r1','sc-r2','sc-r3','sc-rn','sc-rn'];
+  const tpCls=t=>t==='rising'?'sc-tp-r':t==='declining'?'sc-tp-d':'sc-tp-s';
+  const tpLbl=t=>t==='rising'?'↑ rising':t==='declining'?'↓ declining':'→ stable';
+  const confBand=occ=>occ>=100?'✓ VALIDATED':occ>=50?'● HIGH':occ>=10?'○ MODERATE':'⚠️ LOW';
+  const con=document.getElementById('skillcards');
+  SKILLGEN.forEach((s,i)=>{
+    const p=PAT.find(x=>x.id===s.patternId)||{trend:'stable',occ:0};
+    const roiM=s.valueProposition.match(/$([d,]+)/);
+    const roi=roiM?'💰 '+roiM[0]+'/yr est.':'';
+    const trigs=s.triggerExamples.slice(0,3).map(t=>`<div class="sc-trig">${t}</div>`).join('');
+    const div=document.createElement('div');
+    div.className='sc-card';
+    div.innerHTML=`
+      <div class="sc-rank ${RCLS[i]||'sc-rn'}">${s.rank}</div>
+      <div class="sc-name">${s.name}</div>
+      <div class="sc-desc">${s.description}</div>
+      <div class="sc-triple">
+        <div class="sc-met"><div class="sc-met-l">Composite</div><div class="sc-met-v" style="color:var(--green)">${s.compositeScore}</div></div>
+        <div class="sc-met"><div class="sc-met-l">Automation</div><div class="sc-met-v" style="color:var(--amber)">${s.automationScore}</div></div>
+        <div class="sc-met"><div class="sc-met-l">Value</div><div class="sc-met-v" style="color:var(--purple)">${s.valueScore}</div></div>
+      </div>
+      <div class="sc-brow">
+        <div class="sc-blbl"><span>Automation Feasibility</span><span>${s.automationScore}%</span></div>
+        <div class="sc-bbg"><div class="sc-bfill sfill-a" style="width:0" data-w="${s.automationScore}%"></div></div>
+      </div>
+      <div class="sc-brow">
+        <div class="sc-blbl"><span>Business Value</span><span>${s.valueScore}%</span></div>
+        <div class="sc-bbg"><div class="sc-bfill sfill-g" style="width:0" data-w="${s.valueScore}%"></div></div>
+      </div>
+      <div style="margin:10px 0">${trigs}</div>
+      <div class="sc-foot">
+        ${roi?`<div class="sc-roi">${roi}</div>`:''}
+        <span class="sc-tp ${tpCls(p.trend)}">${tpLbl(p.trend)}</span>
+        <span class="sc-conf">${confBand(p.occ)}</span>
+      </div>`;
+    con.appendChild(div);
+  });
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll('.sc-bfill[data-w]').forEach(b=>{b.style.width=b.dataset.w});
+  }));
+})();
+
+// ═══════════════════════════════════════════
+// ROI IMPACT BARS
+// ═══════════════════════════════════════════
+(function(){
+  const active=PAT.filter(p=>p.mat!=='archived'&&p.mat!=='signal').sort((a,b)=>b.hrs-a.hrs).slice(0,12);
+  const maxH=active[0].hrs;
+  const tCol=t=>t==='rising'?'var(--green)':t==='declining'?'var(--red)':'var(--amber)';
+  const con=document.getElementById('roi-bars');
+  active.forEach((p,idx)=>{
+    const pct=(p.hrs/maxH*100).toFixed(1);
+    const col=tCol(p.trend);
+    const div=document.createElement('div');
+    div.className='roi-grid';
+    const annualEst=Math.round(p.hrs*260*p.parts/1000)*1000;
+    div.innerHTML=`
+      <div class="roi-lbl" title="${p.label}">${p.label}</div>
+      <div class="roi-bg">
+        <div class="roi-fill" style="width:0;background:${col};transition:width ${0.6+idx*0.06}s ease" data-w="${pct}%"></div>
+      </div>
+      <div class="roi-val" style="color:${col}">${hrsLbl(p.hrs)}</div>`;
+    con.appendChild(div);
+  });
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll('.roi-fill[data-w]').forEach(b=>{b.style.width=b.dataset.w});
+  }));
+})();
+
+// ═══════════════════════════════════════════
+// TABLE FILTER PILLS
+// ═══════════════════════════════════════════
+(function(){
+  // tag each row with its trend
+  const rows=document.querySelectorAll('#ttbody tr');
+  top10.forEach((p,i)=>{if(rows[i])rows[i].dataset.trend=p.trend});
+  // build pills
+  const fr=document.getElementById('filter-row');
+  if(!fr)return;
+  [['All','all'],['Rising ↑','rising'],['Stable →','stable'],['Declining ↓','declining']].forEach(([lbl,val])=>{
+    const pill=document.createElement('span');
+    pill.className='fpill'+(val==='all'?' active':'');
+    pill.textContent=lbl;
+    pill.addEventListener('click',()=>{
+      document.querySelectorAll('.fpill').forEach(x=>x.classList.remove('active'));
+      pill.classList.add('active');
+      document.querySelectorAll('#ttbody tr').forEach(tr=>{
+        tr.style.display=(val==='all'||tr.dataset.trend===val)?'':'none';
+      });
+    });
+    fr.appendChild(pill);
+  });
 })();
 </script>
 </body>
