@@ -68,7 +68,9 @@ Aim for 15-30 signals. Then output a one-paragraph summary.`;
 
 // ── Phase 2: Refine Skill-Detector & Dashboard ──────────────────────
 
-export function buildRefinePrompt(cycleNum: number, steeringInput?: string): string {
+export type RefineFocus = "skill" | "dashboard" | "both";
+
+export function buildRefinePrompt(cycleNum: number, steeringInput?: string, focus: RefineFocus = "both"): string {
   const signals = readSignals();
   const prevPatterns = readPatterns();
   const currentSkill = readSkillDetector();
@@ -94,19 +96,10 @@ export function buildRefinePrompt(cycleNum: number, steeringInput?: string): str
     ? `Current skill-detector: ${currentSkill.length} chars, ${(currentSkill.match(/^## /gm) || []).length} sections. READ it at ${SKILL_PATH} before editing.`
     : `No skill-detector exists yet. Create the first version at ${SKILL_PATH}.`;
 
-  return `## REFINE PHASE — Cycle ${cycleNum}
-${steeringBlock}
-### Context
-- Signals: ${SIGNALS_PATH} (${signalCount} signals)
-- Patterns: ${PATTERNS_PATH} (${patternSummary})
-- Skill: ${SKILL_PATH} — ${skillInfo}
-- Dashboard: ${DASHBOARD_PATH}
+  const focusLabel = focus === "skill" ? "SKILL-DETECTOR" : focus === "dashboard" ? "DASHBOARD" : "SKILL + DASHBOARD";
 
-**Read the files you need, then do all three tasks.**
-
----
-
-## Task 1: Update patterns.json (${PATTERNS_PATH})
+  // Task 1: patterns always included
+  const patternsTask = `## Task 1: Update patterns.json (${PATTERNS_PATH})
 
 Read ${SIGNALS_PATH}. ${prevPatterns ? "Merge with existing patterns — update scores, trends, lastSeenCycle." : "Create from scratch."} Mark patterns not seen for 3+ cycles as "declining". Write valid JSON with this structure:
 
@@ -117,30 +110,51 @@ Read ${SIGNALS_PATH}. ${prevPatterns ? "Merge with existing patterns — update 
   "patterns": [{ "patternId": "<slug>", "label": "<name>", "sources": ["email",...], "occurrenceCount": <int>, "participantCount": <int>, "timeSpentHoursTotal": <float>, "automationScore": <0-100>, "valueScore": <0-100>, "candidateSkillName": "<kebab-case>", "firstSeenCycle": <int>, "lastSeenCycle": ${cycleNum}, "trend": "rising|stable|declining", "llmRationale": "<why>" }],
   "skillGeneratorInput": { "candidateSkills": [{ "name": "<skill-name>", "description": "<what>", "triggerExamples": ["<when>"], "valueProposition": "<why>" }] }
 }
-\`\`\`
+\`\`\``;
 
----
-
-## Task 2: IMPROVE the skill-detector — MAIN EVENT
+  // Task 2: skill-detector (only when focus includes skill)
+  const skillTask = focus !== "dashboard" ? `## Task 2: IMPROVE the skill-detector
 
 ${currentSkill
     ? `Use the Edit tool to make TARGETED improvements to ${SKILL_PATH}. Do NOT rewrite from scratch. Read the full file first, identify what's weak or missing, then make specific edits.`
     : `Create ${SKILL_PATH} with Claude skill frontmatter (name + description). Make it impressive.`}
 
-You have full creative control over structure and approach.
+You have full creative control over structure and approach.` : "";
+
+  // Task 3: dashboard (only when focus includes dashboard)
+  const dashboardTask = focus !== "skill" ? `## Task ${focus === "dashboard" ? "2" : "3"}: IMPROVE dashboard.html (${DASHBOARD_PATH})
+
+Read the current dashboard, then make TARGETED improvements with Edit. Self-contained HTML, dark theme (#0f1117), inline CSS/JS only. Each cycle should make it noticeably better.` : "";
+
+  const tasks = [patternsTask, skillTask, dashboardTask].filter(Boolean).join("\n\n---\n\n");
+  const taskCount = [true, focus !== "dashboard", focus !== "skill"].filter(Boolean).length;
+
+  return `## REFINE PHASE — Cycle ${cycleNum} [Focus: ${focusLabel}]
+${steeringBlock}
+### Context
+- Signals: ${SIGNALS_PATH} (${signalCount} signals)
+- Patterns: ${PATTERNS_PATH} (${patternSummary})
+${focus !== "dashboard" ? `- Skill: ${SKILL_PATH} — ${skillInfo}` : ""}
+${focus !== "skill" ? `- Dashboard: ${DASHBOARD_PATH}` : ""}
+
+**Read the files you need, then do ${taskCount === 1 ? "the task" : `all ${taskCount} tasks`}. Be efficient — make targeted edits, don't rewrite files.**
 
 ---
 
-## Task 3: IMPROVE dashboard.html (${DASHBOARD_PATH})
-
-Read the current dashboard, then make TARGETED improvements with Edit. Self-contained HTML, dark theme (#0f1117), inline CSS/JS only. Each cycle should make it noticeably better.
+${tasks}
 
 ---
 
-## Output (keep brief)
-1. Top 3 skill candidates with scores
-2. What improved in skill-detector
-3. What improved in dashboard`;
+## Output: Blog Post (IMPORTANT)
+
+End your response with a section starting with exactly \`## FEED POST\` followed by a fun, lighthearted blog post (3-6 sentences) for the operator. Write in a witty, personality-filled tone — like a teammate posting a standup update with humor. Include:
+- What you did this cycle and what changed
+- Interesting findings or highlights from the data
+- Top skill candidate(s) with scores
+- Any challenges, gaps, or funny observations
+- A dash of personality — puns, metaphors, or playful commentary welcome
+
+This post will be shown directly to the operator on the feed page.`;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
