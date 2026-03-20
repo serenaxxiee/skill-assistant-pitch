@@ -1,23 +1,24 @@
 {
-  "cycleNum": 32,
+  "cycleNum": 33,
   "harvestedAt": "2026-03-20T00:00:00.000Z",
   "weekOf": "2026-03-16",
+  "harvestStatus": "FAILED",
   "workiqQueriesRun": [
-    "What email threads did I send or receive most frequently in the past 7 days? List subject patterns, sender/recipient groups, and approximate time spent.",
-    "Are there recurring email types I write regularly — like status updates, approvals, scheduling requests, or data requests? Show examples from the past week.",
-    "Which emails required the most back-and-forth (most replies in a thread) this past week, and what was the topic?",
-    "What recurring meetings did I attend this past week? For each, what was the typical agenda type and who attends?",
-    "How much total time did I spend in meetings this past week, broken down by meeting type (1:1, team sync, external, etc.)?",
-    "Which meeting types happen every week at roughly the same time with the same people?",
-    "What Teams channels or chats am I most active in over the past 7 days? What topics come up repeatedly?",
-    "Are there questions I get asked repeatedly in Teams chats — things people regularly come to me for?",
-    "What types of information do I most frequently share or look up in Teams conversations this week?",
-    "What types of documents did I create, edit, or review most often this past week? Any recurring doc types like reports, specs, or decks?",
-    "Are there documents I update on a regular cadence (weekly/monthly reports, trackers, dashboards)?",
+    "What email threads did I send or receive most frequently in the past 7 days?",
+    "Are there recurring email types I write regularly?",
+    "Which emails required the most back-and-forth this past week?",
+    "What recurring meetings did I attend this past week?",
+    "How much total time did I spend in meetings this past week?",
+    "Which meeting types happen every week at roughly the same time?",
+    "What Teams channels or chats am I most active in over the past 7 days?",
+    "Are there questions I get asked repeatedly in Teams chats?",
+    "What types of information do I most frequently share or look up in Teams?",
+    "What types of documents did I create, edit, or review most often this past week?",
+    "Are there documents I update on a regular cadence?",
     "What SharePoint sites or OneDrive folders do I access most frequently?",
-    "Across email, meetings, and Teams, what topics or projects consumed the most of my time this week?",
-    "Are there workflows that seem to repeat — where I do the same sequence of actions (e.g., get email -> schedule meeting -> create doc)?",
-    "What tasks do multiple people on my team seem to do independently that could be standardized?"
+    "Across email, meetings, and Teams, what topics or projects consumed the most time?",
+    "Are there workflows that seem to repeat?",
+    "What tasks do multiple people on my team do independently that could be standardized?"
   ],
   "queryResults": [
     {
@@ -127,5 +128,5 @@
     }
   ],
   "signals": [],
-  "harvestNotes": "All 15 WorkIQ queries for Cycle 32 (week of 2026-03-16) returned service errors with no response payload and no conversationId. No M365 data was accessible. Zero signals were extracted. No data was fabricated. This is the second consecutive cycle (Cycle 31 and Cycle 32) with identical total failure. Most likely cause: WorkIQ EULA not yet accepted, or persistent authentication/session issue requiring manual re-authorization."
+  "harvestNotes": "All 15 WorkIQ queries for Cycle 33 (week of 2026-03-16) returned service errors. Both parallel and sequential attempts failed with null response and null conversationId. Zero signals extracted. No data invented. Third consecutive cycle (31, 32, 33) with total failure. Likely cause: WorkIQ EULA not accepted. Recommended action: user must authorize EULA acceptance via mcp__workiq__accept_eula with URL https://github.com/microsoft/work-iq-mcp."
 }
