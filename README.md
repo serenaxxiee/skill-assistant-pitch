@@ -2,51 +2,54 @@
 
 Analyzes your M365 work activity to discover which of your repeated work patterns are the best candidates for AI automation — and generates a visual dashboard of the findings.
 
-Works with any role. Powered by WorkIQ + Claude Code.
+Works with any role. Powered by WorkIQ + Agency Copilot.
 
 [View the infographic](https://serenaxxiee.github.io/skilluminator/)
 
 ## Install
 
-### 1. Add the marketplace
-
 ```
-/plugin marketplace add serenaxxiee/skilluminator
+npx skills add serenaxxiee/skilluminator
 ```
 
-### 2. Install the plugin
-
-```
-/plugin install skilluminator
-```
-
-That's it — WorkIQ is configured automatically via the bundled MCP server config.
+That's it. WorkIQ is connected automatically through Agency Copilot.
 
 ### Prerequisites
 
-- [Claude Code](https://claude.ai/claude-code) installed
+- [Agency Copilot](https://github.com/serenaxxiee/skilluminator) installed
 - Microsoft 365 account with WorkIQ access
+
+### Verify WorkIQ Connection
+
+Before running Skilluminator, confirm WorkIQ is connected:
+
+1. In Agency Copilot, ask: *"Use WorkIQ to answer: What meetings did I attend this week?"*
+2. If it returns meeting data — you're good to go
+3. If it errors, check:
+   - Your M365 Copilot license is active in your admin center
+   - You've accepted the WorkIQ EULA — see [microsoft/work-iq-mcp](https://github.com/microsoft/work-iq-mcp)
+   - M365 Service Health at [admin.microsoft.com](https://admin.microsoft.com)
 
 ## Usage
 
 ### Run the analysis
 
 ```
-/skilluminator:skilluminator past 30 days
+/skilluminator past 30 days
 ```
 
 Or with other time ranges:
 
 ```
-/skilluminator:skilluminator past 7 days
-/skilluminator:skilluminator past 2 weeks
-/skilluminator:skilluminator in March 2026
+/skilluminator past 7 days
+/skilluminator past 2 weeks
+/skilluminator in March 2026
 ```
 
 ### Regenerate the dashboard
 
 ```
-/skilluminator:skilluminator-dashboard
+/skilluminator-dashboard
 ```
 
 ### Build a skill from a candidate
@@ -55,7 +58,7 @@ Or with other time ranges:
 /skill-creator [candidate-name]
 ```
 
-## What it does
+## What It Does
 
 1. Queries your email, meetings, Teams chats, and documents via WorkIQ
 2. Extracts repeating behavioral signals and clusters them into patterns
@@ -65,7 +68,7 @@ Or with other time ranges:
 6. Generates an interactive HTML dashboard with analytics and top skill candidates
 7. Offers to build any candidate via `/skill-creator`
 
-## How scoring works
+## How Scoring Works
 
 Each pattern is scored on two dimensions:
 
@@ -83,29 +86,11 @@ Each pattern is scored on two dimensions:
 | Moderate | 50-69 | Automatable but may need human-in-the-loop. Worth building. |
 | Exploring | <50 | Painful but hard to automate. Consider partial solutions. |
 
-## What gets filtered out
+## What Gets Filtered Out
 
 - Patterns already handled by M365 built-in tools (Teams Copilot Meeting Recap, Chat Recap, etc.)
 - Patterns based on unverified meeting attendance (calendar invites != attendance)
 - Patterns below the relevance threshold (<30 min/week AND <5/week AND single-source AND no pain signals)
-
-## Plugin structure
-
-```
-plugins/
-  skilluminator/
-    .claude-plugin/
-      plugin.json
-    .mcp.json                              # WorkIQ MCP server (auto-configured)
-    commands/
-      skilluminator.md                     # /skilluminator:skilluminator command
-      skilluminator-dashboard.md           # /skilluminator:skilluminator-dashboard command
-    skills/
-      skilluminator/
-        SKILL.md                           # Core skill definition
-    scripts/
-      generate-dashboard.js                # Dashboard generator
-```
 
 ## License
 
