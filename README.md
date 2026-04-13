@@ -11,7 +11,7 @@ Works with any role. Powered by WorkIQ + Agency Copilot.
 In your terminal, run:
 
 ```
-npx skills add serenaxxiee/skilluminator
+npx skills add serenaxxiee/skilluminator -g -y
 ```
 
 That's it. Then open **Agency Copilot** to start using the skill.
