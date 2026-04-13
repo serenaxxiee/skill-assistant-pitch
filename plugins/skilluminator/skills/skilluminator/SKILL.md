@@ -1,3 +1,8 @@
+---
+name: skilluminator
+description: Analyzes your M365 work activity to discover which repeated work patterns are the best candidates for AI automation, scores them, and generates a visual dashboard.
+---
+
 # Skilluminator
 ## Work Pattern Analyzer & Skill Candidate Detector
 

@@ -8,11 +8,13 @@ Works with any role. Powered by WorkIQ + Agency Copilot.
 
 ## Install
 
+In your terminal, run:
+
 ```
 npx skills add serenaxxiee/skilluminator
 ```
 
-That's it. WorkIQ is connected automatically through Agency Copilot.
+That's it. Then open **Agency Copilot** to start using the skill.
 
 ### Prerequisites
 
